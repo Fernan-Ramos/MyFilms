@@ -1,0 +1,52 @@
+import { createStore, applyMiddleware, compose } from 'redux';
+import thunk from 'redux-thunk';
+import logger from '../dev/logger';
+
+// import Immutable from 'immutable'; // Remove if you are not using server rendering
+// import Serialize from 'remotedev-serialize/immutable'; // Remove if you are not using server rendering
+
+import rootReducer from '../reducers';
+
+const isProduction = process.env.NODE_ENV === 'production';
+
+// Creating store
+export default () => {
+  let store = null;
+  let middleware = null;
+
+  let initialState = {};
+
+//   // Remove if you are not using server rendering
+//   try {
+//     // If state exists we need to parse it to JS object
+//     initialState = Serialize(Immutable).parse(window.__initialState__); // eslint-disable-line no-undef
+//   } catch (e) {
+//     // ★★ Marvin: No dehydrated state
+//   }
+
+  
+  if (isProduction) {
+    // In production adding only thunk middleware
+    middleware = applyMiddleware(thunk);
+  } else {
+    // In development mode beside thunk
+    // logger and DevTools are added
+    middleware = applyMiddleware(thunk, logger);
+
+    // Enable DevTools if browser extension is installed
+    if (!process.env.SERVER && window.__REDUX_DEVTOOLS_EXTENSION__) { // eslint-disable-line
+      middleware = compose(
+        middleware,
+        window.__REDUX_DEVTOOLS_EXTENSION__() // eslint-disable-line
+      );
+    }
+  }
+
+  store = createStore(
+    rootReducer,
+    initialState,
+    middleware,
+  );
+
+  return store;
+};
