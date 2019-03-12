@@ -12,6 +12,7 @@ import UserList from './components/UserList';
 import { fetchUsers, fetchCreateUser, fetchDeleteUser } from './actions/usersActions';
 import DialogForm from './components/DialogForm';
 import UserService from './services/UserService';
+import MovieService from './services/movies/MovieService';
 
 class App extends Component {
 
@@ -34,7 +35,8 @@ class App extends Component {
     this.handleClickOpen();
   }
 
-  deleteUser = async(user) => {
+
+  deleteUser = async (user) => {
     // try {
     //   await UserService.delete(user.id);
     //   this.props.dispatch(fetchUsers());
@@ -70,7 +72,7 @@ class App extends Component {
             }}>
               <Typography variant="title" color="inherit" style={{ display: 'inline' }}>Listado de usuarios</Typography>
               <UserList
-                users = {this.props.users} 
+                users={this.props.users}
                 deleteUser={this.deleteUser}
               />
               {' '}
