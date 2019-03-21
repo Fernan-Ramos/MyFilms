@@ -1,15 +1,17 @@
 import React, { PureComponent } from 'react';
-import { connect } from 'react-redux';
 
 import './style.scss';
 
-
 class LoginView extends PureComponent {
-
-
     render() {
+        return (
+            <div className='LoginWrapper'>
 
+            </div>
+
+
+        );
     }
 }
 
-export default connect(null, mapDispatchToProps)(LoginForm);
+export default LoginView;
