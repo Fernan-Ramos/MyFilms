@@ -1,8 +1,28 @@
-@import "../../../scss/theme/mixins.scss";
+@import '../../../scss/theme/variables.scss';
+@import '../../../scss/theme/mixins.scss';
 
-
-.LoginWrapper{
-    height: 100vh;
-    width: 100vw;
-    background-color: $grey-bg;
+.LoginWrapper {
+  height: 100vh;
+  width: 100vw;
+  background-color: $grey-bg;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .LoginWrapper__form {
+      border-radius: get-rem(5px);
+      background-color: $white;
+      height: get-rem(350px);
+      display: grid;
+      grid-template-columns: auto auto;
+      width: get-rem(600px);
+      overflow: hidden;
+      &-image{
+        background-color: $red;
+        background: url('../../../assets/img/login/login.jpg') center no-repeat;
+        background-size: cover;
+      }
+      &-content{
+        padding: get-rem(30px);
+      }
+  }
 }

@@ -1,9 +1,46 @@
+@function get-desktop-vw($target) {
+  $design-width: 1366;
+  $vw-context: ($design-width * 0.01) * 1px;
+  @return ($target / $vw-context) * 1vw;
+}
 
+@function get-desktop-vh($target) {
+  $design-height: 768;
+  $vw-context: ($design-height * 0.01) * 1px;
+  @return ($target / $vw-context) * 1vh;
+}
 
+@function get-mobile-vw($target) {
+  $design-width: 1080;
+  $vw-context: ($design-width * 0.01) * 1px;
+  @return ($target / $vw-context) * 1vw;
+}
 
-$main-color: #0000;
-$white: #ffffff;
-$black: #000000;
+@function get-mobile-vh($target) {
+  $design-height: 1920;
+  $vw-context: ($design-height * 0.01) * 1px;
+  @return ($target / $vw-context) * 1vh;
+}
 
+@function get-rem($target) {
+  @return ($target * 0.1 / 1px) * 1rem;
+}
 
-$grey-bg: #DEDDDC;
+@mixin centerer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate3d(-50%, -50%, 0);
+}
+
+@mixin vertical-center {
+  position: absolute;
+  top: 50%;
+  transform: translate3d(0, -50%, 0);
+}
+
+@mixin horizontal-center {
+  position: absolute;
+  left: 50%;
+  transform: translate3d(-50%, 0, 0);
+}

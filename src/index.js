@@ -7,7 +7,8 @@ import { Provider } from 'react-redux';
 import configureStore from './js/store';
 import * as serviceWorker from './serviceWorker';
 
-
+import './scss/base/corrections.scss';
+import './scss/base/reset.scss';
 
 const store = configureStore();
 
