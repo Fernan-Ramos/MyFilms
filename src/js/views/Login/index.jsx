@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
-
+import LoginForm from './Form';
 import './style.scss';
+
 
 class LoginView extends PureComponent {
     render() {
@@ -10,11 +11,12 @@ class LoginView extends PureComponent {
                     <div className='LoginWrapper__form-image'>
                     </div>
                     <div className='LoginWrapper__form-content'>
+                        <h1>Login</h1>
+                        <p>Bienvenido a myFilms</p>
+                        <LoginForm />
                     </div>
                 </div>
             </div>
-
-
         );
     }
 }

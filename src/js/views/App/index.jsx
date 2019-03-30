@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import { Switch, Route, withRouter, Redirect } from 'react-router-dom';
-import Login from '../Login';
-import Movies from '../Movies';
+import Login from 'js/views/Login';
+import Movies from 'js/views/Movies';
 
 const loggedIn = false;
 

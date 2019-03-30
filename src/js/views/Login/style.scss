@@ -1,5 +1,5 @@
-@import '../../../scss/theme/variables.scss';
-@import '../../../scss/theme/mixins.scss';
+@import 'scss/theme/variables.scss';
+@import 'scss/theme/mixins.scss';
 
 .LoginWrapper {
   height: 100vh;
@@ -23,6 +23,15 @@
       }
       &-content{
         padding: get-rem(30px);
+        h1{
+          font-size: get-rem(20px);
+          line-height: get-rem(27px);
+          font-weight: bold;
+          margin-bottom: get-rem(10px);
+        }
+        p{
+          color: $red4;
+        }
       }
   }
 }

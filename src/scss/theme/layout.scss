@@ -1,0 +1,11 @@
+@import 'scss/theme/variables.scss';
+@import 'scss/theme/mixins.scss';
+
+html{
+
+}
+
+body{
+    font-family: 'Catamaran';
+    font-size: get-rem(10px);
+}
