@@ -23,7 +23,7 @@
 }
 
 @function get-rem($target) {
-  @return ($target * 0.1 / 1px) * 1rem;
+  @return ($target * .1 / 1px) * 1rem;
 }
 
 @mixin centerer {

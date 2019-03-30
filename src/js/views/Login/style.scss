@@ -11,10 +11,10 @@
   .LoginWrapper__form {
       border-radius: get-rem(5px);
       background-color: $white;
-      height: get-rem(350px);
+      height: get-rem(550px);
       display: grid;
-      grid-template-columns: auto auto;
-      width: get-rem(600px);
+      grid-template-columns: 50% 50%;
+      width: get-rem(850px);
       overflow: hidden;
       &-image{
         background-color: $red;

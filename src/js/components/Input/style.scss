@@ -1,0 +1,11 @@
+@import 'scss/theme/variables.scss';
+@import 'scss/theme/mixins.scss';
+
+.Input {
+    width: 100%;
+    height: get-rem(25px);
+    border-radius: get-rem(2px);
+    outline: none;
+    font-family: 'Catamaran';
+    padding: get-rem(15px);
+}

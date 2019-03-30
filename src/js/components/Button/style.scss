@@ -1,0 +1,18 @@
+@import 'scss/theme/variables.scss';
+@import 'scss/theme/mixins.scss';
+
+.Button{
+    border: 1px solid $red;
+    height: get-rem(35px);
+    width: get-rem(150px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    outline: none;
+    color: $white;
+    border-radius: get-rem(15px);
+    cursor: pointer;
+    font-size: get-rem(15px);
+    font-family: 'Catamaran';
+    background-color: $red2;
+}
