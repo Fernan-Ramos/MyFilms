@@ -1,5 +1,5 @@
-@import 'scss/theme/variables.scss';
-@import 'scss/theme/mixins.scss';
+@import "scss/theme/variables.scss";
+@import "scss/theme/mixins.scss";
 
 .LoginWrapper {
   height: 100vh;
@@ -9,29 +9,39 @@
   align-items: center;
   justify-content: center;
   .LoginWrapper__form {
-      border-radius: get-rem(5px);
-      background-color: $white;
-      height: get-rem(550px);
-      display: grid;
-      grid-template-columns: 50% 50%;
-      width: get-rem(850px);
-      overflow: hidden;
-      &-image{
-        background-color: $red;
-        background: url('../../../assets/img/login/login.jpg') center no-repeat;
-        background-size: cover;
+    border-radius: get-rem(5px);
+    background-color: $white;
+    // height: get-rem(550px);
+    height: 80vh;
+    display: grid;
+    grid-template-columns: 50% 50%;
+    // width: get-rem(850px);
+    width: 55vw;
+    overflow: hidden;
+    &-image {
+      background: url("../../../assets/img/login/login.jpg") center no-repeat;
+      background-size: cover;
+    }
+    &-content {
+      padding: get-rem(100px) get-rem(120px);
+      h1 {
+        font-size: get-rem(40px);
+        line-height: get-rem(57px);
+        font-weight: bold;
+        margin-bottom: get-rem(10px);
+        color: $black3;
       }
-      &-content{
-        padding: get-rem(30px);
-        h1{
-          font-size: get-rem(20px);
-          line-height: get-rem(27px);
-          font-weight: bold;
-          margin-bottom: get-rem(10px);
-        }
-        p{
-          color: $red4;
-        }
+      p {
+        color: $grey;
+        font-size: get-rem(15px);
+        margin-bottom: get-rem(30px);
       }
+      form{
+        display: grid;
+        grid-row-gap: get-rem(25px);
+        padding-bottom: get-rem(20px);
+        border-bottom: 1px dashed $blue3;
+      }
+    }
   }
 }

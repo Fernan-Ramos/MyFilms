@@ -1,11 +1,29 @@
-@import 'scss/theme/variables.scss';
-@import 'scss/theme/mixins.scss';
+@import "scss/theme/variables.scss";
+@import "scss/theme/mixins.scss";
 
 .Input {
-    width: 100%;
-    height: get-rem(25px);
-    border-radius: get-rem(2px);
-    outline: none;
-    font-family: 'Catamaran';
-    padding: get-rem(15px);
+  width: 100%;
+  height: get-rem(25px);
+  border-radius: get-rem(2px);
+  outline: none;
+  font-family: "Catamaran";
+  padding: get-rem(15px);
+  border: get-rem(2px) solid $blue3;
+  border-radius: get-rem(4px);
+  color: $black3;
+  &::-webkit-input-placeholder {
+    color: pink;
+  }
+  &::-moz-placeholder {
+    color: pink;
+  }
+  &:-ms-input-placeholder {
+    color: pink;
+  }
+  &:-moz-placeholder {
+    color: pink;
+  }
+  &::placeholder {
+    color: $blue3;
+  }
 }

@@ -2,17 +2,39 @@
 @import 'scss/theme/mixins.scss';
 
 .Button{
-    border: 1px solid $red;
+    border: none;
     height: get-rem(35px);
-    width: get-rem(150px);
+    // width: get-rem(150px);
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
     outline: none;
     color: $white;
-    border-radius: get-rem(15px);
+    border-radius: get-rem(4px);
     cursor: pointer;
-    font-size: get-rem(15px);
+    font-size: get-rem(13px);
     font-family: 'Catamaran';
-    background-color: $red2;
+    background: rgb(41,24,226);
+    background: rgb(41,24,226);
+    background: -moz-linear-gradient(90deg, rgba(41,24,226,1) 0%, rgba(98,54,163,1) 100%, rgba(112,91,143,1) 100%);
+    background: -webkit-linear-gradient(90deg, rgba(41,24,226,1) 0%, rgba(98,54,163,1) 100%, rgba(112,91,143,1) 100%);
+    background: linear-gradient(90deg, rgba(41,24,226,1) 0%, rgba(98,54,163,1) 100%, rgba(112,91,143,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#2918e2",endColorstr="#705b8f",GradientType=1);
+
+    &:hover, &:focus{
+        transition: 0.4s;
+        border: 1px solid $violet;
+        background: rgb(112,91,143);
+        background: -moz-linear-gradient(90deg, rgba(112,91,143,1) 0%, rgba(41,24,226,1) 100%, rgba(177,159,216,1) 100%);
+        background: -webkit-linear-gradient(90deg, rgba(112,91,143,1) 0%, rgba(41,24,226,1) 100%, rgba(177,159,216,1) 100%);
+        background: linear-gradient(90deg, rgba(112,91,143,1) 0%, rgba(41,24,226,1) 100%, rgba(177,159,216,1) 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#705b8f",endColorstr="#b19fd8",GradientType=1);
+    }
+
+    &.Center{
+        width: 100%;
+    }
+
+
 }
