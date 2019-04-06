@@ -18,6 +18,7 @@
     "redux-form": "^8.1.0",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
+    "rfs": "^8.0.3",
     "urijs": "^1.19.1"
   },
   "scripts": {

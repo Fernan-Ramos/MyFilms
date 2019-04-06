@@ -1,13 +1,19 @@
 @import "scss/theme/variables.scss";
 @import "scss/theme/mixins.scss";
+@import "~rfs/scss";
 
 .LoginWrapper {
   height: 100vh;
   width: 100vw;
-  background-color: $grey-bg;
+  // background-color: $grey-bg;
   display: flex;
   align-items: center;
   justify-content: center;
+  background: rgb(167,207,241);
+  background: -moz-linear-gradient( rgba(167,207,241,1) 0%, rgba(177,159,216,1) 64%);
+  background: -webkit-linear-gradient( rgba(167,207,241,1) 0%, rgba(177,159,216,1) 64%);
+  background: linear-gradient( rgba(167,207,241,1) 0%, rgba(177,159,216,1) 64%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#a7cff1",endColorstr="#b19fd8",GradientType=1);
   .LoginWrapper__form {
     border-radius: get-rem(5px);
     background-color: $white;
@@ -25,7 +31,8 @@
     &-content {
       padding: get-rem(100px) get-rem(120px);
       h1 {
-        font-size: get-rem(40px);
+        @include font-size(get-rem(40px));
+        // font-size: get-rem(40px);
         line-height: get-rem(57px);
         font-weight: bold;
         margin-bottom: get-rem(10px);
