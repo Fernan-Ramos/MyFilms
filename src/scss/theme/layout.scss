@@ -4,7 +4,10 @@
 html {
     -webkit-font-smoothing: antialiased;
     -webkit-backface-visibility: hidden;
-    font-size: 10px;
+    font-size: get-desktop-vw(10px);
+    @media screen and (min-width: $design-width-media-query) {
+      font-size: 10px;
+    }
   }
   
 
