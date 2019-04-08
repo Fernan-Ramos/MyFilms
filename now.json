@@ -19,7 +19,7 @@
       { "src": "/(.*)", "headers": {"cache-control": "s-maxage=0"}, "dest": "/index.html" }
     ],
     "alias": [
-        "myfilms.now.sh",
-        "myfilms.now.sh"
+        "my-films.now.sh",
+        "my-films.now.sh"
     ]
 }
