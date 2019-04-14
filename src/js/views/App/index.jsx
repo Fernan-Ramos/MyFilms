@@ -1,12 +1,13 @@
 import React, { PureComponent } from "react";
+import { connect } from "react-redux";
 import { Switch, Route, withRouter, Redirect } from "react-router-dom";
 import Login from "js/views/Login";
 import Movies from "js/views/Movies";
 
-const loggedIn = false;
-
 class App extends PureComponent {
   render() {
+    const { tokenData } = this.props;
+    console.warn(tokenData);
     return (
       <Switch>
         <Route path="/login" component={Login} />
@@ -15,7 +16,11 @@ class App extends PureComponent {
           exact
           path="/"
           render={() =>
-            loggedIn ? <Redirect to="/movies" /> : <Redirect to="/login" />
+            tokenData ? (
+              <Route path="/movies" component={Movies} />
+            ) : (
+              <Redirect to="/login" />
+            )
           }
         />
       </Switch>
@@ -23,4 +28,11 @@ class App extends PureComponent {
   }
 }
 
-export default withRouter(App);
+const mapStatetoProps = state => ({
+  tokenData: state.auth.get("tokenData")
+});
+
+export default connect(
+  mapStatetoProps,
+  null
+)(withRouter(App));

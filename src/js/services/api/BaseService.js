@@ -1,8 +1,8 @@
-import axios from 'axios/index';
+import axios from 'axios';
 
-import MovieConfig from './MovieConfig';
+import Config from './Config';
 
-export default class MovieBaseService {
+export default class BaseService {
   static endpoint = null;
   
 
@@ -19,7 +19,7 @@ export default class MovieBaseService {
       }
       axios({
         method: 'GET',
-        url: MovieConfig.generateURI(this.endpoint, params),
+        url: Config.generateURI(this.endpoint, params),
       }).then(
         (response) => {
           resolve(response.data);
@@ -36,7 +36,7 @@ export default class MovieBaseService {
       const endpoint = `${this.endpoint}${ pk }`;
       axios({
         method: 'GET',
-        url: MovieConfig.generateURI(endpoint),
+        url: Config.generateURI(endpoint),
       }).then(
         (response) => {
           resolve(response.data);
