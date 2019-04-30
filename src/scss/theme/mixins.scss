@@ -11,7 +11,7 @@
 }
 
 @function get-mobile-vw($target) {
-  $design-width: 1080;
+  $design-width: 340;
   $vw-context: ($design-width * 0.01) * 1px;
   @return ($target / $vw-context) * 1vw;
 }

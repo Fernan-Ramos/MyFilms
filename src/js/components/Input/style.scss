@@ -11,19 +11,34 @@
   border: get-rem(2px) solid $blue3;
   border-radius: get-rem(4px);
   color: $black3;
+
   &::-webkit-input-placeholder {
-    color: pink;
+    color: $blue3;
   }
+
   &::-moz-placeholder {
-    color: pink;
+    color: $blue3;
   }
+
   &:-ms-input-placeholder {
-    color: pink;
+    color: $blue3;
   }
+
   &:-moz-placeholder {
-    color: pink;
+    color: $blue3;
   }
+
   &::placeholder {
     color: $blue3;
+  }
+}
+
+html.mobile {
+  .Input {
+    height: get-mobile-vw(25px);
+    border-radius: get-mobile-vw(2px);
+    padding:get-mobile-vw(15px);
+    border: get-mobile-vw(2px) solid $blue3;
+    border-radius: get-mobile-vw(4px);
   }
 }

@@ -5,7 +5,6 @@
 .LoginWrapper {
   height: 100vh;
   width: 100vw;
-  // background-color: $grey-bg;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -17,11 +16,9 @@
   .LoginWrapper__form {
     border-radius: get-rem(5px);
     background-color: $white;
-    // height: get-rem(550px);
     height: 80vh;
     display: grid;
     grid-template-columns: 50% 50%;
-    // width: get-rem(850px);
     width: 55vw;
     overflow: hidden;
     &-image {
@@ -29,10 +26,11 @@
       background-size: cover;
     }
     &-content {
-      padding: get-rem(100px) get-rem(120px);
+      align-self: center;
+      justify-self: center;
       h1 {
-        @include font-size(get-rem(40px));
-        // font-size: get-rem(40px);
+        // @include font-size(get-rem(40px));
+        font-size: get-rem(40px);
         line-height: get-rem(57px);
         font-weight: bold;
         margin-bottom: get-rem(10px);
@@ -48,6 +46,36 @@
         grid-row-gap: get-rem(25px);
         padding-bottom: get-rem(20px);
         border-bottom: 1px dashed $blue3;
+      }
+    }
+  }
+}
+
+html.mobile{
+  .LoginWrapper__form{
+    height: 95%;
+    width: 90%;
+    grid-template-columns: none;
+    background: url("../../../assets/img/login/login-mobile.png") center no-repeat;
+    background-size: cover;
+    border-radius: get-mobile-vw(5px);
+    &-image{
+      display: none;
+    }
+    &-content {
+      h1 {
+        font-size: get-mobile-vw(40px);
+        line-height: get-mobile-vw(57px);
+        margin-bottom: get-mobile-vw(10px);
+        color: $white2;
+      }
+      p {
+        font-size: get-mobile-vw(15px);
+        margin-bottom: get-mobile-vw(30px);
+      }
+      form{
+        grid-row-gap: get-mobile-vw(25px);
+        padding-bottom: get-mobile-vw(20px);
       }
     }
   }
