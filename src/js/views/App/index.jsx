@@ -1,38 +1,19 @@
 import React, { PureComponent } from "react";
-import { connect } from "react-redux";
-import { Switch, Route, withRouter, Redirect } from "react-router-dom";
+import { Switch, Route, withRouter } from "react-router-dom";
 import Login from "js/views/Login";
 import Movies from "js/views/Movies";
+import { routeCodes } from "js/constants/routes";
+import PrivateRoute from "js/components/PrivateRoute";
 
 class App extends PureComponent {
   render() {
-    const { tokenData } = this.props;
-    console.warn(tokenData);
     return (
       <Switch>
-        <Route path="/login" component={Login} />
-        <Route path="/movies" component={Movies} />
-        <Route
-          exact
-          path="/"
-          render={() =>
-            tokenData ? (
-              <Route path="/movies" component={Movies} />
-            ) : (
-              <Redirect to="/login" />
-            )
-          }
-        />
+        <Route exact path={routeCodes.LOGIN} component={Login} />
+        <PrivateRoute path={routeCodes.MOVIES} component={Movies} />
       </Switch>
     );
   }
 }
 
-const mapStatetoProps = state => ({
-  tokenData: state.auth.get("tokenData")
-});
-
-export default connect(
-  mapStatetoProps,
-  null
-)(withRouter(App));
+export default withRouter(App);

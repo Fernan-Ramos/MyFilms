@@ -19,6 +19,7 @@ class LoginForm extends react.PureComponent {
         request_token: token.data.request_token
       });
       setInfo(token.data.request_token);
+      AuthService.goToLoggedInInitialPage();
     } catch (error) {}
   };
 

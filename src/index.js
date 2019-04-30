@@ -1,11 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter } from "react-router-dom";
+import { Router } from "react-router-dom";
 import "./index.css";
 import App from "./js/views/App";
+import routeManager from 'js/services/routeManager';
 import { Provider } from "react-redux";
 import configureStore from "./js/store";
 import * as serviceWorker from "./serviceWorker";
+
 
 import "scss/base/corrections.scss";
 import "scss/base/reset.scss";
@@ -27,9 +29,9 @@ window.onresize = window.onload = () => {
 
 ReactDOM.render(
   <Provider store={store}>
-    <BrowserRouter>
+    <Router history={routeManager.history}>
       <App />
-    </BrowserRouter>
+    </Router>
   </Provider>,
   document.getElementById("root")
 );
