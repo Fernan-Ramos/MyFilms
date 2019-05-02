@@ -8,11 +8,10 @@ const PrivateRoute = ({ component: Component, tokenData, ...rest }) => (
   <Route
     {...rest}
     render={props => (
-      // Todo: Auth logic
       tokenData
-      ? <Component {...props} />
-      : <Redirect  to={routeCodes.LOGIN} />
-  )}
+        ? <Component {...props} />
+        : <Redirect to={routeCodes.LOGIN} />
+    )}
   />
 );
 

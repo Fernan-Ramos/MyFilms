@@ -1,31 +1,31 @@
-import React, * as react from "react";
-import {connect} from 'react-redux';
-import Button from "js/components/Button";
-import Input from "js/components/Input";
-import AuthService from "js/services/api/AuthService";
-import {setInfo} from 'js/actions/auth';
-import {addAsync, deleteAsync} from 'js/actions/async';
+import React, * as react from 'react';
+import { connect } from 'react-redux';
+import Button from 'js/components/Button';
+import Input from 'js/components/Input';
+import AuthService from 'js/services/api/AuthService';
+import { setInfo } from 'js/actions/auth';
+import { addAsync, deleteAsync } from 'js/actions/async';
 
 class LoginForm extends react.PureComponent {
-  handleSubmit = async event => {
-    const {setInfo, addAsync, deleteAsync } = this.props;
+  handleSubmit = async (event) => {
+    const { setInfoFunction, addAsyncFunction, deleteAsyncFunction } = this.props;
     event.preventDefault();
     const username = event.target.username.value;
     const password = event.target.password.value;
     try {
-      addAsync();
+      addAsyncFunction();
       const token = await AuthService.token();
       await AuthService.login({
-        password: password,
-        username: username,
+        password,
+        username,
         request_token: token.data.request_token
       });
-      setInfo(token.data.request_token);
+      setInfoFunction(token.data.request_token);
       AuthService.goToLoggedInInitialPage();
     } catch (error) {
-     
+      console.error('ERROR');
     }
-    deleteAsync();
+    deleteAsyncFunction();
   };
 
   render() {
@@ -46,12 +46,10 @@ class LoginForm extends react.PureComponent {
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    setInfo: (info) => dispatch(setInfo(info)),
-    addAsync: () => dispatch(addAsync('login')),
-    deleteAsync: () => dispatch(deleteAsync('login'))
-  };
-};
+const mapDispatchToProps = dispatch => ({
+  setInfoFunction: info => dispatch(setInfo(info)),
+  addAsyncFunction: () => dispatch(addAsync('login')),
+  deleteAsyncFunction: () => dispatch(deleteAsync('login'))
+});
 
-export default connect(null,mapDispatchToProps)(LoginForm);
+export default connect(null, mapDispatchToProps)(LoginForm);

@@ -1,7 +1,7 @@
-import URI from "urijs";
+import URI from 'urijs';
 
-const baseURL = "https://api.themoviedb.org/3/";
-const API_Key = { api_key: "6d263bbd9d77ec9e07d377c76bf70f0a" };
+const baseURL = 'https://api.themoviedb.org/3/';
+const APIkey = { api_key: '6d263bbd9d77ec9e07d377c76bf70f0a' };
 
 class Config {
   static generateURL(path) {
@@ -10,7 +10,7 @@ class Config {
 
   static generateURI(path, query) {
     const uri = new URI(this.generateURL(path));
-    uri.query(API_Key);
+    uri.query(APIkey);
     if (query) {
       uri.addQuery(query);
     }

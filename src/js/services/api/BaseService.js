@@ -4,14 +4,14 @@ import Config from './Config';
 
 export default class BaseService {
   static endpoint = null;
-  
+
 
   static list(filters, page, sortBy) {
     return new Promise((resolve, reject) => {
       let params = Object.assign({}, filters);
 
       if (page) {
-        params['page'] = page + 1;
+        params.page = page + 1;
       }
 
       if (sortBy) {
@@ -33,7 +33,7 @@ export default class BaseService {
 
   static detail(pk) {
     return new Promise((resolve, reject) => {
-      const endpoint = `${this.endpoint}${ pk }`;
+      const endpoint = `${this.endpoint}${pk}`;
       axios({
         method: 'GET',
         url: Config.generateURI(endpoint),
@@ -47,5 +47,4 @@ export default class BaseService {
       );
     });
   }
-
 }

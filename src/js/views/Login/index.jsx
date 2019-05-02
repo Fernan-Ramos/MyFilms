@@ -1,6 +1,6 @@
-import React, { PureComponent } from "react";
-import LoginForm from "./Form";
-import "./style.scss";
+import React, { PureComponent } from 'react';
+import LoginForm from './Form';
+import './style.scss';
 
 class LoginView extends PureComponent {
   render() {

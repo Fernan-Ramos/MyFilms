@@ -1,9 +1,11 @@
-import React, { PureComponent } from "react";
-import "./style.scss";
+import React, { PureComponent } from 'react';
+import './style.scss';
 
 export default class Input extends PureComponent {
   render() {
-    const { type, placeholder, required, name, props } = this.props;
+    const {
+      type, placeholder, required, name, props
+    } = this.props;
     return (
       <input
         className="Input"
