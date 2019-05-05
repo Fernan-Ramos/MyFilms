@@ -1,13 +1,13 @@
 import { Map } from 'immutable';
-import { INFO_SET } from 'js/actions/auth';
+import { USER_SET } from 'js/actions/auth';
 
 const initialState = Map({
   tokenData: null
 });
 
 const actionsMap = {
-  [INFO_SET]: (state, action) => state.merge({
-    tokenData: action.info
+  [USER_SET]: (state, action) => state.merge({
+    tokenData: action.tokenData.request_token
   })
 };
 

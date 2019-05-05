@@ -3,8 +3,11 @@ import ReactDOM from 'react-dom';
 import { Router } from 'react-router-dom';
 import routeManager from 'js/services/routeManager';
 import { Provider } from 'react-redux';
-import App from './js/views/App';
-import configureStore from './js/store';
+import { login } from 'js/actions/auth';
+import App from 'js/views/App';
+import configureStore from 'js/store';
+import AuthService from 'js/services/api/AuthService';
+import cookies from 'js/services/cookies';
 import * as serviceWorker from './serviceWorker';
 
 
@@ -14,28 +17,37 @@ import 'scss/base/reset.scss';
 import 'scss/theme/layout.scss';
 import 'scss/theme/fonts.scss';
 
-const store = configureStore();
 
-window.onresize = window.onload = () => {
-  if (window.innerWidth <= 768) {
-    document.documentElement.classList.add('mobile');
-    document.documentElement.classList.remove('desktop');
+async function initApp() {
+  const store = configureStore();
+  window.onresize = window.onload = () => {
+    if (window.innerWidth <= 768) {
+      document.documentElement.classList.add('mobile');
+      document.documentElement.classList.remove('desktop');
+    } else {
+      document.documentElement.classList.remove('mobile');
+      document.documentElement.classList.add('desktop');
+    }
+  };
+  const AppWrapper = (
+    <Provider store={store}>
+      <Router history={routeManager.history}>
+        <App />
+      </Router>
+    </Provider>
+  );
+
+  const tokenData = cookies.get('myFilms_session');
+  if (tokenData) {
+    await login(tokenData, store.dispatch);
+    ReactDOM.render(AppWrapper, document.getElementById('root'));
   } else {
-    document.documentElement.classList.remove('mobile');
-    document.documentElement.classList.add('desktop');
+    ReactDOM.render(AppWrapper, document.getElementById('root'));
   }
-};
 
-ReactDOM.render(
-  <Provider store={store}>
-    <Router history={routeManager.history}>
-      <App />
-    </Router>
-  </Provider>,
-  document.getElementById('root')
-);
-
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: http://bit.ly/CRA-PWA
-serviceWorker.unregister();
+  // If you want your app to work offline and load faster, you can change
+  // unregister() to register() below. Note this comes with some pitfalls.
+  // Learn more about service workers: http://bit.ly/CRA-PWA
+  serviceWorker.unregister();
+}
+initApp();

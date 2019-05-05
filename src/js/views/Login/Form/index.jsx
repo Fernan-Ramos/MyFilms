@@ -3,27 +3,28 @@ import { connect } from 'react-redux';
 import Button from 'js/components/Button';
 import Input from 'js/components/Input';
 import AuthService from 'js/services/api/AuthService';
-import { setInfo } from 'js/actions/auth';
+import { login } from 'js/actions/auth';
 import { addAsync, deleteAsync } from 'js/actions/async';
 
 class LoginForm extends react.PureComponent {
   handleSubmit = async (event) => {
-    const { setInfoFunction, addAsyncFunction, deleteAsyncFunction } = this.props;
+    const {
+      addAsyncFunction, deleteAsyncFunction, loginFunction
+    } = this.props;
     event.preventDefault();
     const username = event.target.username.value;
     const password = event.target.password.value;
     try {
       addAsyncFunction();
-      const token = await AuthService.token();
-      await AuthService.login({
+      const token = await AuthService.getToken();
+      const tokenData = await AuthService.login({
         password,
         username,
         request_token: token.data.request_token
       });
-      setInfoFunction(token.data.request_token);
-      AuthService.goToLoggedInInitialPage();
-    } catch (error) {
-      console.error('ERROR');
+      await loginFunction(tokenData.data);
+    } catch (tokenData) {
+      console.error(tokenData.status_message);
     }
     deleteAsyncFunction();
   };
@@ -47,7 +48,7 @@ class LoginForm extends react.PureComponent {
 }
 
 const mapDispatchToProps = dispatch => ({
-  setInfoFunction: info => dispatch(setInfo(info)),
+  loginFunction: tokenData => login(tokenData, dispatch),
   addAsyncFunction: () => dispatch(addAsync('login')),
   deleteAsyncFunction: () => dispatch(deleteAsync('login'))
 });

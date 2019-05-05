@@ -9,9 +9,13 @@ export default class AuthService extends BaseService {
 
   static cookieName = 'myFilms_session';
 
-  static token() {
+  static getToken() {
     const endpoint = 'authentication/token/new?';
     return axios.get(Config.generateURI(endpoint));
+  }
+
+  static initToken(tokenData) {
+    cookies.set('myFilms_session', tokenData, { expires: new Date(tokenData.expires_at), path: '/' });
   }
 
   static isLoggedIn() {
