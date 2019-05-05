@@ -19,7 +19,7 @@ export default class AuthService extends BaseService {
   }
 
   static getCookie() {
-    cookies.get(this.cookieName);
+    return cookies.get(this.cookieName);
   }
 
   static isLoggedIn() {
