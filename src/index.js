@@ -6,8 +6,6 @@ import { Provider } from 'react-redux';
 import { login } from 'js/actions/auth';
 import App from 'js/views/App';
 import configureStore from 'js/store';
-import AuthService from 'js/services/api/AuthService';
-import cookies from 'js/services/cookies';
 import * as serviceWorker from './serviceWorker';
 
 
@@ -16,6 +14,7 @@ import 'scss/base/reset.scss';
 
 import 'scss/theme/layout.scss';
 import 'scss/theme/fonts.scss';
+import AuthService from './js/services/api/AuthService';
 
 
 async function initApp() {
@@ -37,7 +36,7 @@ async function initApp() {
     </Provider>
   );
 
-  const tokenData = cookies.get('myFilms_session');
+  const tokenData = AuthService.getCookie();
   if (tokenData) {
     await login(tokenData, store.dispatch);
     ReactDOM.render(AppWrapper, document.getElementById('root'));

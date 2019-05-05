@@ -15,7 +15,11 @@ export default class AuthService extends BaseService {
   }
 
   static initToken(tokenData) {
-    cookies.set('myFilms_session', tokenData, { expires: new Date(tokenData.expires_at), path: '/' });
+    cookies.set(this.cookieName, tokenData, { expires: new Date(tokenData.expires_at), path: '/' });
+  }
+
+  static getCookie() {
+    cookies.get(this.cookieName);
   }
 
   static isLoggedIn() {
