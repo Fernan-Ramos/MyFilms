@@ -1,0 +1,25 @@
+@import "scss/theme/variables.scss";
+@import "scss/theme/mixins.scss";
+
+
+.Menu{
+    background-color: $violet;
+    height: 100vh;
+    width: get-rem(330px);
+    color: $white;
+    .Menu__content{
+        padding-top: get-rem(50px);
+        display: grid;
+        justify-content: center;
+        &-logo{
+            text-align: center;
+            margin-bottom: get-rem(80px);
+        }
+        &-sections{
+            margin-bottom: get-rem(70px);
+        }
+        &-categories{
+
+        }
+    }
+}
