@@ -17,6 +17,11 @@
         }
         &-sections{
             margin-bottom: get-rem(70px);
+            ul{
+                li{
+                    margin-bottom: get-rem(35px);
+                }
+            }
         }
         &-categories{
 

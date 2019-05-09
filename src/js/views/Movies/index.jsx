@@ -1,15 +1,21 @@
 import React, { PureComponent } from 'react';
+import { Switch, Route, withRouter } from 'react-router-dom';
+import { routeCodes } from 'js/constants/routes';
+import AppContainer from 'js/components/AppContainer';
+import Lists from 'js/views/Lists';
 import './style.scss';
-import Menu from 'js/components/Menu';
+
 
 class Movies extends PureComponent {
   render() {
     return (
-      <div>
-        <Menu />
-      </div>
+      <AppContainer>
+        <Switch>
+          <Route exact path={routeCodes.LISTS} component={Lists} />
+        </Switch>
+      </AppContainer>
     );
   }
 }
 
-export default Movies;
+export default withRouter(Movies);

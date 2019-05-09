@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import links from './links';
 import './style.scss';
 
@@ -9,13 +9,17 @@ class Menu extends PureComponent {
       <div className="Menu">
         <div className="Menu__content">
           <div className="Menu__content-logo">MY FILMS</div>
-          <div className="Menu__content-sections">
+          <nav className="Menu__content-sections">
             <ul>
               {links.map(item => (
-                <li>{item.label}</li>
+                <li key={item.label}>
+                  <Link to={item.route}>
+                    {item.label}
+                  </Link>
+                </li>
               ))}
             </ul>
-          </div>
+          </nav>
           <div className="Menu__content-categories">LISTS MOVIES LOREM LOREM</div>
         </div>
       </div>
