@@ -2,9 +2,8 @@
 @import "scss/theme/mixins.scss";
 
 .AppContainer{
-    display: flex;
-    position: relative;
-    .AppContainer__content{
-        width: 100%;
-    }
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: get-rem(60px) auto;
+    height: 100vh;
 }

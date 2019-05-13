@@ -1,0 +1,7 @@
+@import "scss/theme/variables.scss";
+@import "scss/theme/mixins.scss";
+
+.AppHeader {
+  grid-column: 3/-1;
+  background-color: $violet;
+}

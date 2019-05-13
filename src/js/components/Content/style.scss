@@ -1,0 +1,6 @@
+@import "scss/theme/variables.scss";
+@import "scss/theme/mixins.scss";
+
+.AppContent {
+  grid-column: 3/-1;
+}
