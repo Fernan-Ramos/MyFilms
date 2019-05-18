@@ -47,4 +47,24 @@ export default class BaseService {
       );
     });
   }
+
+  static create(data) {
+    return new Promise((resolve, reject) => {
+      axios({
+        method: 'POST',
+        url: Config.generateURL(this.endpoint),
+        data,
+        headers: {
+          'x-requested-with': 'XMLHttpRequest',
+        },
+      }).then(
+        (response) => {
+          resolve(response.data);
+        },
+        (error) => {
+          reject(error);
+        },
+      );
+    });
+  }
 }
