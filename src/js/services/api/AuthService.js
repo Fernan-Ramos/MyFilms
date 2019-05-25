@@ -39,6 +39,18 @@ export default class AuthService extends BaseService {
     });
   }
 
+  static getSession(params) {
+    const endpoint = 'authentication/session/new';
+    return axios({
+      method: 'post',
+      url: Config.generateURL(endpoint),
+      data: Config.formatParams(params),
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+      }
+    });
+  }
+
   static logout() {
     const endpoint = 'authentication/session';
     return axios.delete(Config.generateURI(endpoint));

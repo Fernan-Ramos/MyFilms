@@ -8,5 +8,5 @@ import async from './async';
 export default combineReducers({
   users,
   auth,
-  async
+  async,
 });
