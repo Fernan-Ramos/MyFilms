@@ -33,9 +33,6 @@ export default class AuthService extends BaseService {
       method: 'post',
       url: Config.generateURL(endpoint),
       data: Config.formatParams(params),
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-      }
     });
   }
 
@@ -43,11 +40,8 @@ export default class AuthService extends BaseService {
     const endpoint = 'authentication/session/new';
     return axios({
       method: 'post',
-      url: Config.generateURL(endpoint),
+      url: Config.generateURI(endpoint),
       data: Config.formatParams(params),
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-      }
     });
   }
 

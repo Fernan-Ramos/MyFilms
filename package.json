@@ -2,6 +2,7 @@
   "name": "my-films",
   "version": "0.1.0",
   "private": true,
+  "proxy": "https://api.themoviedb.org",
   "dependencies": {
     "@material-ui/icons": "^3.0.1",
     "axios": "^0.18.0",
@@ -39,6 +40,7 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "eslint-config-airbnb": "^17.1.0"
+    "eslint-config-airbnb": "^17.1.0",
+    "http-proxy-middleware": "^0.19.1"
   }
 }

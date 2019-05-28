@@ -4,6 +4,6 @@
 .AppContainer{
     display: grid;
     grid-template-columns: repeat(12, 1fr);
-    grid-template-rows: get-rem(60px) auto;
+    grid-template-rows: get-rem(85px) auto;
     height: 100vh;
 }
