@@ -1,7 +1,7 @@
 import URI from 'urijs';
 // import queryString from 'query-string';
 
-const baseURL = 'https://api.themoviedb.org/3/';
+const baseURL = 'api/3/';
 const APIkey = '6d263bbd9d77ec9e07d377c76bf70f0a';
 
 class Config {
