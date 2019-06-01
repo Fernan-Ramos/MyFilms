@@ -1,0 +1,9 @@
+@import "scss/theme/variables.scss";
+@import "scss/theme/mixins.scss";
+
+.AppContainer{
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: get-rem(85px) auto;
+    height: 100vh;
+}

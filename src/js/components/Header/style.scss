@@ -1,0 +1,14 @@
+@import "scss/theme/variables.scss";
+@import "scss/theme/mixins.scss";
+
+.AppHeader {
+  grid-column: 2/-1;
+  background-color: $white;
+  padding: get-rem(20px) 0;
+  margin: 0 get-rem(40px);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  color: $white;
+  border-bottom: 1px solid $grey-border;
+}

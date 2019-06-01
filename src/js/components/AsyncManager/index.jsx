@@ -7,21 +7,22 @@ import './style.scss';
 
 class AsyncManager extends PureComponent {
     static propTypes = {
-        loadingQueue: PropTypes.number,
+      loadingQueue: PropTypes.number,
     }
+
     render() {
-        const { loadingQueue } = this.props;
-        if (loadingQueue === 0) return null;
-        return (
-            <div className='AsyncManager'>
-                <Loader className='AsyncManager__loading' />
-            </div>
-        );
+      const { loadingQueue } = this.props;
+      if (loadingQueue === 0) return null;
+      return (
+        <div className='AsyncManager'>
+          <Loader className='AsyncManager__loading' />
+        </div>
+      );
     }
 }
 
 const mapStateToProps = state => ({
-    loadingQueue: state.async.get('queue')
+  loadingQueue: state.async.get('queue')
 });
 
 export default connect(mapStateToProps, null)(AsyncManager);

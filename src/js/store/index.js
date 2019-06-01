@@ -14,17 +14,17 @@ export default () => {
   let store = null;
   let middleware = null;
 
-  let initialState = {};
+  const initialState = {};
 
-//   // Remove if you are not using server rendering
-//   try {
-//     // If state exists we need to parse it to JS object
-//     initialState = Serialize(Immutable).parse(window.__initialState__); // eslint-disable-line no-undef
-//   } catch (e) {
-//     // ★★ Marvin: No dehydrated state
-//   }
+  //   // Remove if you are not using server rendering
+  //   try {
+  //     // If state exists we need to parse it to JS object
+  //     initialState = Serialize(Immutable).parse(window.__initialState__); // eslint-disable-line no-undef
+  //   } catch (e) {
+  //     // ★★ Marvin: No dehydrated state
+  //   }
 
-  
+
   if (isProduction) {
     // In production adding only thunk middleware
     middleware = applyMiddleware(thunk);

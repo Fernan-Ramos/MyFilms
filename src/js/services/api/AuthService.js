@@ -1,6 +1,7 @@
 import axios from 'axios';
 import cookies from 'js/services/cookies';
 import routeManager from 'js/services/routeManager';
+
 import Config from './Config';
 import BaseService from './BaseService';
 
@@ -26,9 +27,22 @@ export default class AuthService extends BaseService {
     return cookies.get(this.cookieName) === this.cookieName;
   }
 
-  static login(query) {
+  static login(params) {
     const endpoint = 'authentication/token/validate_with_login';
-    return axios.post(Config.generateURI(endpoint, query));
+    return axios({
+      method: 'post',
+      url: Config.generateURL(endpoint),
+      data: Config.formatParams(params),
+    });
+  }
+
+  static getSession(params) {
+    const endpoint = 'authentication/session/new';
+    return axios({
+      method: 'post',
+      url: Config.generateURI(endpoint),
+      data: Config.formatParams(params),
+    });
   }
 
   static logout() {

@@ -39,10 +39,9 @@ async function initApp() {
   const tokenData = AuthService.getCookie();
   if (tokenData) {
     await login(tokenData, store.dispatch);
-    ReactDOM.render(AppWrapper, document.getElementById('root'));
-  } else {
-    ReactDOM.render(AppWrapper, document.getElementById('root'));
   }
+  ReactDOM.render(AppWrapper, document.getElementById('root'));
+
 
   // If you want your app to work offline and load faster, you can change
   // unregister() to register() below. Note this comes with some pitfalls.

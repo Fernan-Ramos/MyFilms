@@ -1,0 +1,65 @@
+@import "scss/theme/variables.scss";
+@import "scss/theme/mixins.scss";
+
+.Menu {
+  // background-color: $violet3;
+  height: 100vh;
+  color: $white;
+  grid-row: 1/2;
+  width: get-rem(250px);
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient($violet, $blue2 90%);
+  &__content {
+    padding: get-rem(50px) get-rem(30px);
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    &-user {
+      display: flex;
+      align-items: center;
+      padding-bottom: get-rem(35px);
+      border-bottom: 1px solid $grey-border;
+      .username {
+        display: flex;
+        height: 100%;
+        flex-direction: column;
+        justify-content: space-between;
+        > span:first-child {
+          font-size: get-rem(17px);
+          line-height: get-rem(20px);
+        }
+        > span:nth-child(2) {
+          font-size: get-rem(13px);
+        }
+      }
+      .avatar {
+        border-radius: 50%;
+        overflow: hidden;
+        height: get-rem(40px);
+        width: get-rem(40px);
+        margin-right: get-rem(20px);
+        > img {
+          width: 100%;
+        }
+      }
+    }
+    &-sections {
+      margin-bottom: get-rem(70px);
+      padding: get-rem(30px) 0;
+      ul {
+        display: grid;
+        grid-row-gap: get-rem(35px);
+        li {
+          font-weight: 500;
+          letter-spacing: 0.6px;
+        }
+      }
+    }
+    &-categories {
+    }
+    &-signout {
+    }
+  }
+}
