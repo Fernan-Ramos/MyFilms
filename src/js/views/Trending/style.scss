@@ -1,0 +1,23 @@
+@import 'scss/theme/variables.scss';
+@import 'scss/theme/mixins.scss';
+.Trending{
+   display: grid;
+   grid-template-columns:repeat(3, 1fr);
+   grid-column-gap: get-rem(15px);
+   .MovieCard{
+       position: relative;
+       img{
+           width: 100%;
+           border-radius: get-rem(11px);
+       }
+       span{
+           font-weight: bold;
+           color: $white;
+           position: absolute;
+           bottom: get-rem(30px);
+           left: get-rem(20px);
+           display: block;
+           text-shadow: 1px 1px 0 #000;
+       }
+   }
+}
