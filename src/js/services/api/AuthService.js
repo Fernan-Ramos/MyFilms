@@ -51,6 +51,6 @@ export default class AuthService extends BaseService {
   }
 
   static goToLoggedInInitialPage() {
-    routeManager.push('/movies');
+    routeManager.push('/trending');
   }
 }

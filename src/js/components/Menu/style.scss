@@ -50,10 +50,15 @@
       padding: get-rem(30px) 0;
       ul {
         display: grid;
-        grid-row-gap: get-rem(35px);
+        grid-row-gap: get-rem(15px);
         li {
           font-weight: 500;
           letter-spacing: 0.6px;
+          padding: get-rem(10px) 0;
+          &:hover{
+            background: $grey-border;
+            color: $white;
+          }
         }
       }
     }

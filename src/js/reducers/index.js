@@ -1,12 +1,12 @@
 import { combineReducers } from 'redux';
 
-import users from './users';
 import auth from './auth';
 import async from './async';
+import lists from './lists';
 
 
 export default combineReducers({
-  users,
   auth,
   async,
+  lists,
 });

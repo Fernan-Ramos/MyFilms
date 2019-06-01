@@ -2,6 +2,10 @@ import { routeCodes } from 'js/constants/routes';
 
 const links = [
   {
+    label: 'Trending',
+    route: routeCodes.TRENDING
+  },
+  {
     label: 'WatchList',
     route: routeCodes.WATCHLIST
   },
