@@ -1,23 +1,20 @@
-@import 'scss/theme/variables.scss';
-@import 'scss/theme/mixins.scss';
-.Trending{
-   display: grid;
-   grid-template-columns:repeat(3, 1fr);
-   grid-column-gap: get-rem(15px);
-   .MovieCard{
-       position: relative;
-       img{
-           width: 100%;
-           border-radius: get-rem(11px);
-       }
-       span{
-           font-weight: bold;
-           color: $white;
-           position: absolute;
-           bottom: get-rem(30px);
-           left: get-rem(20px);
-           display: block;
-           text-shadow: 1px 1px 0 #000;
-       }
-   }
+@import "scss/theme/variables.scss";
+@import "scss/theme/mixins.scss";
+
+.TrendingWrapper{
+    display: grid;
+    grid-row-gap: get-rem(20px);
+}
+
+
+.Trending {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-column-gap: get-rem(15px);
+}
+
+.Upcoming {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  grid-column-gap: get-rem(17px);
 }
