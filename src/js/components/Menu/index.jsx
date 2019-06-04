@@ -11,11 +11,14 @@ class Menu extends PureComponent {
     return (
       <div className="Menu">
         <div className="Menu__content">
-          <div className='Menu__content-user'>
-            <div className='avatar'>
-              <img src={`https://www.gravatar.com/avatar/${gravatar}`} alt='gravatar' />
+          <div className="Menu__content-user">
+            <div className="avatar">
+              <img
+                src={`https://www.gravatar.com/avatar/${gravatar}`}
+                alt="gravatar"
+              />
             </div>
-            <div className='username'>
+            <div className="username">
               <span>{username}</span>
               <span>{iso}</span>
             </div>
@@ -24,15 +27,13 @@ class Menu extends PureComponent {
             <ul>
               {links.map(item => (
                 <li key={item.label}>
-                  <Link to={item.route}>
-                    {item.label}
-                  </Link>
+                  <Link to={item.route}>{item.label}</Link>
                 </li>
               ))}
             </ul>
           </nav>
           <div className="Menu__content-categories" />
-          <div className='Menu__content-signout'>Sign out</div>
+          <div className="Menu__content-signout" />
         </div>
       </div>
     );
@@ -45,5 +46,9 @@ const mapStateToProps = state => ({
   iso: state.auth.get('iso_3166_1')
 });
 
-
-export default withRouter(connect(mapStateToProps, null)(Menu));
+export default withRouter(
+  connect(
+    mapStateToProps,
+    null
+  )(Menu)
+);
