@@ -2,7 +2,7 @@
 @import "scss/theme/mixins.scss";
 
 .AppHeader {
-  grid-column: 2/-1;
+  grid-area: h;
   background-color: $white;
   padding: get-rem(20px) 0;
   margin: 0 get-rem(40px);

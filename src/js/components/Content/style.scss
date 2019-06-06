@@ -2,7 +2,7 @@
 @import "scss/theme/mixins.scss";
 
 .AppContent {
-  grid-column: 2/-1;
+  grid-area: c;
   background-color: $white;
   padding: get-rem(20px) get-rem(40px);
 }

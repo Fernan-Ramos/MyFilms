@@ -4,7 +4,7 @@
 .Menu {
   height: 100vh;
   color: $white;
-  grid-row: 1/2;
+  grid-area: m;
   width: get-rem(250px);
   position: relative;
   overflow: hidden;
