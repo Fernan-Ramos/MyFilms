@@ -11,10 +11,15 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-column-gap: get-rem(15px);
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 }
 
 .Upcoming {
   display: grid;
-  grid-template-columns: repeat(8, 1fr);
-  grid-column-gap: get-rem(17px);
+  grid-template-columns: repeat(2, auto);
+  &__items{
+    display: grid;
+    grid-column-gap: get-rem(17px);
+    grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+  }
 }

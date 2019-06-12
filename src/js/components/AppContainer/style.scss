@@ -1,10 +1,12 @@
 @import "scss/theme/variables.scss";
 @import "scss/theme/mixins.scss";
 
-.AppContainer{
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    grid-template-rows: get-rem(85px) auto;
-    grid-template-areas: "m h h h h h h h h h h h" 
-                         "m c c c c c c c c c c c"
+.AppContainer {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: get-rem(85px) auto;
+  grid-template-areas:
+    "m m h h h h h h h h h h"
+    "m m c c c c c c c c c c";
+  min-height: 100vh;
 }

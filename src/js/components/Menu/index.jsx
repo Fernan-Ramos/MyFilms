@@ -9,33 +9,31 @@ class Menu extends PureComponent {
     const { username, avatar, iso } = this.props;
     const gravatar = avatar.gravatar.hash;
     return (
-      <div className="Menu">
-        <div className="Menu__content">
-          <div className="Menu__content-user">
-            <div className="avatar">
-              <img
-                src={`https://www.gravatar.com/avatar/${gravatar}`}
-                alt="gravatar"
-              />
-            </div>
-            <div className="username">
-              <span>{username}</span>
-              <span>{iso}</span>
-            </div>
+      <nav className="Menu">
+        <div className="Menu__user">
+          <div className="avatar">
+            <img
+              src={`https://www.gravatar.com/avatar/${gravatar}`}
+              alt="gravatar"
+            />
           </div>
-          <nav className="Menu__content-sections">
-            <ul>
-              {links.map(item => (
-                <li key={item.label}>
-                  <Link to={item.route}>{item.label}</Link>
-                </li>
-              ))}
-            </ul>
-          </nav>
-          <div className="Menu__content-categories" />
-          <div className="Menu__content-signout" />
+          <div className="username">
+            <span>{username}</span>
+            <span>{iso}</span>
+          </div>
         </div>
-      </div>
+        <div className="Menu__sections">
+          <ul>
+            {links.map(item => (
+              <li key={item.label}>
+                <Link to={item.route}>{item.label}</Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div className="Menu__categories" />
+        <div className="Menu__signout" />
+      </nav>
     );
   }
 }

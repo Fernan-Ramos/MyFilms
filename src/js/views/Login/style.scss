@@ -8,18 +8,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgb(167,207,241);
-  background: -moz-linear-gradient( rgba(167,207,241,1) 0%, rgba(177,159,216,1) 64%);
-  background: -webkit-linear-gradient( rgba(167,207,241,1) 0%, rgba(177,159,216,1) 64%);
-  background: linear-gradient( rgba(167,207,241,1) 0%, rgba(177,159,216,1) 64%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#a7cff1",endColorstr="#b19fd8",GradientType=1);
+  @include linear-gradient();
   .LoginWrapper__form {
     border-radius: get-rem(5px);
     background-color: $white;
     height: 80vh;
     display: grid;
-    grid-template-columns: 50% 50%;
-    width: 55vw;
+    grid-template-columns: 1fr 1fr;
     overflow: hidden;
     &-image {
       background: url("../../../assets/img/login/login.jpg") center no-repeat;
@@ -28,8 +23,8 @@
     &-content {
       align-self: center;
       justify-self: center;
+      padding: 80px;
       h1 {
-        // @include font-size(get-rem(40px));
         font-size: get-rem(40px);
         line-height: get-rem(57px);
         font-weight: bold;
@@ -63,6 +58,7 @@ html.mobile{
       display: none;
     }
     &-content {
+      padding: 0;
       h1 {
         font-size: get-mobile-vw(40px);
         line-height: get-mobile-vw(57px);

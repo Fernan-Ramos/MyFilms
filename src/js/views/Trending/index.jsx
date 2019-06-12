@@ -32,15 +32,19 @@ class Trending extends PureComponent {
     const { trendingItems } = this.props;
     return (
       <div className='TrendingWrapper'>
+
         <div className="Trending">
           {trendingItems.slice(0, 3).map((item, index) => (
             <MovieCard key={index} movie={item} imageSize="poster" />
           ))}
         </div>
         <div className="Upcoming">
-          {trendingItems.slice(3, 11).map((item, index) => (
-            <MovieCard key={index} movie={item} imageSize="xl" />
-          ))}
+          <div className='Upcoming__items'>
+            {trendingItems.slice(3, 11).map((item, index) => (
+              <MovieCard key={index} movie={item} imageSize="xl" />
+            ))}
+          </div>
+          <div className="" />
         </div>
       </div>
     );
