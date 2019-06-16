@@ -42,12 +42,16 @@
       li {
         font-weight: 500;
         letter-spacing: 0.6px;
-        padding: get-rem(20px) 0 get-rem(20px) get-rem(30px);
         cursor: pointer;
-        &:hover {
+        a{
+          display: block;
+          width: 100%;
+          padding: get-rem(20px) 0 get-rem(20px) get-rem(30px);
+        }
+        &:hover, &.active {
           background: $grey-border;
           background: linear-gradient(90deg, $violet5 10%, $grey-border 112%);
-          color: $white;
+          color: $violet4;
         }
       }
     }

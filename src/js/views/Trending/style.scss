@@ -17,6 +17,12 @@
 .Upcoming {
   display: grid;
   grid-template-columns: repeat(2, auto);
+  &__title{
+    color: $violet3;
+    font-weight: bold;
+    margin-bottom: 18px;
+    font-size: 16px;
+  }
   &__items{
     display: grid;
     grid-column-gap: get-rem(17px);

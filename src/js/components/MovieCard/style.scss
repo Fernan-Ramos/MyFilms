@@ -7,13 +7,28 @@
       width: 100%;
       border-radius: get-rem(11px);
     }
-    span {
-      font-weight: bold;
-      color: $white;
-      position: absolute;
-      bottom: get-rem(30px);
-      left: get-rem(20px);
+    span{
       display: block;
-      text-shadow: 1px 1px 0 #000;
+      font-weight: bold;
+    }
+    &.TextInside {
+      span {
+        color: $white;
+        position: absolute;
+        bottom: get-rem(30px);
+        left: get-rem(20px);
+        text-shadow: 1px 1px 0 #000;
+      }
+    }
+    &.TextOutside {
+      span{
+        text-align: center;
+        color: $violet3;
+        font-size: 13px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        margin: 10px 0;
+      }
     }
 }

@@ -1,10 +1,18 @@
 import React, { PureComponent } from 'react';
-import { withRouter, Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
+import classNames from 'classnames';
 import links from './links';
 import './style.scss';
 
+import MenuLink from './MenuLink';
+
 class Menu extends PureComponent {
+  isRouteActive = (route) => {
+    const { location } = this.props;
+    return location.pathname === route;
+  }
+
   render() {
     const { username, avatar, iso } = this.props;
     const gravatar = avatar.gravatar.hash;
@@ -25,8 +33,8 @@ class Menu extends PureComponent {
         <div className="Menu__sections">
           <ul>
             {links.map(item => (
-              <li key={item.label}>
-                <Link to={item.route}>{item.label}</Link>
+              <li key={item.label} className={classNames('Link', { active: this.isRouteActive(item.route) })}>
+                <MenuLink route={item.route} label={item.label} />
               </li>
             ))}
           </ul>
