@@ -15,6 +15,7 @@ import 'scss/base/reset.scss';
 import 'scss/theme/layout.scss';
 import 'scss/theme/fonts.scss';
 import AuthService from './js/services/api/AuthService';
+import { setIsMobile } from './js/actions/layout';
 
 
 async function initApp() {
@@ -23,9 +24,11 @@ async function initApp() {
     if (window.innerWidth <= 768) {
       document.documentElement.classList.add('mobile');
       document.documentElement.classList.remove('desktop');
+      store.dispatch(setIsMobile(true));
     } else {
       document.documentElement.classList.remove('mobile');
       document.documentElement.classList.add('desktop');
+      store.dispatch(setIsMobile(false));
     }
   };
   const AppWrapper = (

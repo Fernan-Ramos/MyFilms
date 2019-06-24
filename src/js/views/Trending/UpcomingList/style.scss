@@ -1,0 +1,15 @@
+@import "scss/theme/variables.scss";
+@import "scss/theme/mixins.scss";
+.UpcomingList {
+  &__title {
+    color: $violet3;
+    font-weight: bold;
+    margin-bottom: 18px;
+    font-size: 16px;
+  }
+  &__items {
+    display: grid;
+    grid-column-gap: get-rem(17px);
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  }
+}

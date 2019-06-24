@@ -43,17 +43,29 @@
         font-weight: 500;
         letter-spacing: 0.6px;
         cursor: pointer;
-        a{
+        a {
           display: block;
           width: 100%;
           padding: get-rem(20px) 0 get-rem(20px) get-rem(30px);
         }
-        &:hover, &.active {
+        &:hover,
+        &.active {
           background: $grey-border;
           background: linear-gradient(90deg, $violet5 10%, $grey-border 112%);
           color: $violet4;
         }
       }
     }
+  }
+}
+
+html.mobile {
+  .Menu {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1;
+    height: 100vh;
   }
 }
