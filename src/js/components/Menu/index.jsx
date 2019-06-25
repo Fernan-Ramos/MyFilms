@@ -58,9 +58,7 @@ class Menu extends PureComponent {
             <div className="Menu__signout" />
           </nav>
           )
-
         }
-
       </>
     );
   }

@@ -24,6 +24,10 @@ a {
   color: inherit;
 }
 
+button{
+  -webkit-tap-highlight-color: transparent;
+}
+
 button,
 input {
   border: 0;

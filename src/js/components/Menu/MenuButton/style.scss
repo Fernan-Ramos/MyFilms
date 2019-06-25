@@ -1,48 +1,60 @@
-.MenuButton{
-	background: none;
-	cursor: pointer;
+.MenuButton {
+  background: none;
+  cursor: pointer;
+  position: fixed;
+  top: 50px;
+  left: 40px;
+  z-index: 1;
+  &:before {
+    content: "";
+    background: white;
+    width: 45px;
+    height: 45px;
+    position: absolute;
+    top: -26px;
+    left: -4px;
+    border-radius: 50%;
+  }
 }
 
 .burger {
-	position: relative;
-	display: block;
-	width: 28px;
-	height: 4px;
-	margin: 0 auto;
-	background: #5A3B5D;
-	transform: skew(5deg);
-    transition: all .275s;
-    outline: none;
+  position: relative;
+  display: block;
+  width: 28px;
+  height: 4px;
+  margin: 0 auto;
+  background: #5a3b5d;
+  transform: skew(5deg);
+  transition: all 0.275s;
+  outline: none;
 }
 
 .burger:after,
 .burger:before {
-	content: '';
-	display: block;
-	height: 100%;
-	background: #5A3B5D;
-	transition: all .275s;
+  content: "";
+  display: block;
+  height: 100%;
+  background: #5a3b5d;
+  transition: all 0.275s;
 }
 
-
-
 .burger:after {
-	transform: translateY(-12px) translateX(-2px) skew(-20deg);
+  transform: translateY(-12px) translateX(-2px) skew(-20deg);
 }
 
 .burger:before {
-	transform: translateY(-16px) skew(-10deg);
+  transform: translateY(-16px) skew(-10deg);
 }
 
 .is-open .burger {
-	transform: skew(5deg) translateY(-8px) rotate(-45deg);
+  transform: skew(5deg) translateY(-8px) rotate(-45deg);
 }
 
 .is-open .burger:before {
-	transform: translateY(0px) skew(-10deg) rotate(75deg);
+  transform: translateY(0px) skew(-10deg) rotate(75deg);
 }
 
 .is-open .burger:after {
-	transform: translateY(-12px) translateX(10px) skew(-20deg);
-    opacity: 0;
+  transform: translateY(-12px) translateX(10px) skew(-20deg);
+  opacity: 0;
 }

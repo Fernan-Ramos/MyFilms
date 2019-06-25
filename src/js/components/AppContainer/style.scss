@@ -10,3 +10,12 @@
     "m m c c c c c c c c c c";
   min-height: 100vh;
 }
+
+
+html.mobile{
+  .AppContainer{
+    grid-template-areas:
+    "h h h h h h h h h h h h"
+    "c c c c c c c c c c c c";
+  }
+}
