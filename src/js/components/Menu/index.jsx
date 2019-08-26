@@ -14,6 +14,11 @@ class Menu extends PureComponent {
     return location.pathname === route;
   };
 
+  handleOnClick = () => {
+    document.querySelector('.Menu').classList.remove('active');
+  }
+
+
   render() {
     const {
       username, avatar, iso, isMobile
@@ -46,7 +51,7 @@ class Menu extends PureComponent {
                     active: this.isRouteActive(item.route)
                   })}
                 >
-                  <MenuLink route={item.route} label={item.label} />
+                  <MenuLink route={item.route} label={item.label} handleOnClick={this.handleOnClick} />
                 </li>
               ))}
             </ul>
