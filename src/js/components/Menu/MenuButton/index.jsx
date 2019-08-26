@@ -5,6 +5,7 @@ import './style.scss';
 export default class MenuButton extends PureComponent {
     handleOnClick = (e) => {
       e.currentTarget.classList.toggle('is-open');
+      e.currentTarget.nextSibling.classList.toggle('active');
     }
 
     render() {

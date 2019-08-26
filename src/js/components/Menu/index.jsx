@@ -24,41 +24,36 @@ class Menu extends PureComponent {
         {isMobile && (
           <MenuButton />
         )}
-        {
-          !isMobile
-          && (
-          <nav className="Menu">
-            <div className="Menu__user">
-              <div className="avatar">
-                <img
-                  src={`https://www.gravatar.com/avatar/${gravatar}`}
-                  alt="gravatar"
-                />
-              </div>
-              <div className="username">
-                <span>{username}</span>
-                <span>{iso}</span>
-              </div>
+        <nav className="Menu">
+          <div className="Menu__user">
+            <div className="avatar">
+              <img
+                src={`https://www.gravatar.com/avatar/${gravatar}`}
+                alt="gravatar"
+              />
             </div>
-            <div className="Menu__sections">
-              <ul>
-                {links.map(item => (
-                  <li
-                    key={item.label}
-                    className={classNames('Link', {
-                      active: this.isRouteActive(item.route)
-                    })}
-                  >
-                    <MenuLink route={item.route} label={item.label} />
-                  </li>
-                ))}
-              </ul>
+            <div className="username">
+              <span>{username}</span>
+              <span>{iso}</span>
             </div>
-            <div className="Menu__categories" />
-            <div className="Menu__signout" />
-          </nav>
-          )
-        }
+          </div>
+          <div className="Menu__sections">
+            <ul>
+              {links.map(item => (
+                <li
+                  key={item.label}
+                  className={classNames('Link', {
+                    active: this.isRouteActive(item.route)
+                  })}
+                >
+                  <MenuLink route={item.route} label={item.label} />
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="Menu__categories" />
+          <div className="Menu__signout" />
+        </nav>
       </>
     );
   }
