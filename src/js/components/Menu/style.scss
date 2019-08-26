@@ -66,12 +66,13 @@ html.mobile {
     top: 0;
     right: 0;
     left: 0;
-    z-index: 1;
     height: 100vh;
     opacity: 0;
     transition: .4s;
+    z-index: -1;
     &.active {
       opacity: 1;
+      z-index: 1;
     }
   }
 }
