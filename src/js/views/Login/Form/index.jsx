@@ -91,7 +91,7 @@ class LoginForm extends react.PureComponent {
             name="password"
             required
           />
-          <Button type="submit">Login</Button>
+          <Button className="primary" type="submit">Login</Button>
         </form>
       </div>
     );

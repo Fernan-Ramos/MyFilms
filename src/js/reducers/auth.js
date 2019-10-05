@@ -8,10 +8,10 @@ const initialState = Map({
 const actionsMap = {
   [USER_SET]: (state, action) => state.merge({
     tokenData: action.tokenData.request_token,
-    sessionID: action.tokenData.session_id,
+    // sessionID: action.tokenData.session_id,
     username: action.tokenData.username,
-    avatar: action.tokenData.avatar,
-    iso_3166_1: action.tokenData.iso_3166_1
+    // avatar: action.tokenData.avatar,
+    // iso_3166_1: action.tokenData.iso_3166_1
   })
 };
 

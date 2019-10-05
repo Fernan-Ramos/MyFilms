@@ -1,46 +1,114 @@
-@import 'scss/theme/variables.scss';
-@import 'scss/theme/mixins.scss';
+@import "scss/theme/variables.scss";
+@import "scss/theme/mixins.scss";
 
 .Button {
-    border: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+
+  &.primary {
     height: get-rem(35px);
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-    outline: none;
+    font-family: "Catamaran";
     color: $white;
     border-radius: get-rem(4px);
-    cursor: pointer;
     font-size: get-rem(13px);
-    font-family: 'Catamaran';
     background: rgb(41, 24, 226);
     background: rgb(41, 24, 226);
-    background: -moz-linear-gradient(90deg, rgba(41, 24, 226, 1) 0%, rgba(98, 54, 163, 1) 100%, rgba(112, 91, 143, 1) 100%);
-    background: -webkit-linear-gradient(90deg, rgba(41, 24, 226, 1) 0%, rgba(98, 54, 163, 1) 100%, rgba(112, 91, 143, 1) 100%);
-    background: linear-gradient(90deg, rgba(41, 24, 226, 1) 0%, rgba(98, 54, 163, 1) 100%, rgba(112, 91, 143, 1) 100%);
+    background: -moz-linear-gradient(
+      90deg,
+      rgba(41, 24, 226, 1) 0%,
+      rgba(98, 54, 163, 1) 100%,
+      rgba(112, 91, 143, 1) 100%
+    );
+    background: -webkit-linear-gradient(
+      90deg,
+      rgba(41, 24, 226, 1) 0%,
+      rgba(98, 54, 163, 1) 100%,
+      rgba(112, 91, 143, 1) 100%
+    );
+    background: linear-gradient(
+      90deg,
+      rgba(41, 24, 226, 1) 0%,
+      rgba(98, 54, 163, 1) 100%,
+      rgba(112, 91, 143, 1) 100%
+    );
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#2918e2", endColorstr="#705b8f", GradientType=1);
 
     &:hover,
     &:focus {
-        transition: 0.4s;
-        border: 1px solid $violet;
-        background: rgb(112, 91, 143);
-        background: -moz-linear-gradient(90deg, rgba(112, 91, 143, 1) 0%, rgba(41, 24, 226, 1) 100%, rgba(177, 159, 216, 1) 100%);
-        background: -webkit-linear-gradient(90deg, rgba(112, 91, 143, 1) 0%, rgba(41, 24, 226, 1) 100%, rgba(177, 159, 216, 1) 100%);
-        background: linear-gradient(90deg, rgba(112, 91, 143, 1) 0%, rgba(41, 24, 226, 1) 100%, rgba(177, 159, 216, 1) 100%);
-        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#705b8f", endColorstr="#b19fd8", GradientType=1);
+      transition: 0.4s;
+      border: 1px solid $violet;
+      background: rgb(112, 91, 143);
+      background: -moz-linear-gradient(
+        90deg,
+        rgba(112, 91, 143, 1) 0%,
+        rgba(41, 24, 226, 1) 100%,
+        rgba(177, 159, 216, 1) 100%
+      );
+      background: -webkit-linear-gradient(
+        90deg,
+        rgba(112, 91, 143, 1) 0%,
+        rgba(41, 24, 226, 1) 100%,
+        rgba(177, 159, 216, 1) 100%
+      );
+      background: linear-gradient(
+        90deg,
+        rgba(112, 91, 143, 1) 0%,
+        rgba(41, 24, 226, 1) 100%,
+        rgba(177, 159, 216, 1) 100%
+      );
+      filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#705b8f", endColorstr="#b19fd8", GradientType=1);
+    }
+  }
+  &.google {
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: get-rem(35px);
+    background-color: $white;
+    border-width: 0;
+    border: 1px solid #e8e8e8;
+    color: #737373;
+    border-radius: 5px;
+    white-space: nowrap;
+    box-shadow: 1px 1px 0px 1px rgba(0, 0, 0, 0.05);
+    transition-property: background-color, box-shadow;
+    transition-duration: 150ms;
+    transition-timing-function: ease-in-out;
+    .google__icon {
+      display: inline-block;
+      vertical-align: middle;
+      width: 18px;
+      box-sizing: border-box;
+      margin-right: 20px;
     }
 
-    &.Center {
-        width: 100%;
+    &:focus,
+    &:hover {
+      box-shadow: 1px 4px 5px 1px rgba(0, 0, 0, 0.1);
     }
+
+    &:active {
+      background-color: #e5e5e5;
+      box-shadow: none;
+      transition-duration: 10ms;
+    }
+  }
+
+  &.Center {
+    width: 100%;
+  }
 }
 
 html.mobile {
-    .Button {
-        height: get-mobile-vw(35px);
-        border-radius: get-mobile-vw(4px);
-        font-size: get-mobile-vw(13px);
-    }
+  .Button {
+    height: get-mobile-vw(35px);
+    border-radius: get-mobile-vw(4px);
+    font-size: get-mobile-vw(13px);
+  }
 }

@@ -23,7 +23,7 @@ class Menu extends PureComponent {
     const {
       username, avatar, iso, isMobile
     } = this.props;
-    const gravatar = avatar.gravatar.hash;
+    // const gravatar = avatar.gravatar.hash;
     return (
       <>
         {isMobile && (
@@ -32,10 +32,10 @@ class Menu extends PureComponent {
         <nav className="Menu">
           <div className="Menu__user">
             <div className="avatar">
-              <img
+              {/* <img
                 src={`https://www.gravatar.com/avatar/${gravatar}`}
                 alt="gravatar"
-              />
+              /> */}
             </div>
             <div className="username">
               <span>{username}</span>

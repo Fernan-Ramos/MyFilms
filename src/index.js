@@ -16,6 +16,7 @@ import 'scss/theme/layout.scss';
 import 'scss/theme/fonts.scss';
 import AuthService from './js/services/api/AuthService';
 import { setIsMobile } from './js/actions/layout';
+import Firebase, { FirebaseContext } from './js/components/Firebase';
 
 
 async function initApp() {
@@ -33,9 +34,11 @@ async function initApp() {
   };
   const AppWrapper = (
     <Provider store={store}>
-      <Router history={routeManager.history}>
-        <App />
-      </Router>
+      <FirebaseContext.Provider value={new Firebase()}>
+        <Router history={routeManager.history}>
+          <App />
+        </Router>
+      </FirebaseContext.Provider>
     </Provider>
   );
 
