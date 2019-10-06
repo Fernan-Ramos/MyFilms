@@ -5,7 +5,8 @@
   border: none;
   outline: none;
   cursor: pointer;
-
+  -webkit-appearance: none;
+  background: transparent;
   &.primary {
     height: get-rem(35px);
     width: 100%;

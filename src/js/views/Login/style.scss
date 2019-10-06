@@ -19,6 +19,13 @@
     &-image {
       background: url("../../../assets/img/login/login.jpg") center no-repeat;
       background-size: cover;
+      transform: translate(0, 0);
+      transition: transform 1s ease;
+      &.translate {
+        animation: translate-left 1s ease;
+        transform: translate(-100%, 0);
+      }
+    
     }
     &-content {
       align-self: center;
@@ -36,25 +43,60 @@
         font-size: get-rem(15px);
         margin-bottom: get-rem(30px);
       }
-      form{
+      form {
         display: grid;
         grid-row-gap: get-rem(25px);
         padding-bottom: get-rem(20px);
         // border-bottom: 1px dashed $blue3;
       }
+      span {
+        font-size: 12px;
+        .Button {
+          font-size: 12px;
+          text-decoration: underline;
+          color: $grey;
+        }
+      }
+
+    
+      transform: translate(0, 0);
+      transition: transform 1s ease;
+      &.translate{
+        animation: translate-right 1s ease;
+        transform: translate(100%, 0);
+      }
+  
     }
   }
 }
 
-html.mobile{
-  .LoginWrapper__form{
+@keyframes translate-left {
+  from {
+    transform: translate(0, 0);
+  }
+  to {
+    transform: translate(-100%, 0);
+  }
+}
+@keyframes translate-right {
+  from {
+    transform: translate(0, 0);
+  }
+  to {
+    transform: translate(100%, 0);
+  }
+}
+
+html.mobile {
+  .LoginWrapper__form {
     height: 95vh;
     width: 90%;
     grid-template-columns: none;
-    background: url("../../../assets/img/login/login-mobile.png") center no-repeat;
+    background: url("../../../assets/img/login/login-mobile.png") center
+      no-repeat;
     background-size: cover;
     border-radius: get-mobile-vw(5px);
-    &-image{
+    &-image {
       display: none;
     }
     &-content {
@@ -69,7 +111,7 @@ html.mobile{
         font-size: get-mobile-vw(15px);
         margin-bottom: get-mobile-vw(30px);
       }
-      form{
+      form {
         grid-row-gap: get-mobile-vw(25px);
         padding-bottom: get-mobile-vw(20px);
       }
