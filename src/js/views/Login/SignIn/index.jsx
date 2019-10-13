@@ -21,7 +21,7 @@ class SignIn extends react.PureComponent {
       const response = await firebase.doSignInWithEmailAndPassword(username, password);
       await loginFunction({ username, request_token: response.user.refreshToken });
     } catch (error) {
-      console.error(error);
+      console.error(error.message);
     }
     event.preventDefault();
     deleteAsyncFunction();

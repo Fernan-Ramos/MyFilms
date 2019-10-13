@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react';
 import { withFirebase } from 'js/components/Firebase';
-import Button from 'js/components/Button';
+import { connect } from 'react-redux';
 import classNames from 'classnames';
 import GoogleForm from './GoogleForm';
 import SignIn from './SignIn';
@@ -65,4 +65,8 @@ class LoginView extends PureComponent {
   }
 }
 
-export default LoginView;
+const mapStateToProps = state => ({
+  isMobile: state.layout.get('isMobile')
+});
+
+export default connect(mapStateToProps, null)(LoginView);

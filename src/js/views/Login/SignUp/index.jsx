@@ -15,11 +15,15 @@ class SignUp extends react.PureComponent {
     } = this.props;
 
 
-    event.preventDefault();
-
-    event.preventDefault();
     const username = event.target.username.value;
     const password = event.target.password.value;
+    const confirmpassword = event.target.confirmpassword.value;
+
+    
+    if (confirmpassword !== password) {
+      return;
+    }
+
     addAsyncFunction();
     try {
       const response = await firebase.doCreateUserWithEmailAndPassword(username, password);
