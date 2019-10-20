@@ -12,20 +12,20 @@ const SignInForm = withFirebase(SignIn);
 const SignUpForm = withFirebase(SignUp);
 
 const Login = ({ showRegister }) => (
-  <>
+  <div className="Login active">
     <h1>Welcome back!</h1>
     <SignInForm />
     <GoogleSignInForm />
     <span className="">You dont have a account ? <button className="Button" type="button" onClick={showRegister}>Sign Up now!</button></span>
-  </>
+  </div>
 );
 
 const Register = ({ showRegister }) => (
-  <>
+  <div className="Register active">
     <h1>Welcome back!</h1>
     <SignUpForm />
     <span className=""><button className="Button" type="button" onClick={showRegister}>Sign In</button></span>
-  </>
+  </div>
 );
 
 class LoginView extends PureComponent {
@@ -36,6 +36,7 @@ class LoginView extends PureComponent {
   };
 
   showRegister = () => {
+    const { isMobile } = this.props;
     const { signUp, showRegister } = this.state;
     this.setState({ signUp: !signUp, initialState: false });
     setTimeout(() => {
@@ -45,12 +46,13 @@ class LoginView extends PureComponent {
 
  
   render() {
+    const { isMobile } = this.props;
     const { signUp, showRegister, initialState } = this.state;
     const contenClassNames = classNames('LoginWrapper__form-content', {
-      translate: signUp && !initialState,
+      translate: signUp && !initialState && !isMobile,
     });
     const imageClassNames = classNames('LoginWrapper__form-image', {
-      translate: signUp && !initialState,
+      translate: signUp && !initialState && !isMobile,
     });
     return (
       <div className="LoginWrapper">

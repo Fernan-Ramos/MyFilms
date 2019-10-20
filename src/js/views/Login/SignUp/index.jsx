@@ -5,7 +5,18 @@ import Input from 'js/components/Input';
 import { login } from 'js/actions/auth';
 import { addAsync, deleteAsync } from 'js/actions/async';
 
-class SignUp extends react.PureComponent {
+class SignUp extends react.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      username: '',
+      email: '',
+      passwordOne: '',
+      passwordTwo: '',
+      error: null,
+    };
+  }
+
   handleSubmit = async (event) => {
     const {
       addAsyncFunction,
@@ -14,20 +25,19 @@ class SignUp extends react.PureComponent {
       firebase
     } = this.props;
 
-
-    const username = event.target.username.value;
-    const password = event.target.password.value;
-    const confirmpassword = event.target.confirmpassword.value;
-
-    
-    if (confirmpassword !== password) {
-      return;
-    }
-
+    const {
+      username,
+      email,
+      passwordOne,
+    } = this.state;
+    event.preventDefault();
     addAsyncFunction();
+
     try {
-      const response = await firebase.doCreateUserWithEmailAndPassword(username, password);
-      await loginFunction({ username, request_token: response.user.refreshToken });
+      const authUser = await firebase.doCreateUserWithEmailAndPassword(email, passwordOne);
+      await firebase.user(authUser.user.uid).set({ username, email }, { merge: true });
+      await firebase.doSendEmailVerification();
+      await loginFunction({ username, request_token: authUser.user.refreshToken });
     } catch (error) {
       console.error(error);
     }
@@ -35,42 +45,59 @@ class SignUp extends react.PureComponent {
     deleteAsyncFunction();
   };
 
+  onChange = (event) => {
+    this.setState({ [event.target.name]: event.target.value });
+  };
+
 
   render() {
+    const {
+      username,
+      email,
+      passwordOne,
+      passwordTwo,
+    } = this.state;
+
+    const isInvalid = passwordOne !== passwordTwo
+    || passwordOne === ''
+    || email === ''
+    || username === '';
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
           <Input
             type="text"
+            value={username}
             placeholder="First Name"
-            name="firstname"
-            required
-          />
-          <Input
-            type="text"
-            placeholder="Last Name"
-            name="lastname"
+            name="username"
+            onChange={this.onChange}
             required
           />
           <Input
             type="email"
             placeholder="Email"
-            name="username"
+            name="email"
+            value={email}
+            onChange={this.onChange}
             required
           />
           <Input
             type="password"
             placeholder="Password"
-            name="password"
+            name="passwordOne"
+            value={passwordOne}
+            onChange={this.onChange}
             required
           />
           <Input
             type="password"
             placeholder="Confirm Password"
-            name="confirmpassword"
+            name="passwordTwo"
+            value={passwordTwo}
+            onChange={this.onChange}
             required
           />
-          <Button className="primary" type="submit">
+          <Button className="primary" type="submit" disabled={isInvalid}>
             <span>Sign Up</span>
           </Button>
         </form>

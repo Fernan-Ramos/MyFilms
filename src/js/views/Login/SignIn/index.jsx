@@ -18,8 +18,8 @@ class SignIn extends react.PureComponent {
     const password = event.target.password.value;
     addAsyncFunction();
     try {
-      const response = await firebase.doSignInWithEmailAndPassword(username, password);
-      await loginFunction({ username, request_token: response.user.refreshToken });
+      const authUser = await firebase.doSignInWithEmailAndPassword(username, password);
+      await loginFunction({ username, request_token: authUser.user.refreshToken });
     } catch (error) {
       console.error(error.message);
     }

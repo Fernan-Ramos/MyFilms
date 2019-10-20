@@ -46,8 +46,7 @@ export default class AuthService extends BaseService {
   }
 
   static logout() {
-    const endpoint = 'authentication/session';
-    return axios.delete(Config.generateURI(endpoint));
+    cookies.remove(this.cookieName);
   }
 
   static goToLoggedInInitialPage() {

@@ -1,8 +1,11 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
+import { withFirebase } from 'js/components/Firebase';
+import AddFavorite from './AddFavorite';
 
-class Lists extends PureComponent {
+const AddFavoriteForm = withFirebase(AddFavorite);
+class Lists extends React.Component {
   render() {
-    return <div>Lists</div>;
+    return <AddFavoriteForm />;
   }
 }
 

@@ -4,7 +4,7 @@ import './style.scss';
 export default class Input extends PureComponent {
   render() {
     const {
-      type, placeholder, required, name, props
+      type, placeholder, required, name, props, onChange
     } = this.props;
     return (
       <input
@@ -13,6 +13,7 @@ export default class Input extends PureComponent {
         name={name}
         placeholder={placeholder}
         required={required}
+        onChange={onChange}
         {...props}
       />
     );

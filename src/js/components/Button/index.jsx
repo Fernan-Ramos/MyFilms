@@ -5,10 +5,10 @@ import './style.scss';
 export default class Button extends PureComponent {
   render() {
     const {
-      onClick, children, props, type, className
+      onClick, children, props, className, disabled, type
     } = this.props;
     return (
-      <button className={classNames('Button', className)} type={type} onClick={onClick} {...props}>
+      <button type={type} className={classNames('Button', className)} onClick={onClick} disabled={disabled} {...props}>
         {children}
       </button>
     );

@@ -64,6 +64,9 @@
       );
       filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#705b8f", endColorstr="#b19fd8", GradientType=1);
     }
+    &:disabled {
+      opacity: 0.8;
+    }
   }
   &.google {
     padding: 0 20px;

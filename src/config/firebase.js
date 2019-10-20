@@ -1,7 +1,7 @@
 import app from 'firebase/app';
 import 'firebase/auth';
-import 'firebase/database';
 import 'firebase/firestore';
+import AuthService from '../js/services/api/AuthService';
 
 const config = {
   apiKey: process.env.REACT_APP_API_KEY,
@@ -18,7 +18,6 @@ class Firebase {
   constructor() {
     app.initializeApp(config);
     this.auth = app.auth();
-    // this.db = app.database();
     this.db = app.firestore();
 
     this.googleProvider = new app.auth.GoogleAuthProvider();
@@ -28,13 +27,25 @@ class Firebase {
 
   doCreateUserWithEmailAndPassword = (email, password) => this.auth.createUserWithEmailAndPassword(email, password);
 
-  doSignOut = () => this.auth.signOut();
+  doSendEmailVerification = () => this.auth.currentUser.sendEmailVerification();
+
+  doSignOut = () => {
+    this.auth.signOut();
+    AuthService.logout();
+  }
+
+
+  // Users
+
+  user = uid => this.db.doc(`users/${uid}`);
+
+  users = () => this.db.collection('users');
+
+  asd = () => app.auth().currentUser;
 
   doSignInWithGoogle = () => this.auth.signInWithPopup(this.googleProvider);
 
-  // user = uid => this.db.ref(`users/${uid}`);
-
-  // users = () => this.db.ref('users');
+  favorites = () => this.db.collection('favorites');
 }
 
 export default Firebase;
