@@ -4,6 +4,7 @@ import { routeCodes } from 'js/constants/routes';
 import AppContainer from 'js/components/AppContainer';
 import Lists from '../Lists';
 import Trending from '../Trending';
+import Film from '../Film';
 import './style.scss';
 
 
@@ -14,6 +15,7 @@ class Movies extends PureComponent {
         <Switch>
           <Route exact path={routeCodes.TRENDING} component={Trending} />
           <Route exact path={routeCodes.LISTS} component={Lists} />
+          <Route path={`${routeCodes.FILM}/:id`} component={Film} />
         </Switch>
       </AppContainer>
     );

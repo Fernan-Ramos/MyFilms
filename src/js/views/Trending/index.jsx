@@ -6,6 +6,8 @@ import { addList } from 'js/actions/lists';
 import { addLatest } from 'js/actions/latest';
 import { addAsync, deleteAsync } from 'js/actions/async';
 import MovieCard from 'js/components/MovieCard';
+import { Link } from 'react-router-dom';
+import { routeCodes } from 'js/constants/routes';
 import Latest from './Latest';
 import UpcomingList from './UpcomingList';
 import './style.scss';
@@ -57,12 +59,13 @@ class Trending extends PureComponent {
       <div className='TrendingWrapper'>
         <div className="Trending">
           {trendingItems.slice(0, 3).map((item, index) => (
-            <MovieCard
-              className='TextInside'
-              key={index}
-              movie={item}
-              imageSize="poster"
-            />
+            <Link to={`${routeCodes.FILM}/${item.id}`} key={index}>
+              <MovieCard
+                className='TextInside'
+                movie={item}
+                imageSize="poster"
+              />
+            </Link>
           ))}
         </div>
         <div className="Upcoming">

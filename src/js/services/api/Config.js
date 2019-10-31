@@ -1,6 +1,6 @@
 import URI from 'urijs';
 
-const baseURL = 'api/3/';
+const baseURL = '/api/3/';
 const APIkey = '6d263bbd9d77ec9e07d377c76bf70f0a';
 
 class Config {
