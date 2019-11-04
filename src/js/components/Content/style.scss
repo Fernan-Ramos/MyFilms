@@ -4,5 +4,11 @@
 .AppContent {
   grid-area: c;
   background-color: $white;
-  padding: get-rem(20px) get-rem(40px);
+  padding: 20px 40px;
+}
+
+@media (max-width: 768px) {
+  .AppContent {
+    padding: 20px;
+  }
 }

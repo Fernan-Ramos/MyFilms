@@ -60,7 +60,7 @@
   }
 }
 
-html.mobile {
+@media (max-width: 768px) {
   .Menu {
     position: fixed;
     top: 0;

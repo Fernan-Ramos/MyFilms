@@ -56,7 +56,7 @@
     }
 }
 
-html.mobile{
+@media (max-width: 768px) {
     .Spinner{
         width: get-mobile-vw(65px);
         height: get-mobile-vw(65px);

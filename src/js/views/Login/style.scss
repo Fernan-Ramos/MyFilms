@@ -84,7 +84,7 @@
   }
 }
 
-html.mobile {
+@media (max-width: 768px) {
   .LoginWrapper__form {
     height: 95vh;
     width: 90%;

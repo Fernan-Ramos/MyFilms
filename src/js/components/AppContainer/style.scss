@@ -11,11 +11,10 @@
   min-height: 100vh;
 }
 
-
-html.mobile{
-  .AppContainer{
+@media (max-width: 768px) {
+  .AppContainer {
     grid-template-areas:
-    "h h h h h h h h h h h h"
-    "c c c c c c c c c c c c";
+      "h h h h h h h h h h h h"
+      "c c c c c c c c c c c c";
   }
 }

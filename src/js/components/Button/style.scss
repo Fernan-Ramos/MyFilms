@@ -109,7 +109,7 @@
   }
 }
 
-html.mobile {
+@media (max-width: 768px) {
   .Button {
     height: get-mobile-vw(35px);
     border-radius: get-mobile-vw(4px);

@@ -33,7 +33,7 @@
   }
 }
 
-html.mobile {
+@media (max-width: 768px) {
   .Input {
     border-radius: get-mobile-vw(2px);
     padding: get-mobile-vw(5px) get-mobile-vw(10px);
