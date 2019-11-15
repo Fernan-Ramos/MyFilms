@@ -2,6 +2,7 @@ import URI from 'urijs';
 
 const baseURL = '/api/3/';
 const APIkey = '6d263bbd9d77ec9e07d377c76bf70f0a';
+const language = 'es';
 
 class Config {
   static generateURL(path) {
@@ -16,7 +17,7 @@ class Config {
 
   static generateURI(path, query) {
     const uri = new URI(this.generateURL(path));
-    uri.query({ api_key: APIkey });
+    uri.query({ api_key: APIkey, language });
     if (query) {
       uri.addQuery(query);
     }

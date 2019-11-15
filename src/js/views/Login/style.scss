@@ -85,44 +85,47 @@
 }
 
 @media (max-width: 768px) {
-  .LoginWrapper__form {
-    height: 95vh;
-    width: 90%;
-    grid-template-columns: none;
-    background: url("../../../assets/img/login/login-mobile.png") center
-      no-repeat;
-    background-size: cover;
-    border-radius: get-mobile-vw(5px);
-    &-image {
-      display: none;
-    }
-    &-content {
-      padding: 0;
-      h1 {
-        font-size: get-mobile-vw(40px);
-        line-height: get-mobile-vw(57px);
-        margin-bottom: get-mobile-vw(10px);
-        color: $white2;
+  .LoginWrapper {
+    .LoginWrapper__form {
+      height: 95vh;
+      width: 90%;
+      grid-template-columns: none;
+      background: url("../../../assets/img/login/login-mobile.png") center
+        no-repeat;
+      background-size: cover;
+      border-radius: get-mobile-vw(5px);
+      &-image {
+        display: none;
       }
-      p {
-        font-size: get-mobile-vw(15px);
-        margin-bottom: get-mobile-vw(30px);
-      }
-      form {
-        grid-row-gap: get-mobile-vw(25px);
-        padding-bottom: get-mobile-vw(20px);
-      }
-      span {
-        font-size: 12px;
-        color: $violet;
-        .Button {
-          color: $grey;
+      &-content {
+        padding: 0;
+        h1 {
+          font-size: get-mobile-vw(40px);
+          line-height: get-mobile-vw(57px);
+          margin-bottom: get-mobile-vw(10px);
+          color: $white2;
+        }
+        p {
+          font-size: get-mobile-vw(15px);
+          margin-bottom: get-mobile-vw(30px);
+        }
+        form {
+          grid-row-gap: get-mobile-vw(25px);
+          padding-bottom: get-mobile-vw(20px);
+        }
+        span {
+          font-size: 12px;
+          color: $violet;
+          .Button {
+            color: $grey;
+          }
         }
       }
     }
   }
 
-  .Register, .Login {
+  .Register,
+  .Login {
     opacity: 0;
     transition: opacity 0.4s;
     &.active {

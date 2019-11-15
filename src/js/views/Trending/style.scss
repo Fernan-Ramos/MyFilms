@@ -1,20 +1,24 @@
 @import "scss/theme/variables.scss";
 @import "scss/theme/mixins.scss";
 
-.TrendingWrapper{
-    display: grid;
-    grid-row-gap: get-rem(20px);
+.TrendingWrapper {
+  display: grid;
+  grid-row-gap: 20px;
 }
-
 
 .Trending {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-column-gap: get-rem(15px);
+  grid-column-gap: 15px;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 }
 
 .Upcoming {
   display: grid;
   // grid-template-columns: repeat(2, auto);
+}
+
+@media (max-width: 768px) {
+  .Trending {
+    grid-row-gap: 15px;
+  }
 }

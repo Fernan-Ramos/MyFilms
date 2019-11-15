@@ -23,7 +23,6 @@ class Menu extends PureComponent {
     const {
       username, avatar, iso, isMobile
     } = this.props;
-    // const gravatar = avatar.gravatar.hash;
     return (
       <>
         {isMobile && (
@@ -32,10 +31,10 @@ class Menu extends PureComponent {
         <nav className="Menu">
           <div className="Menu__user">
             <div className="avatar">
-              {/* <img
-                src={`https://www.gravatar.com/avatar/${gravatar}`}
+              <img
+                src={avatar}
                 alt="gravatar"
-              /> */}
+              />
             </div>
             <div className="username">
               <span>{username}</span>
@@ -67,7 +66,6 @@ class Menu extends PureComponent {
 const mapStateToProps = state => ({
   username: state.auth.get('username'),
   avatar: state.auth.get('avatar'),
-  iso: state.auth.get('iso_3166_1'),
   isMobile: state.layout.get('isMobile')
 });
 

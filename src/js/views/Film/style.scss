@@ -23,7 +23,7 @@
     font-size: 35px;
     font-weight: bold;
     span {
-        color: $black3;
+      color: $black3;
     }
   }
 
@@ -44,10 +44,16 @@
     grid-column-gap: 20px;
     grid-template-columns: 5fr 4fr;
     grid-template-rows: auto auto;
+    position: relative;
     &__image {
       img {
         width: 100%;
       }
+    }
+    &__overview {
+      // position: absolute;
+      // bottom: -60px;
+      // left: 0;
     }
   }
 }
