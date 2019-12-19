@@ -8,6 +8,10 @@ class RouteManager {
   push(route) {
     this.history.push(route);
   }
+
+  go(route) {
+    this.history.push(route);
+  }
 }
 
 export default new RouteManager();
