@@ -17,7 +17,8 @@ const Film = ({
     params: { id }
   },
   addAsyncFunction,
-  deleteAsyncFunction
+  deleteAsyncFunction,
+  isMobile
 }) => {
   const [film, setFilm] = useState({});
   useEffect(() => {
@@ -30,19 +31,27 @@ const Film = ({
     fetchData();
   }, [id]);
   return (
-    <div className="FilmDetail">
-      <div className="FilmDetail__image MovieCard">
-        <MovieImage image={film.poster_path} size="xl" />
+    <>
+      <div className="FilmDetail">
+        <div className="FilmDetail__image MovieCard">
+          <MovieImage image={film.poster_path} size="xl" />
+        </div>
+        <div className="FilmDetail__text">
+          <h2 className="FilmDetail__title">{film.title}</h2>
+          <GenresList genres={film.genres} />
+          {!isMobile && <p className="FilmDetail__overview">{film.overview}</p>}
+          <div className="FilmDetail__average">{film.vote_average}</div>
+        </div>
       </div>
-      <div className="FilmDetail__text">
-        <h2 className="FilmDetail__title">{film.original_title}</h2>
-        <GenresList genres={film.genres} />
-        <p className="FilmDetail__overview">{film.overview}</p>
-        <div className="FilmDetail__average">{film.vote_average}</div>
-      </div>
-    </div>
+      {isMobile && <p className="FilmDetail__overview">{film.overview}</p>}
+    </>
   );
 };
+
+
+const mapStateToProps = state => ({
+  isMobile: state.layout.get('isMobile')
+});
 
 const mapDispatchToProps = dispatch => ({
   addAsyncFunction: () => dispatch(addAsync('film')),
@@ -50,6 +59,6 @@ const mapDispatchToProps = dispatch => ({
 });
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(Film);

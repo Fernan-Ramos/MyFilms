@@ -8,7 +8,6 @@ import { addAsync, deleteAsync } from 'js/actions/async';
 import MovieCard from 'js/components/MovieCard';
 import { Link } from 'react-router-dom';
 import { routeCodes } from 'js/constants/routes';
-import Latest from './Latest';
 import UpcomingList from './UpcomingList';
 import './style.scss';
 
@@ -54,7 +53,7 @@ class Trending extends PureComponent {
   };
 
   render() {
-    const { trendingItems, latestMovie } = this.props;
+    const { trendingItems } = this.props;
     return (
       <div className='TrendingWrapper'>
         <div className="Trending">
@@ -70,11 +69,8 @@ class Trending extends PureComponent {
         </div>
         <div className="Upcoming">
           <UpcomingList
-            items={trendingItems.slice(3, -1)}
+            items={trendingItems}
           />
-          {/* <Latest
-            latest={latestMovie}
-          /> */}
         </div>
       </div>
     );

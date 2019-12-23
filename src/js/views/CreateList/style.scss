@@ -1,0 +1,22 @@
+.CreateList {
+  &__form {
+    max-width: 50%;
+    margin: 0 auto;
+    .Input {
+      margin-bottom: 20px;
+    }
+    .Button {
+      margin-top: 20px;
+    }
+  }
+  &__films-wrapper {
+    margin-top: 20px;
+    .CreateList__film:not(:last-child) {
+      margin-bottom: 20px;
+    }
+  }
+  &__film {
+      font-weight: bold;
+      font-style: italic;
+  }
+}

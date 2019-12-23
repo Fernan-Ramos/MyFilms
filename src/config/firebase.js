@@ -45,6 +45,8 @@ class Firebase {
 
   doSignInWithGoogle = () => this.auth.signInWithPopup(this.googleProvider);
 
+  lists = () => this.db.collection('lists');
+
   favorites = () => this.db.collection('favorites');
 }
 

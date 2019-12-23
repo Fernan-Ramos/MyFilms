@@ -1,0 +1,27 @@
+@import "scss/theme/variables.scss";
+@import "scss/theme/mixins.scss";
+
+
+.CreateListButton {
+  width: 100px;
+  margin-bottom: 30px;
+}
+.MyLists {
+  &__title {
+    color: $violet3;
+    font-weight: bold;
+    margin-bottom: 18px;
+    font-size: 16px;
+  }
+  &__grid {
+      display: grid;
+      grid-column-gap: 15px;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      margin-bottom: 18px;
+  }
+}
+
+@media (max-width: 768px) {
+  .MyLists {
+  }
+}

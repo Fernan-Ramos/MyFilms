@@ -103,7 +103,23 @@
       transition-duration: 10ms;
     }
   }
-
+  &.basic {
+    height: get-rem(35px);
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Catamaran";
+    color: $white;
+    border-radius: get-rem(4px);
+    font-size: get-rem(13px);
+    background: linear-gradient(#b19fd8, #a7cff1 90%);
+    transition: 0.4s;
+    &:hover,
+    &:focus {
+      background: linear-gradient(#a7cff1, #b19fd8 90%);
+    }
+  }
   &.Center {
     width: 100%;
   }

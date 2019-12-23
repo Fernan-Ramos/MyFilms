@@ -2,7 +2,7 @@ import { routeCodes } from 'js/constants/routes';
 
 const links = [
   {
-    label: 'Trending',
+    label: 'Novedades',
     route: routeCodes.TRENDING
   },
   {
@@ -14,11 +14,11 @@ const links = [
     route: routeCodes.LISTS
   },
   {
-    label: 'Favorites',
+    label: 'Favoritos',
     route: routeCodes.FAVORITES
   },
   {
-    label: 'Recommendations',
+    label: 'Recomendaciones',
     route: routeCodes.RECOMMENDATIONS
   },
 ];

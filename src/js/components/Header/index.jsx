@@ -1,21 +1,12 @@
 import React, { Component } from 'react';
-import { createBrowserHistory } from 'history';
-import AsyncSelect from 'react-select/async';
-import SearchService from '../../services/api/SearchService';
-import './style.scss';
-import routeManager from '../../services/routeManager';
 import { routeCodes } from '../../constants/routes';
+import routeManager from '../../services/routeManager';
+import FilmSelect from '../FilmSelect';
+import './style.scss';
 
-
-const filterFilm = response => response.map(item => ({ value: item.id, label: item.title }));
-
-const loadOptions = async (inputValue, callback) => {
-  const response = await SearchService.list({ query: inputValue });
-  callback(filterFilm(response.results));
-};
 
 class Header extends Component {
-  handleChange = (film) => {
+  handleOnChange = (film) => {
     routeManager.push(`${routeCodes.FILM}/${film.value}`);
   };
 
@@ -23,12 +14,7 @@ class Header extends Component {
     return (
       <header className="AppHeader">
         <div className="AppHeader__select">
-          <AsyncSelect
-            cacheOptions
-            loadOptions={loadOptions}
-            defaultOptions
-            onChange={this.handleChange}
-          />
+          <FilmSelect placeholder="Buscar" onChange={this.handleOnChange} />
         </div>
 
         {/* <SignOut /> */}

@@ -36,7 +36,6 @@ class LoginView extends PureComponent {
   };
 
   showRegister = () => {
-    const { isMobile } = this.props;
     const { signUp, showRegister } = this.state;
     this.setState({ signUp: !signUp, initialState: false });
     setTimeout(() => {
