@@ -1,6 +1,7 @@
 import app from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/firestore';
+import 'firebase/storage';
 import AuthService from '../js/services/api/AuthService';
 
 const config = {
@@ -19,7 +20,7 @@ class Firebase {
     app.initializeApp(config);
     this.auth = app.auth();
     this.db = app.firestore();
-
+    this.ref = app.storage().ref();
     this.googleProvider = new app.auth.GoogleAuthProvider();
   }
 

@@ -10,17 +10,20 @@ import './style.scss';
 const initialState = {
   name: '',
   description: '',
+  image: '',
   films: []
 };
 
 const CreateList = ({ firebase }) => {
   const [values, setValues] = useState(initialState);
 
-  const createList = async ({ name, description, films }) => {
+  const createList = async ({
+    name, description, image, films
+  }) => {
     const user = firebase.asd();
     try {
       const response = await firebase.lists().add({
-        name, description, films, author: user.uid
+        name, description, films, image, author: user.uid
       });
       console.log('Document written with ID: ', response.id);
     } catch (error) {
@@ -36,9 +39,21 @@ const CreateList = ({ firebase }) => {
     const { name, value } = event.target;
     setValues({ ...values, [name]: value });
   };
-
   const handleFilmOnChange = (film) => {
     setValues({ ...values, films: [...values.films, film] });
+  };
+  const hanldeImageOnChange = async (event) => {
+    const { ref } = firebase;
+    const file = event.target.files[0];
+    const name = `${+new Date()}-${file.name}`;
+    const metadata = { contentType: file.type };
+    const task = ref.child(name).put(file, metadata);
+    task
+      .then(snapshot => snapshot.ref.getDownloadURL())
+      .then((url) => {
+        setValues({ ...values, image: url });
+      })
+      .catch(console.error);
   };
 
   return (
@@ -58,6 +73,14 @@ const CreateList = ({ firebase }) => {
           name="description"
           value={values.description}
           onChange={handleOnChange}
+          required
+        />
+        <Input
+          type="file"
+          placeholder="Imagen"
+          name="image"
+          value={values.description}
+          onChange={hanldeImageOnChange}
           required
         />
         <FilmSelect placeholder="Añadir peli" onChange={handleFilmOnChange} />
@@ -85,7 +108,7 @@ const mapDispatchToProps = dispatch => ({
 });
 
 const mapStateToProps = state => ({
- 
+
 });
 
 
