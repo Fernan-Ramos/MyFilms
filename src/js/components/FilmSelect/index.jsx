@@ -4,7 +4,7 @@ import SearchService from '../../services/api/SearchService';
 
 
 
-const filterFilm = response => response.map(item => ({ value: item.id, label: item.title }));
+const filterFilm = response => response.map(item => ({ value: item.id, label: item.title, poster: item.poster_path }));
 
 const loadOptions = async (inputValue, callback) => {
   const response = await SearchService.list({ query: inputValue });

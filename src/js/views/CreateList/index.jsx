@@ -5,6 +5,8 @@ import Button from '../../components/Button';
 import Input from '../../components/Input';
 import FilmSelect from '../../components/FilmSelect';
 import './style.scss';
+import routeManager from '../../services/routeManager';
+import { routeCodes } from '../../constants/routes';
 
 
 const initialState = {
@@ -34,6 +36,7 @@ const CreateList = ({ firebase }) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     createList(values);
+    routeManager.push(routeCodes.LISTS);
   };
   const handleOnChange = (event) => {
     const { name, value } = event.target;
@@ -73,7 +76,6 @@ const CreateList = ({ firebase }) => {
           name="description"
           value={values.description}
           onChange={handleOnChange}
-          required
         />
         <Input
           type="file"
@@ -81,7 +83,6 @@ const CreateList = ({ firebase }) => {
           name="image"
           value={values.description}
           onChange={hanldeImageOnChange}
-          required
         />
         <FilmSelect placeholder="Añadir peli" onChange={handleFilmOnChange} />
 

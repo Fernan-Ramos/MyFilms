@@ -10,7 +10,8 @@ const innerState = () => Map({
 });
 
 const initialState = Map({
-  trendingList: innerState()
+  trendingList: innerState(),
+  myLists: innerState(),
 });
 
 const actionsMap = {

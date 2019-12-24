@@ -9,7 +9,7 @@ import CreateList from '../CreateList';
 import './style.scss';
 
 
-class Movies extends PureComponent {
+class Dashboard extends PureComponent {
   render() {
     return (
       <AppContainer>
@@ -24,4 +24,4 @@ class Movies extends PureComponent {
   }
 }
 
-export default withRouter(Movies);
+export default withRouter(Dashboard);

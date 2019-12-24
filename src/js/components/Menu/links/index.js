@@ -10,7 +10,7 @@ const links = [
     route: routeCodes.WATCHLIST
   },
   {
-    label: 'Lists',
+    label: 'Listas',
     route: routeCodes.LISTS
   },
   {

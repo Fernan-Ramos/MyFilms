@@ -2,7 +2,7 @@
 export const publicPath = '/';
 
 export const routeCodes = {
-  MOVIES: publicPath,
+  DASHBOARD: publicPath,
   LOGIN: `${publicPath}login`,
   TRENDING: `${publicPath}trending`,
   FILM: `${publicPath}film`,

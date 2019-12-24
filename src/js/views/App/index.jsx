@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import { Switch, Route, withRouter } from 'react-router-dom';
 import Login from 'js/views/Login';
-import Movies from 'js/views/Movies';
+import Dashboard from 'js/views/Dashboard';
 import { routeCodes } from 'js/constants/routes';
 import PrivateRoute from 'js/components/Utils/PrivateRoute';
 import AsyncManager from 'js/components/AsyncManager';
@@ -14,7 +14,7 @@ class App extends PureComponent {
         <AsyncManager />
         <Switch>
           <Route exact path={routeCodes.LOGIN} component={Login} />
-          <PrivateRoute path={routeCodes.MOVIES} component={Movies} />
+          <PrivateRoute path={routeCodes.DASHBOARD} component={Dashboard} />
         </Switch>
       </div>
     );
