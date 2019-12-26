@@ -1,12 +1,16 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { withFirebase } from 'js/components/Firebase';
+import { Link } from 'react-router-dom';
 import Button from '../../components/Button';
 import routeManager from '../../services/routeManager';
+import firebaseLists from '../../constants/firebaseLists';
 import { routeCodes } from '../../constants/routes';
 import MovieImage from '../../components/MovieImage';
-import './style.scss';
 import { addFirebaseList } from '../../redux/actions/firebase/lists';
+
+import './style.scss';
+
 
 const Lists = ({ firebase, addList, lists }) => {
   useEffect(() => {
@@ -22,7 +26,7 @@ const Lists = ({ firebase, addList, lists }) => {
           response.forEach((doc) => {
             listReponse.push({ ...doc.data(), id: doc.id });
           });
-          addList(listReponse, 'myLists');
+          addList(listReponse, firebaseLists.MYLISTS);
         } catch (error) {
           console.error('Error adding document: ', error);
         }
@@ -47,19 +51,21 @@ const Lists = ({ firebase, addList, lists }) => {
         </div>
         <div className="MyLists__grid">
           {lists.map((item, index) => (
-            <div className="ListCard" key={index}>
-              <div className="ListCard__image">
-                {item.image ? (
-                  <img src={item.image} alt="" />
-                ) : (
-                  <MovieImage size="xl" image={item.films[0].poster} />
-                )}
+            <Link to={`${routeCodes.LISTS}/${item.id}`} key={index}>
+              <div className="ListCard">
+                <div className="ListCard__image">
+                  {item.image ? (
+                    <img src={item.image} alt="" />
+                  ) : (
+                    <MovieImage size="xl" image={item.films[0].poster} />
+                  )}
+                </div>
+                <div className="ListCard__body">
+                  <div className="ListCard__title">{item.name}</div>
+                  <div className="ListCard__description">{item.description}</div>
+                </div>
               </div>
-              <div className="ListCard__body">
-                <div className="ListCard__title">{item.name}</div>
-                <div className="ListCard__description">{item.description}</div>
-              </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>

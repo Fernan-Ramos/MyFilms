@@ -8,6 +8,8 @@ import FilmSelect from '../../components/FilmSelect';
 import routeManager from '../../services/routeManager';
 import { routeCodes } from '../../constants/routes';
 import './style.scss';
+import { addFirebaseListItem } from '../../redux/actions/firebase/lists';
+import firebaseLists from '../../constants/firebaseLists';
 
 const initialState = {
   name: '',
@@ -16,17 +18,19 @@ const initialState = {
   films: []
 };
 
-const CreateList = ({ firebase }) => {
+const CreateList = ({ firebase, addListItem }) => {
   const [values, setValues] = useState(initialState);
 
   const createList = async ({
     name, description, image, films
   }) => {
     const user = firebase.asd();
+    const filmObject = {
+      name, description, films, image, author: user.uid
+    };
     try {
-      const response = await firebase.lists().add({
-        name, description, films, image, author: user.uid
-      });
+      const response = await firebase.lists().add(filmObject);
+      addListItem({ ...filmObject, id: response.id }, firebaseLists.MYLISTS);
       console.log('Document written with ID: ', response.id);
     } catch (error) {
       console.error('Error adding document: ', error);
@@ -42,8 +46,8 @@ const CreateList = ({ firebase }) => {
     const { name, value } = event.target;
     setValues({ ...values, [name]: value });
   };
-  const handleFilmOnChange = (film) => {
-    setValues({ ...values, films: [...values.films, film] });
+  const handleFilmOnChange = (films) => {
+    setValues({ ...values, films });
   };
   const hanldeImageOnChange = async (event) => {
     const { ref } = firebase;
@@ -84,17 +88,7 @@ const CreateList = ({ firebase }) => {
           value={values.description}
           onChange={hanldeImageOnChange}
         />
-        <FilmSelect placeholder="Añadir peli" onChange={handleFilmOnChange} />
-
-        {values.films.length > 0 && (
-        <div className="CreateList__films-wrapper">
-          {values.films.map((item, index) => (
-            <div key={index} className="CreateList__film">
-              {item.label}
-            </div>
-          ))}
-        </div>
-        )}
+        <FilmSelect placeholder="Añadir pelicula" onChange={handleFilmOnChange} isMulti />
         <Button className="basic" type="submit">
           <span>Create</span>
         </Button>
@@ -105,12 +99,8 @@ const CreateList = ({ firebase }) => {
 };
 
 const mapDispatchToProps = dispatch => ({
-
-});
-
-const mapStateToProps = state => ({
-
+  addListItem: (list, id) => dispatch(addFirebaseListItem(list, id)),
 });
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(withFirebase(CreateList));
+export default connect(null, mapDispatchToProps)(withFirebase(CreateList));

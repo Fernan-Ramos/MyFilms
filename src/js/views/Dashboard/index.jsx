@@ -6,6 +6,7 @@ import Lists from '../Lists';
 import Trending from '../Trending';
 import Film from '../Film';
 import CreateList from '../CreateList';
+import ListDetail from '../ListDetail';
 import './style.scss';
 
 
@@ -16,6 +17,7 @@ class Dashboard extends PureComponent {
         <Switch>
           <Route exact path={routeCodes.TRENDING} component={Trending} />
           <Route exact path={routeCodes.LISTS} component={Lists} />
+          <Route path={`${routeCodes.LISTS}/:id`} component={ListDetail} />
           <Route path={`${routeCodes.FILM}/:id`} component={Film} />
           <Route path={routeCodes.CREATELIST} component={CreateList} />
         </Switch>

@@ -3,7 +3,6 @@ import AsyncSelect from 'react-select/async';
 import SearchService from '../../services/api/SearchService';
 
 
-
 const filterFilm = response => response.map(item => ({ value: item.id, label: item.title, poster: item.poster_path }));
 
 const loadOptions = async (inputValue, callback) => {
@@ -13,7 +12,7 @@ const loadOptions = async (inputValue, callback) => {
 
 export default class FilmSelect extends React.Component {
   render() {
-    const { placeholder, onChange } = this.props;
+    const { placeholder, onChange, isMulti } = this.props;
     return (
       <AsyncSelect
         placeholder={placeholder}
@@ -21,6 +20,7 @@ export default class FilmSelect extends React.Component {
         loadOptions={loadOptions}
         defaultOptions
         onChange={onChange}
+        isMulti={isMulti}
       />);
   }
 }
