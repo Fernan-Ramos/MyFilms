@@ -4,10 +4,10 @@ import { withFirebase } from 'js/components/Firebase';
 import Button from '../../components/Button';
 import Input from '../../components/Input';
 import FilmSelect from '../../components/FilmSelect';
-import './style.scss';
+
 import routeManager from '../../services/routeManager';
 import { routeCodes } from '../../constants/routes';
-
+import './style.scss';
 
 const initialState = {
   name: '',

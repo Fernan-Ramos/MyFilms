@@ -6,11 +6,15 @@ import lists from './lists';
 import latest from './latest';
 import layout from './layout';
 
+// firebase
+import firebaseLists from './firebase/lists';
+
 
 export default combineReducers({
   auth,
   async,
   lists,
   latest,
-  layout
+  layout,
+  firebaseLists
 });

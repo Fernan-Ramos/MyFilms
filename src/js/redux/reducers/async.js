@@ -1,5 +1,5 @@
 import { Map } from 'immutable';
-import { ASYNC_ADD, ASYNC_DELETE } from 'js/actions/async';
+import { ASYNC_ADD, ASYNC_DELETE } from 'js/redux/actions/async';
 
 const initialState = Map({
   queue: 0,

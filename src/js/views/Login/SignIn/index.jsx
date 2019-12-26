@@ -2,8 +2,8 @@ import React, * as react from 'react';
 import { connect } from 'react-redux';
 import Button from 'js/components/Button';
 import Input from 'js/components/Input';
-import { login } from 'js/actions/auth';
-import { addAsync, deleteAsync } from 'js/actions/async';
+import { login } from 'js/redux/actions/auth';
+import { addAsync, deleteAsync } from 'js/redux/actions/async';
 
 class SignIn extends react.PureComponent {
   handleSubmit = async (event) => {

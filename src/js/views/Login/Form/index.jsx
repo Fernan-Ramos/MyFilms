@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import Button from 'js/components/Button';
 import Input from 'js/components/Input';
 import AuthService from 'js/services/api/AuthService';
-import { login } from 'js/actions/auth';
-import { addAsync, deleteAsync } from 'js/actions/async';
+import { login } from 'js/redux/actions/auth';
+import { addAsync, deleteAsync } from 'js/redux/actions/async';
 import AccountService from 'js/services/api/AccountService';
 
 class LoginForm extends react.PureComponent {

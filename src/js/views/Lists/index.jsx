@@ -1,30 +1,33 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
 import { withFirebase } from 'js/components/Firebase';
 import Button from '../../components/Button';
 import routeManager from '../../services/routeManager';
 import { routeCodes } from '../../constants/routes';
-import './style.scss';
 import MovieImage from '../../components/MovieImage';
+import './style.scss';
+import { addFirebaseList } from '../../redux/actions/firebase/lists';
 
-const Lists = ({ firebase }) => {
-  const [lists, setLists] = useState([]);
-  const getLists = async () => {
-    const user = firebase.asd();
-    try {
-      const response = await firebase
-        .lists()
-        .where('author', '==', user.uid)
-        .get();
-      response.forEach((doc) => {
-        // eslint-disable-next-line no-shadow
-        setLists(lists => [...lists, doc.data()]);
-      });
-    } catch (error) {
-      console.error('Error adding document: ', error);
-    }
-  };
-
+const Lists = ({ firebase, addList, lists }) => {
   useEffect(() => {
+    async function getLists() {
+      const user = firebase.asd();
+      const listReponse = [];
+      if (lists.length === 0) {
+        try {
+          const response = await firebase
+            .lists()
+            .where('author', '==', user.uid)
+            .get();
+          response.forEach((doc) => {
+            listReponse.push({ ...doc.data(), id: doc.id });
+          });
+          addList(listReponse, 'myLists');
+        } catch (error) {
+          console.error('Error adding document: ', error);
+        }
+      }
+    }
     getLists();
   }, []);
 
@@ -64,4 +67,12 @@ const Lists = ({ firebase }) => {
   );
 };
 
-export default withFirebase(Lists);
+const mapDispatchToProps = dispatch => ({
+  addList: (list, id) => dispatch(addFirebaseList(list, id)),
+});
+
+const mapStateToProps = state => ({
+  lists: state.firebaseLists.myLists,
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(withFirebase(Lists));

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { addAsync, deleteAsync } from 'js/actions/async';
+import { addAsync, deleteAsync } from 'js/redux/actions/async';
 import MovieImage from 'js/components/MovieImage';
 import MovieService from '../../services/api/MovieService';
 import './style.scss';

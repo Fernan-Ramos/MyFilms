@@ -1,15 +1,13 @@
 import { Map } from 'immutable';
-import { USER_SET } from 'js/actions/auth';
+import { SET_MOBILE } from 'js/redux/actions/layout';
 
 const initialState = Map({
-  tokenData: null,
+  isMobile: false,
 });
 
 const actionsMap = {
-  [USER_SET]: (state, action) => state.merge({
-    tokenData: action.tokenData.request_token,
-    username: action.tokenData.username,
-    avatar: action.tokenData.avatar,
+  [SET_MOBILE]: (state, action) => state.merge({
+    isMobile: action.isMobile,
   })
 };
 

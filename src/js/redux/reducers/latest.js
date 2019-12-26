@@ -1,5 +1,5 @@
 import { Map } from 'immutable';
-import { LATEST_ADD } from 'js/actions/latest';
+import { LATEST_ADD } from 'js/redux/actions/latest';
 
 const initialState = Map({
 

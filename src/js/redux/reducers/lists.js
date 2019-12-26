@@ -1,4 +1,4 @@
-import { LIST_ADD } from 'js/actions/lists';
+import { LIST_ADD } from 'js/redux/actions/lists';
 import { Map } from 'immutable';
 
 

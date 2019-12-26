@@ -5,7 +5,7 @@ import logger from '../dev/logger';
 // import Immutable from 'immutable'; // Remove if you are not using server rendering
 // import Serialize from 'remotedev-serialize/immutable'; // Remove if you are not using server rendering
 
-import rootReducer from '../reducers';
+import rootReducer from '../redux/reducers';
 
 const isProduction = process.env.NODE_ENV === 'production';
 
