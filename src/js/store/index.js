@@ -1,11 +1,12 @@
 import { createStore, applyMiddleware, compose } from 'redux';
-import thunk from 'redux-thunk';
+import createSagaMiddleware from 'redux-saga';
 import logger from '../dev/logger';
 
 // import Immutable from 'immutable'; // Remove if you are not using server rendering
 // import Serialize from 'remotedev-serialize/immutable'; // Remove if you are not using server rendering
 
 import rootReducer from '../redux/reducers';
+import firebaseList from '../redux/sagas/firebase';
 
 const isProduction = process.env.NODE_ENV === 'production';
 
@@ -13,7 +14,7 @@ const isProduction = process.env.NODE_ENV === 'production';
 export default () => {
   let store = null;
   let middleware = null;
-
+  const sagaMiddleware = createSagaMiddleware();
   const initialState = {};
 
   //   // Remove if you are not using server rendering
@@ -27,11 +28,11 @@ export default () => {
 
   if (isProduction) {
     // In production adding only thunk middleware
-    middleware = applyMiddleware(thunk);
+    middleware = applyMiddleware(sagaMiddleware);
   } else {
     // In development mode beside thunk
     // logger and DevTools are added
-    middleware = applyMiddleware(thunk, logger);
+    middleware = applyMiddleware(sagaMiddleware, logger);
 
     // Enable DevTools if browser extension is installed
     if (!process.env.SERVER && window.__REDUX_DEVTOOLS_EXTENSION__) { // eslint-disable-line
@@ -48,5 +49,6 @@ export default () => {
     middleware,
   );
 
+  sagaMiddleware.run(firebaseList);
   return store;
 };

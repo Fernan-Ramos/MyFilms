@@ -8,7 +8,7 @@ import FilmSelect from '../../components/FilmSelect';
 import routeManager from '../../services/routeManager';
 import { routeCodes } from '../../constants/routes';
 import './style.scss';
-import { addFirebaseListItem } from '../../redux/actions/firebase/lists';
+import { fetchFirebaseListItem } from '../../redux/actions/firebase/lists';
 import firebaseLists from '../../constants/firebaseLists';
 
 const initialState = {
@@ -18,23 +18,12 @@ const initialState = {
   films: []
 };
 
-const CreateList = ({ firebase, addListItem }) => {
+const CreateList = ({ firebase, fetchListItem }) => {
   const [values, setValues] = useState(initialState);
 
-  const createList = async ({
-    name, description, image, films
-  }) => {
-    const user = firebase.asd();
-    const filmObject = {
-      name, description, films, image, author: user.uid
-    };
-    try {
-      const response = await firebase.lists().add(filmObject);
-      addListItem({ ...filmObject, id: response.id }, firebaseLists.MYLISTS);
-      console.log('Document written with ID: ', response.id);
-    } catch (error) {
-      console.error('Error adding document: ', error);
-    }
+  const createList = async (list) => {
+    const listObject = { ...list, author: firebase.currentUser().uid };
+    fetchListItem(listObject, firebaseLists.MYLISTS);
   };
 
   const handleSubmit = (event) => {
@@ -99,7 +88,7 @@ const CreateList = ({ firebase, addListItem }) => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  addListItem: (list, id) => dispatch(addFirebaseListItem(list, id)),
+  fetchListItem: (list, listName) => dispatch(fetchFirebaseListItem(list, listName)),
 });
 
 

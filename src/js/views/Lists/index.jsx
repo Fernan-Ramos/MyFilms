@@ -7,32 +7,16 @@ import routeManager from '../../services/routeManager';
 import firebaseLists from '../../constants/firebaseLists';
 import { routeCodes } from '../../constants/routes';
 import MovieImage from '../../components/MovieImage';
-import { addFirebaseList } from '../../redux/actions/firebase/lists';
+import { fetchFirebaseList } from '../../redux/actions/firebase/lists';
 
 import './style.scss';
 
 
-const Lists = ({ firebase, addList, lists }) => {
+const Lists = ({ fetchList, lists }) => {
   useEffect(() => {
-    async function getLists() {
-      const user = firebase.asd();
-      const listReponse = [];
-      if (lists.length === 0) {
-        try {
-          const response = await firebase
-            .lists()
-            .where('author', '==', user.uid)
-            .get();
-          response.forEach((doc) => {
-            listReponse.push({ ...doc.data(), id: doc.id });
-          });
-          addList(listReponse, firebaseLists.MYLISTS);
-        } catch (error) {
-          console.error('Error adding document: ', error);
-        }
-      }
+    if (lists.length === 0) {
+      fetchList(firebaseLists.MYLISTS);
     }
-    getLists();
   }, []);
 
   const handleOnClick = () => {
@@ -74,7 +58,7 @@ const Lists = ({ firebase, addList, lists }) => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  addList: (list, id) => dispatch(addFirebaseList(list, id)),
+  fetchList: listName => dispatch(fetchFirebaseList(listName)),
 });
 
 const mapStateToProps = state => ({

@@ -1,4 +1,9 @@
 .ListDetail {
+  &__header {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 30px;
+  }
   &__grid {
     display: grid;
     grid-column-gap: 17px;

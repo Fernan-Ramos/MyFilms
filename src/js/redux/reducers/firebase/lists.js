@@ -1,4 +1,4 @@
-import { FIREBASE_LIST_ADD, FIREBASE_LIST_ADD_ITEM } from '../../actions/firebase/lists';
+import { FIREBASE_LIST_ADD, FIREBASE_LIST_ADD_ITEM, FIREBASE_LIST_DELETE } from '../../actions/firebase/lists';
 
 const initialState = {
   myLists: []
@@ -7,11 +7,15 @@ const initialState = {
 const actionsMap = {
   [FIREBASE_LIST_ADD]: (state, action) => ({
     ...state,
-    [action.id]: action.items
+    [action.listName]: action.items
   }),
   [FIREBASE_LIST_ADD_ITEM]: (state, action) => ({
     ...state,
-    [action.id]: [...state[action.id], action.item]
+    [action.listName]: [...state[action.listName], action.item]
+  }),
+  [FIREBASE_LIST_DELETE]: (state, action) => ({
+    ...state,
+    [action.listName]: state[action.listName].filter(item => item.id !== action.listID)
   })
 };
 

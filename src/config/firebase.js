@@ -17,7 +17,9 @@ const config = {
 
 class Firebase {
   constructor() {
-    app.initializeApp(config);
+    if (!app.apps.length) {
+      app.initializeApp(config);
+    }
     this.auth = app.auth();
     this.db = app.firestore();
     this.ref = app.storage().ref();
@@ -35,6 +37,8 @@ class Firebase {
     AuthService.logout();
   }
 
+  doSignInWithGoogle = () => this.auth.signInWithPopup(this.googleProvider);
+
 
   // Users
 
@@ -42,13 +46,41 @@ class Firebase {
 
   users = () => this.db.collection('users');
 
-  asd = () => app.auth().currentUser;
+  currentUser = () => this.auth.currentUser;
 
-  doSignInWithGoogle = () => this.auth.signInWithPopup(this.googleProvider);
 
   lists = () => this.db.collection('lists');
 
   favorites = () => this.db.collection('favorites');
+
+
+   getLists = async () => {
+     try {
+       const response = await this.lists().where('author', '==', this.currentUser().uid).get();
+       return response;
+     } catch (error) {
+       return error;
+     }
+   }
+
+   createList = async (list) => {
+     try {
+       const response = await this.lists().add(list);
+       return response;
+     } catch (error) {
+       console.error('Error adding document: ', error);
+       return error;
+     }
+   }
+
+   deleteList = async (listID) => {
+     try {
+       await this.lists().doc(listID).delete();
+       console.log('Document successfully deleted!');
+     } catch (error) {
+       console.error('Error removing document: ', error);
+     }
+   }
 }
 
 export default Firebase;
