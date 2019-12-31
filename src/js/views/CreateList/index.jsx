@@ -79,7 +79,7 @@ const CreateList = ({ firebase, fetchListItem }) => {
         />
         <FilmSelect placeholder="Añadir pelicula" onChange={handleFilmOnChange} isMulti />
         <Button className="basic" type="submit">
-          <span>Create</span>
+          <span>Crear</span>
         </Button>
       </form>
     </div>

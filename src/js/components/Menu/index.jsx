@@ -15,7 +15,9 @@ class Menu extends PureComponent {
   };
 
   handleOnClick = () => {
+    console.warn('entra');
     document.querySelector('.Menu').classList.remove('active');
+    document.querySelector('.MenuButton').classList.remove('is-open');
   }
 
 

@@ -69,7 +69,7 @@ class Trending extends PureComponent {
         </div>
         <div className="Upcoming">
           <UpcomingList
-            items={trendingItems}
+            items={trendingItems.slice(3, -1)}
           />
         </div>
       </div>

@@ -5,10 +5,10 @@ const links = [
     label: 'Novedades',
     route: routeCodes.TRENDING
   },
-  {
-    label: 'WatchList',
-    route: routeCodes.WATCHLIST
-  },
+  // {
+  //   label: 'WatchList',
+  //   route: routeCodes.WATCHLIST
+  // },
   {
     label: 'Listas',
     route: routeCodes.LISTS
