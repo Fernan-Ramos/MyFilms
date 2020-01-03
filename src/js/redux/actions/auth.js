@@ -1,26 +1,37 @@
 import AuthService from 'js/services/api/AuthService';
 
 export const USER_SET = 'USER_SET';
-export const INFO_SET = 'INFO_SET';
-export const USER_UNSET = 'USER_UNSET';
+export const SIGN_IN_GOOGLE = 'SIGN_IN_GOOGLE';
+export const SIGN_IN_EMAIL = 'SIGN_IN_EMAIL';
+export const SIGN_UP = 'SIGN_UP';
 
-export function setUser(data) {
+export function setUser(tokenData) {
   return {
     type: USER_SET,
-    data
+    tokenData
   };
 }
 
-export function setInfo(info) {
+export function signInGoogle() {
   return {
-    type: INFO_SET,
-    info
+    type: SIGN_IN_GOOGLE
   };
 }
 
-export function unsetUser() {
+export function signInEmail(username, password) {
   return {
-    type: USER_UNSET
+    type: SIGN_IN_EMAIL,
+    username,
+    password
+  };
+}
+
+export function signUp(email, password, username) {
+  return {
+    type: SIGN_UP,
+    email,
+    password,
+    username
   };
 }
 

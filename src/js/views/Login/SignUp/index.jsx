@@ -2,8 +2,7 @@ import React, * as react from 'react';
 import { connect } from 'react-redux';
 import Button from 'js/components/Button';
 import Input from 'js/components/Input';
-import { login } from 'js/redux/actions/auth';
-import { addAsync, deleteAsync } from 'js/redux/actions/async';
+import { signUp } from 'js/redux/actions/auth';
 
 class SignUp extends react.Component {
   constructor(props) {
@@ -13,55 +12,29 @@ class SignUp extends react.Component {
       email: '',
       passwordOne: '',
       passwordTwo: '',
-      error: null,
+      error: null
     };
   }
 
   handleSubmit = async (event) => {
-    const {
-      addAsyncFunction,
-      deleteAsyncFunction,
-      loginFunction,
-      firebase
-    } = this.props;
-
-    const {
-      username,
-      email,
-      passwordOne,
-    } = this.state;
+    const { boundSignUp } = this.props;
+    const { username, email, passwordOne } = this.state;
     event.preventDefault();
-    addAsyncFunction();
-
-    try {
-      const authUser = await firebase.doCreateUserWithEmailAndPassword(email, passwordOne);
-      await firebase.user(authUser.user.uid).set({ username, email }, { merge: true });
-      await firebase.doSendEmailVerification();
-      await loginFunction({ username, request_token: authUser.user.refreshToken });
-    } catch (error) {
-      console.error(error);
-    }
-    event.preventDefault();
-    deleteAsyncFunction();
+    boundSignUp(email, passwordOne, username);
   };
 
   onChange = (event) => {
     this.setState({ [event.target.name]: event.target.value });
   };
 
-
   render() {
     const {
-      username,
-      email,
-      passwordOne,
-      passwordTwo,
+      username, email, passwordOne, passwordTwo
     } = this.state;
-
     const isInvalid = passwordOne !== passwordTwo
-    || passwordOne === ''
-    || email === ''
-    || username === '';
+      || passwordOne === ''
+      || email === ''
+      || username === '';
     return (
       <div>
         <form onSubmit={this.handleSubmit}>
@@ -107,12 +80,7 @@ class SignUp extends react.Component {
 }
 
 const mapDispatchToProps = dispatch => ({
-  loginFunction: tokenData => login(tokenData, dispatch),
-  addAsyncFunction: () => dispatch(addAsync('login')),
-  deleteAsyncFunction: () => dispatch(deleteAsync('login'))
+  boundSignUp: (email, password, username) => dispatch(signUp(email, password, username))
 });
 
-export default connect(
-  null,
-  mapDispatchToProps
-)(SignUp);
+export default connect(null, mapDispatchToProps)(SignUp);

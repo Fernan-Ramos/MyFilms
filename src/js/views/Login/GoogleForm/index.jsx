@@ -1,6 +1,6 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { login } from 'js/redux/actions/auth';
+import { signInGoogle } from 'js/redux/actions/auth';
 import { addAsync, deleteAsync } from 'js/redux/actions/async';
 import Button from 'js/components/Button';
 
@@ -28,33 +28,16 @@ const GoogleIcon = () => (
   </svg>
 );
 
-class GoogleForm extends PureComponent {
+class GoogleForm extends Component {
   constructor(props) {
     super(props);
     this.state = { error: null };
   }
 
   handleSubmit = async (event) => {
-    const { firebase, loginFunction } = this.props;
+    const { loginFunction } = this.props;
     event.preventDefault();
-    try {
-      const socialAuthUser = await firebase.doSignInWithGoogle();
-      await firebase.user(socialAuthUser.user.uid).set(
-        {
-          username: socialAuthUser.user.displayName,
-          email: socialAuthUser.user.email
-        },
-        { merge: true }
-      );
-      await loginFunction({
-        username: socialAuthUser.user.displayName,
-        request_token: socialAuthUser.user.refreshToken,
-        avatar: socialAuthUser.user.photoURL
-      });
-    } catch (error) {
-      console.error(error.message);
-    }
-
+    loginFunction();
     event.preventDefault();
   };
 
@@ -77,7 +60,7 @@ class GoogleForm extends PureComponent {
 }
 
 const mapDispatchToProps = dispatch => ({
-  loginFunction: tokenData => login(tokenData, dispatch),
+  loginFunction: () => dispatch(signInGoogle()),
   addAsyncFunction: () => dispatch(addAsync('login')),
   deleteAsyncFunction: () => dispatch(deleteAsync('login'))
 });

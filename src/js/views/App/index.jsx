@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import { Switch, Route, withRouter } from 'react-router-dom';
 import Login from 'js/views/Login';
 import Dashboard from 'js/views/Dashboard';
@@ -7,7 +7,7 @@ import PrivateRoute from 'js/components/Utils/PrivateRoute';
 import AsyncManager from 'js/components/AsyncManager';
 
 
-class App extends PureComponent {
+class App extends Component {
   render() {
     return (
       <div>

@@ -54,6 +54,16 @@ class Firebase {
   favorites = () => this.db.collection('favorites');
 
 
+  setUser = async ({ uid, displayName, email }) => {
+    try {
+      await this.user(uid).set({ username: displayName, email },
+        { merge: true });
+    } catch (error) {
+      return error;
+    }
+  }
+
+
    getLists = async () => {
      try {
        const response = await this.lists().where('author', '==', this.currentUser().uid).get();

@@ -5,7 +5,7 @@ import routeManager from 'js/services/routeManager';
 import { Provider } from 'react-redux';
 import { login } from 'js/redux/actions/auth';
 import App from 'js/views/App';
-import configureStore from 'js/store';
+import configureStore from './js/store';
 import * as serviceWorker from './serviceWorker';
 
 
@@ -17,7 +17,6 @@ import 'scss/theme/fonts.scss';
 import AuthService from './js/services/api/AuthService';
 import { setIsMobile } from './js/redux/actions/layout';
 import Firebase, { FirebaseContext } from './js/components/Firebase';
-
 
 async function initApp() {
   const store = configureStore();

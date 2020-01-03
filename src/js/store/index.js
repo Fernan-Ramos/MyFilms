@@ -6,7 +6,7 @@ import logger from '../dev/logger';
 // import Serialize from 'remotedev-serialize/immutable'; // Remove if you are not using server rendering
 
 import rootReducer from '../redux/reducers';
-import firebaseList from '../redux/sagas/firebase';
+import rootSaga from '../redux/sagas';
 
 const isProduction = process.env.NODE_ENV === 'production';
 
@@ -42,13 +42,12 @@ export default () => {
       );
     }
   }
-
   store = createStore(
     rootReducer,
     initialState,
     middleware,
   );
 
-  sagaMiddleware.run(firebaseList);
+  sagaMiddleware.run(rootSaga);
   return store;
 };

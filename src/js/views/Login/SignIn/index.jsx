@@ -2,29 +2,16 @@ import React, * as react from 'react';
 import { connect } from 'react-redux';
 import Button from 'js/components/Button';
 import Input from 'js/components/Input';
-import { login } from 'js/redux/actions/auth';
-import { addAsync, deleteAsync } from 'js/redux/actions/async';
+import { signInEmail } from 'js/redux/actions/auth';
 
-class SignIn extends react.PureComponent {
+class SignIn extends react.Component {
   handleSubmit = async (event) => {
-    const {
-      addAsyncFunction,
-      deleteAsyncFunction,
-      loginFunction,
-      firebase
-    } = this.props;
+    const { loginFunction } = this.props;
     event.preventDefault();
     const username = event.target.username.value;
     const password = event.target.password.value;
-    addAsyncFunction();
-    try {
-      const authUser = await firebase.doSignInWithEmailAndPassword(username, password);
-      await loginFunction({ username, request_token: authUser.user.refreshToken });
-    } catch (error) {
-      console.error(error.message);
-    }
+    loginFunction(username, password);
     event.preventDefault();
-    deleteAsyncFunction();
   };
 
   render() {
@@ -48,12 +35,7 @@ class SignIn extends react.PureComponent {
 }
 
 const mapDispatchToProps = dispatch => ({
-  loginFunction: tokenData => login(tokenData, dispatch),
-  addAsyncFunction: () => dispatch(addAsync('login')),
-  deleteAsyncFunction: () => dispatch(deleteAsync('login'))
+  loginFunction: (username, password) => dispatch(signInEmail(username, password))
 });
 
-export default connect(
-  null,
-  mapDispatchToProps
-)(SignIn);
+export default connect(null, mapDispatchToProps)(SignIn);
