@@ -5,10 +5,9 @@ class RouteManager {
     this.history = createBrowserHistory();
   }
 
-  push(route) {
-    this.history.push(route);
+  push(route, state) {
+    this.history.push(route, state);
   }
-
 }
 
 export default new RouteManager();

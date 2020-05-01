@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
-import { connect } from 'react-redux';
+import React, { useState, useEffect } from 'react';
+import { connect, useSelector } from 'react-redux';
 import { withFirebase } from 'js/components/Firebase';
+import { withRouter } from 'react-router-dom';
 import Button from '../../components/Button';
 import Input from '../../components/Input';
 import FilmSelect from '../../components/FilmSelect';
@@ -10,6 +11,7 @@ import { routeCodes } from '../../constants/routes';
 import './style.scss';
 import { fetchFirebaseListItem } from '../../redux/actions/firebase/lists';
 import firebaseLists from '../../constants/firebaseLists';
+import { getFirebaseLists } from '../../redux/reducers/firebase/selectors';
 
 const initialState = {
   name: '',
@@ -18,13 +20,24 @@ const initialState = {
   films: []
 };
 
-const CreateList = ({ firebase, fetchListItem }) => {
+const CreateList = ({ firebase, fetchListItem, location }) => {
   const [values, setValues] = useState(initialState);
+  const lists = useSelector(getFirebaseLists);
+
+  useEffect(() => {
+    const { state } = location;
+    const { listID } = state;
+    if (listID) {
+      const list = lists.find(item => item.id === listID);
+      setValues({ ...values, ...list });
+    }
+  }, [lists]);
 
   const createList = async (list) => {
     const listObject = { ...list, author: firebase.currentUser().uid };
     fetchListItem(listObject, firebaseLists.MYLISTS);
   };
+
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -41,7 +54,7 @@ const CreateList = ({ firebase, fetchListItem }) => {
   const hanldeImageOnChange = async (event) => {
     const { ref } = firebase;
     const file = event.target.files[0];
-    const name = `${+new Date()}-${file.name}`;
+    const name = `${new Date()}-${file.name}`;
     const metadata = { contentType: file.type };
     const task = ref.child(name).put(file, metadata);
     task
@@ -51,7 +64,6 @@ const CreateList = ({ firebase, fetchListItem }) => {
       })
       .catch(console.error);
   };
-
   return (
     <div className="CreateList">
       <form className="CreateList__form" onSubmit={handleSubmit}>
@@ -74,7 +86,6 @@ const CreateList = ({ firebase, fetchListItem }) => {
           type="file"
           placeholder="Imagen"
           name="image"
-          value={values.description}
           onChange={hanldeImageOnChange}
         />
         <FilmSelect placeholder="Añadir pelicula" onChange={handleFilmOnChange} isMulti />
@@ -92,4 +103,4 @@ const mapDispatchToProps = dispatch => ({
 });
 
 
-export default connect(null, mapDispatchToProps)(withFirebase(CreateList));
+export default withRouter(connect(null, mapDispatchToProps)(withFirebase(CreateList)));

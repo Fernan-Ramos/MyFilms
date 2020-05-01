@@ -35,17 +35,21 @@ const ListDetail = ({
     }
     getList();
   }, [id]);
-  const handleOnClick = () => {
+
+  const handleEdit = () => {
+    routeManager.push(routeCodes.CREATELIST, { listID: id });
+  };
+  const handleDelete = () => {
     deleteList(list.id, 'myLists');
     routeManager.push(routeCodes.LISTS);
   };
   return (
     <div className="ListDetail">
       <div className="ListDetail__header">
-        <Button>
+        <Button onClick={handleEdit}>
           <FontAwesomeIcon icon={faEdit} color="#443a5a" size="lg" />
         </Button>
-        <Button onClick={handleOnClick}>
+        <Button onClick={handleDelete}>
           <FontAwesomeIcon icon={faTrashAlt} color="#443a5a" size="lg" />
         </Button>
 
