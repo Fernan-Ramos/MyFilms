@@ -1,16 +1,16 @@
-import { Map } from 'immutable';
-import { USER_SET } from 'js/redux/actions/auth';
+import * as types from './types';
 
-const initialState = Map({
+const initialState = {
   tokenData: null,
-});
+};
 
 const actionsMap = {
-  [USER_SET]: (state, action) => state.merge({
+  [types.USER_SET]: (state, action) => ({
+    ...state,
     tokenData: action.tokenData.request_token,
     username: action.tokenData.username,
     avatar: action.tokenData.avatar,
-  })
+  }),
 };
 
 export default function reducer(state = initialState, action = {}) {

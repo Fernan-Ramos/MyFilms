@@ -1,10 +1,8 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import TrendingService from 'js/services/api/TrendingService';
-import LatestService from 'js/services/api/LatestService';
-import { addList } from 'js/redux/actions/lists';
-import { addLatest } from 'js/redux/actions/latest';
-import { addAsync, deleteAsync } from 'js/redux/actions/async';
+import { addList } from 'js/redux/lists/actions';
+import { addAsync, deleteAsync } from 'js/redux/app/actions';
 import MovieCard from 'js/components/MovieCard';
 import { Link } from 'react-router-dom';
 import { routeCodes } from 'js/constants/routes';
@@ -24,20 +22,7 @@ class Trending extends PureComponent {
     } = this.props;
     addAsyncFunction();
     await this.getTrendingMovies();
-    // await this.getLatestMovie();
     deleteAsyncFunction();
-  }
-
-  getLatestMovie = async () => {
-    const {
-      setLatestMovie,
-    } = this.props;
-    try {
-      const latestMovie = await LatestService.list();
-      setLatestMovie(latestMovie);
-    } catch (error) {
-      console.error(error);
-    }
   }
 
   getTrendingMovies = async () => {
@@ -81,12 +66,10 @@ const mapDispatchToProps = dispatch => ({
   setTrendingList: (trendingList, id) => dispatch(addList(trendingList, id)),
   addAsyncFunction: () => dispatch(addAsync('trending')),
   deleteAsyncFunction: () => dispatch(deleteAsync('trending')),
-  setLatestMovie: latestMovie => dispatch(addLatest(latestMovie))
 });
 
 const mapStateToProps = state => ({
   trendingItems: state.lists.get('trendingList').get('items'),
-  latestMovie: state.latest.get('latestMovie')
 });
 
 export default connect(

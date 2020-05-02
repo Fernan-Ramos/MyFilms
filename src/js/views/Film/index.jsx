@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
-import { addAsync, deleteAsync } from 'js/redux/actions/async';
+import { addAsync, deleteAsync } from 'js/redux/app/actions';
 import MovieImage from 'js/components/MovieImage';
 import MovieService from '../../services/api/MovieService';
 import './style.scss';
@@ -50,7 +50,7 @@ const Film = ({
 
 
 const mapStateToProps = state => ({
-  isMobile: state.layout.get('isMobile')
+  isMobile: state.app.get('isMobile')
 });
 
 const mapDispatchToProps = dispatch => ({

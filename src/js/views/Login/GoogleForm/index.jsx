@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { signInGoogle } from 'js/redux/actions/auth';
-import { addAsync, deleteAsync } from 'js/redux/actions/async';
+import { signInGoogle } from 'js/redux/auth/actions';
+import { addAsync, deleteAsync } from 'js/redux/app/actions';
 import Button from 'js/components/Button';
 
 const GoogleIcon = () => (

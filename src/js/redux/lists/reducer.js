@@ -1,4 +1,4 @@
-import { LIST_ADD } from 'js/redux/actions/lists';
+import * as types from './types';
 import { Map } from 'immutable';
 
 
@@ -15,7 +15,7 @@ const initialState = Map({
 });
 
 const actionsMap = {
-  [LIST_ADD]: (state, action) => state.update(action.id, item => item.merge({
+  [types.LIST_ADD]: (state, action) => state.update(action.id, item => item.merge({
     isFetching: false,
     items: action.list.results,
     totalCount: action.list.total_pages,

@@ -1,12 +1,11 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import createSagaMiddleware from 'redux-saga';
-import logger from '../dev/logger';
 
 // import Immutable from 'immutable'; // Remove if you are not using server rendering
 // import Serialize from 'remotedev-serialize/immutable'; // Remove if you are not using server rendering
 
-import rootReducer from '../redux/reducers';
-import rootSaga from '../redux/sagas';
+import rootReducer from '../redux/rootReducer';
+import rootSaga from '../redux/rootSaga';
 
 const isProduction = process.env.NODE_ENV === 'production';
 
@@ -32,7 +31,7 @@ export default () => {
   } else {
     // In development mode beside thunk
     // logger and DevTools are added
-    middleware = applyMiddleware(sagaMiddleware, logger);
+    middleware = applyMiddleware(sagaMiddleware);
 
     // Enable DevTools if browser extension is installed
     if (!process.env.SERVER && window.__REDUX_DEVTOOLS_EXTENSION__) { // eslint-disable-line

@@ -67,7 +67,7 @@ class LoginView extends PureComponent {
 }
 
 const mapStateToProps = state => ({
-  isMobile: state.layout.get('isMobile')
+  isMobile: state.app.get('isMobile')
 });
 
 export default connect(mapStateToProps, null)(LoginView);

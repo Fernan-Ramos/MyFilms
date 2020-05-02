@@ -1,6 +1,6 @@
 import { fork, all } from 'redux-saga/effects';
-import firebaseLists from './firebase';
-import authSaga from './auth';
+import firebaseLists from './firebase/saga';
+import authSaga from './auth/saga';
 
 export default function* rootSaga() {
   yield all([

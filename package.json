@@ -13,7 +13,7 @@
     "firebase": "^7.0.0",
     "immutable": "^4.0.0-rc.12",
     "lodash": "^4.17.11",
-    "node-sass": "^4.11.0",
+    "node-sass": "^4.14.0",
     "query-string": "^6.5.0",
     "react": "^16.10.2",
     "react-dom": "^16.10.2",
@@ -34,6 +34,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
+    "lint": "eslint .",
     "now-build": "react-scripts build"
   },
   "eslintConfig": {
@@ -46,7 +47,11 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "eslint-config-airbnb": "^17.1.0",
-    "http-proxy-middleware": "^0.19.1"
+    "eslint-config-airbnb": "^17.1.1",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-prettier": "^3.1.3",
+    "http-proxy-middleware": "^0.19.1",
+    "prettier": "^2.0.5"
   }
 }

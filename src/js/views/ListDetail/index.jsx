@@ -5,7 +5,7 @@ import MovieCard from 'js/components/MovieCard';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { routeCodes } from '../../constants/routes';
-import { fetchDeleteFirebaseList } from '../../redux/actions/firebase/lists';
+import { fetchDeleteFirebaseList } from 'js/redux/firebase/actions';
 import routeManager from '../../services/routeManager';
 
 
@@ -67,7 +67,7 @@ const ListDetail = ({
 };
 
 const mapStateToProps = state => ({
-  myLists: state.firebaseLists.myLists
+  myLists: state.firebase.myLists
 });
 
 const mapDispatchToProps = dispatch => ({

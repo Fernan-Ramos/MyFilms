@@ -1,9 +1,8 @@
-export const LIST_ADD = 'LIST_ADD';
-export const LIST_DELETE = 'LIST_DELETE';
+import * as types from './types';
 
 export function addList(list, id) {
   return {
-    type: LIST_ADD,
+    type: types.LIST_ADD,
     list,
     id,
   };
@@ -11,7 +10,7 @@ export function addList(list, id) {
 
 export function deleteList(label) {
   return {
-    type: LIST_DELETE,
+    type: types.LIST_DELETE,
     label,
   };
 }

@@ -1,13 +1,7 @@
 import { call, put, takeEvery } from 'redux-saga/effects';
+import { addFirebaseList, addFirebaseListItem, deleteFirebaseList } from './actions';
+import * as types from './types';
 import Firebase from '../../../config/firebase';
-import {
-  FIREBASE_LIST_FETCH,
-  addFirebaseList,
-  FIREBASE_LIST_ITEM_FETCH,
-  addFirebaseListItem,
-  FIREBASE_LIST_DELETE_FETCH,
-  deleteFirebaseList
-} from '../actions/firebase/lists';
 
 const firebase = new Firebase();
 
@@ -27,9 +21,7 @@ function* getLists(action) {
 function* createList(action) {
   try {
     const response = yield call(firebase.createList, action.list);
-    yield put(
-      addFirebaseListItem({ ...action.list, id: response.id }, action.listName)
-    );
+    yield put(addFirebaseListItem({ ...action.list, id: response.id }, action.listName));
   } catch (error) {
     console.error(error);
   }
@@ -38,18 +30,16 @@ function* createList(action) {
 function* deleteList(action) {
   try {
     yield call(firebase.deleteList, action.listID);
-    yield put(
-      deleteFirebaseList(action.listID, action.listName)
-    );
+    yield put(deleteFirebaseList(action.listID, action.listName));
   } catch (error) {
     console.error(error);
   }
 }
 
 function* firebaseLists() {
-  yield takeEvery(FIREBASE_LIST_FETCH, getLists);
-  yield takeEvery(FIREBASE_LIST_ITEM_FETCH, createList);
-  yield takeEvery(FIREBASE_LIST_DELETE_FETCH, deleteList);
+  yield takeEvery(types.FIREBASE_LIST_FETCH, getLists);
+  yield takeEvery(types.FIREBASE_LIST_ITEM_FETCH, createList);
+  yield takeEvery(types.FIREBASE_LIST_DELETE_FETCH, deleteList);
 }
 
 export default firebaseLists;

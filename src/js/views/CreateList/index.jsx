@@ -9,9 +9,9 @@ import FilmSelect from '../../components/FilmSelect';
 import routeManager from '../../services/routeManager';
 import { routeCodes } from '../../constants/routes';
 import './style.scss';
-import { fetchFirebaseListItem } from '../../redux/actions/firebase/lists';
+import { fetchFirebaseListItem } from 'js/redux/firebase/actions';
 import firebaseLists from '../../constants/firebaseLists';
-import { getFirebaseLists } from '../../redux/reducers/firebase/selectors';
+import { getFirebaseLists } from 'js/redux/firebase/selectors';
 
 const initialState = {
   name: '',

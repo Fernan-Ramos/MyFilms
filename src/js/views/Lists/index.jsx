@@ -7,7 +7,7 @@ import routeManager from '../../services/routeManager';
 import firebaseLists from '../../constants/firebaseLists';
 import { routeCodes } from '../../constants/routes';
 import MovieImage from '../../components/MovieImage';
-import { fetchFirebaseList } from '../../redux/actions/firebase/lists';
+import { fetchFirebaseList } from 'js/redux/firebase/actions';
 
 import './style.scss';
 
@@ -62,7 +62,7 @@ const mapDispatchToProps = dispatch => ({
 });
 
 const mapStateToProps = state => ({
-  lists: state.firebaseLists.myLists,
+  lists: state.firebase.myLists,
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(withFirebase(Lists));

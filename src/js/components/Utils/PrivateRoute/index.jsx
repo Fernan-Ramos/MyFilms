@@ -1,30 +1,24 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { routeCodes } from 'js/constants/routes';
 import { Route, Redirect } from 'react-router-dom';
+import { getTokenData } from '../../../redux/auth/selectors';
 
-const PrivateRoute = ({ component: Component, tokenData, ...rest }) => (
-  <Route
-    {...rest}
-    render={props => (
-      tokenData
-        ? <Component {...props} />
-        : <Redirect to={routeCodes.LOGIN} />
-    )}
-  />
-);
+const PrivateRoute = ({ component: Component, ...rest }) => {
+  const tokenData = useSelector(getTokenData);
+  return (
+    <Route
+      {...rest}
+      render={(props) =>
+        tokenData ? <Component {...props} /> : <Redirect to={routeCodes.LOGIN} />
+      }
+    />
+  );
+};
 
 PrivateRoute.propTypes = {
-  tokenData: PropTypes.string,
   component: PropTypes.func,
 };
 
-const mapStateToProps = state => ({
-  tokenData: state.auth.get('tokenData')
-});
-
-export default connect(
-  mapStateToProps,
-  null,
-)(PrivateRoute);
+export default PrivateRoute;

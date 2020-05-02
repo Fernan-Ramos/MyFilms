@@ -2,7 +2,7 @@ import React, * as react from 'react';
 import { connect } from 'react-redux';
 import Button from 'js/components/Button';
 import Input from 'js/components/Input';
-import { signUp } from 'js/redux/actions/auth';
+import { signUp } from 'js/redux/auth/actions';
 
 class SignUp extends react.Component {
   constructor(props) {

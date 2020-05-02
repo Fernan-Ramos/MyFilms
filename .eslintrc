@@ -1,21 +1,26 @@
-    
 {
-    "extends": ["react-app", "airbnb"],
+    "parser": "babel-eslint",
+    "env": {
+      "browser": true,
+      "jest": true
+    },
+    "root": true,
+    "extends": ["airbnb", "plugin:prettier/recommended", "plugin:cypress/recommended"],
+    "plugins": ["react-hooks", "cypress"],
     "rules": {
-        "jsx-a11y/no-autofocus": "off",
-        "func-names": ["error", "never"],
-        "react/jsx-filename-extension": "off",
-        "class-methods-use-this": "off",
-        "no-else-return": "off",
-        "import/no-extraneous-dependencies": "off",
-        "react/no-array-index-key": "off",
-        "import/no-unresolved": "off",
-        "import/extensions": "off",
-        "react/prefer-stateless-function": "off",
-        "jsx-quotes": "off",
-        "no-nested-ternary": "off",
-        "react/require-default-props": "off",
-        "comma-dangle": "off",
-        "linebreak-style": ["error", "windows"]
+      "strict": 0,
+      "react/jsx-one-expression-per-line": 0,
+      "import/prefer-default-export": 0,
+      "react-hooks/rules-of-hooks": "error",
+      "react/jsx-props-no-spreading": "off",
+      "react/prefer-stateless-function": "off",
+      "no-underscore-dangle": "off"
+      
+    },
+    "settings": {
+      "import/resolver": {
+        "babel-module": {}
       }
+    }
   }
+  

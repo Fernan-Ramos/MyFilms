@@ -2,7 +2,7 @@ import React, * as react from 'react';
 import { connect } from 'react-redux';
 import Button from 'js/components/Button';
 import Input from 'js/components/Input';
-import { signInEmail } from 'js/redux/actions/auth';
+import { signInEmail } from 'js/redux/auth/actions';
 
 class SignIn extends react.Component {
   handleSubmit = async (event) => {

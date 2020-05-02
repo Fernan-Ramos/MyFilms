@@ -1,81 +1,65 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
 import { withRouter } from 'react-router-dom';
-import { connect } from 'react-redux';
+import { connect, useSelector } from 'react-redux';
 import classNames from 'classnames';
 import links from './links';
 import './style.scss';
 
 import MenuLink from './MenuLink';
 import MenuButton from './MenuButton';
+import { getUsername, getAvatar } from 'js/redux/auth/selectors';
 
-class Menu extends PureComponent {
-  isRouteActive = (route) => {
-    const { location } = this.props;
+const Menu = ({ iso, isMobile, location }) => {
+  const username = useSelector(getUsername);
+  const avatar = useSelector(getAvatar);
+  const isRouteActive = (route) => {
     return location.pathname === route;
   };
 
-  handleOnClick = () => {
+  const handleOnClick = () => {
     document.querySelector('.Menu').classList.remove('active');
     const button = document.querySelector('.MenuButton');
     if (button) {
       document.querySelector('.MenuButton').classList.remove('is-open');
     }
-  }
+  };
 
-
-  render() {
-    const {
-      username, avatar, iso, isMobile
-    } = this.props;
-    return (
-      <>
-        {isMobile && (
-          <MenuButton />
-        )}
-        <nav className="Menu">
-          <div className="Menu__user">
-            <div className="avatar">
-              <img
-                src={avatar}
-                alt="gravatar"
-              />
-            </div>
-            <div className="username">
-              <span>{username}</span>
-              <span>{iso}</span>
-            </div>
+  return (
+    <>
+      {isMobile && <MenuButton />}
+      <nav className="Menu">
+        <div className="Menu__user">
+          <div className="avatar">
+            <img src={avatar} alt="gravatar" />
           </div>
-          <div className="Menu__sections">
-            <ul>
-              {links.map(item => (
-                <li
-                  key={item.label}
-                  className={classNames('Link', {
-                    active: this.isRouteActive(item.route)
-                  })}
-                >
-                  <MenuLink route={item.route} label={item.label} handleOnClick={this.handleOnClick} />
-                </li>
-              ))}
-            </ul>
+          <div className="username">
+            <span>{username}</span>
+            <span>{iso}</span>
           </div>
-          <div className="Menu__categories" />
-          <div className="Menu__signout" />
-        </nav>
-      </>
-    );
-  }
-}
+        </div>
+        <div className="Menu__sections">
+          <ul>
+            {links.map((item) => (
+              <li
+                key={item.label}
+                className={classNames('Link', {
+                  active: isRouteActive(item.route),
+                })}
+              >
+                <MenuLink route={item.route} label={item.label} handleOnClick={handleOnClick} />
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div className="Menu__categories" />
+        <div className="Menu__signout" />
+      </nav>
+    </>
+  );
+};
 
-const mapStateToProps = state => ({
-  username: state.auth.get('username'),
-  avatar: state.auth.get('avatar'),
-  isMobile: state.layout.get('isMobile')
+const mapStateToProps = (state) => ({
+  isMobile: state.app.get('isMobile'),
 });
 
-export default withRouter(
-  connect(
-    mapStateToProps,
-    null
-  )(Menu)
-);
+export default withRouter(connect(mapStateToProps, null)(Menu));

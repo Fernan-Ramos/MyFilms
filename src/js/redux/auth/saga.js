@@ -1,13 +1,9 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
-import {
-  setUser,
-  SIGN_IN_GOOGLE,
-  SIGN_IN_EMAIL,
-  SIGN_UP
-} from '../actions/auth';
+import { setUser } from './actions';
+import * as types from './types';
 import Firebase from '../../../config/firebase';
 import AuthService from '../../services/api/AuthService';
-import { addAsync, deleteAsync } from '../actions/async';
+import { addAsync, deleteAsync } from '../app/actions';
 
 const firebase = new Firebase();
 
@@ -23,7 +19,7 @@ function* signInGoogle() {
     const userData = {
       username: response.user.displayName,
       request_token: response.user.refreshToken,
-      avatar: response.user.photoURL
+      avatar: response.user.photoURL,
     };
     AuthService.initToken(userData);
     yield call(firebase.setUser, response.user);
@@ -43,7 +39,7 @@ function* signIn(action) {
     );
     const userData = {
       username: response.user.displayName,
-      request_token: response.user.refreshToken
+      request_token: response.user.refreshToken,
     };
     yield call(setUserInfo, userData);
   } catch (error) {
@@ -65,7 +61,7 @@ function* signUp(action) {
     yield call(firebase.setUser, { ...response.user, displayName: action.username });
     const userData = {
       username: action.username,
-      request_token: response.user.refreshToken
+      request_token: response.user.refreshToken,
     };
     yield call(setUserInfo, userData);
   } catch (error) {
@@ -76,9 +72,9 @@ function* signUp(action) {
 }
 
 function* authSaga() {
-  yield takeLatest(SIGN_IN_GOOGLE, signInGoogle);
-  yield takeLatest(SIGN_IN_EMAIL, signIn);
-  yield takeLatest(SIGN_UP, signUp);
+  yield takeLatest(types.SIGN_IN_GOOGLE, signInGoogle);
+  yield takeLatest(types.SIGN_IN_EMAIL, signIn);
+  yield takeLatest(types.SIGN_UP, signUp);
 }
 
 export default authSaga;
