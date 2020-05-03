@@ -1,0 +1,33 @@
+{	
+    "version": 2,	
+    "name": "my-films",	
+    "build": {	
+        "env": {	
+          "NODE_PATH": "src/",	
+          "REACT_APP_API_KEY": "@api_key",	
+          "REACT_APP_AUTH_DOMAIN": "@api_domain",	
+          "REACT_APP_DATABASE_URL": "@api_database",	
+          "REACT_APP_PROJECT_ID": "@api_project",	
+          "REACT_APP_STORAGE_BUCKET": "@api_storage",	
+          "REACT_APP_ID": "@api_id",	
+          "REACT_APP_MESSAGING_SENDER_ID": "@api_messaging",	
+          "REACT_APP_MEASUREMENET_ID": "@api_measurement"	
+        }	
+    },	
+    "builds": [	
+        { "src": "package.json", "use": "@now/static-build", "config": { "distDir": "build" } }	
+    ],	
+    "routes": [	
+      { "src": "/api/(.*)", "dest": "https://api.themoviedb.org/$1" },	
+      { "src": "/static/(.*)", "headers": { "cache-control": "s-maxage=31536000,immutable" }, "dest": "/static/$1" },	
+      { "src": "/favicon.ico", "dest": "/favicon.ico" },	
+      { "src": "/asset-manifest.json", "dest": "/asset-manifest.json" },	
+      { "src": "/manifest.json", "dest": "/manifest.json" },	
+      { "src": "/precache-manifest.(.*)", "dest": "/precache-manifest.$1" },	
+      { "src": "/service-worker.js", "headers": { "cache-control": "s-maxage=0" }, "dest": "/service-worker.js" },	
+      { "src": "/(.*)", "headers": {"cache-control": "s-maxage=0"}, "dest": "/index.html" }	
+    ],	
+    "alias": [	
+        "my-films.now.sh"	
+    ]	
+}	
