@@ -5,7 +5,7 @@ import MovieCard from 'js/components/MovieCard';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 import { routeCodes } from '../../constants/routes';
-import { fetchDeleteFirebaseList } from 'js/redux/firebase/actions';
+import { fetchDeleteList } from 'js/redux/firebase/actions';
 import routeManager from '../../services/routeManager';
 
 
@@ -37,7 +37,7 @@ const ListDetail = ({
   }, [id]);
 
   const handleEdit = () => {
-    routeManager.push(routeCodes.CREATELIST, { listID: id });
+    routeManager.push(`${routeCodes.EDIT_LIST}/${id}`);
   };
   const handleDelete = () => {
     deleteList(list.id, 'myLists');
@@ -71,7 +71,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  deleteList: (listID, listName) => dispatch(fetchDeleteFirebaseList(listID, listName))
+  deleteList: (listID, listName) => dispatch(fetchDeleteList(listID, listName))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(ListDetail);

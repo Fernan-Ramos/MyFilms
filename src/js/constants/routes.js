@@ -7,8 +7,9 @@ export const routeCodes = {
   TRENDING: `${publicPath}trending`,
   FILM: `${publicPath}film`,
   LISTS: `${publicPath}lists`,
-  CREATELIST: `${publicPath}createlist`,
+  CREATE_LIST: `${publicPath}create-list`,
   WATCHLIST: `${publicPath}watchlist`,
   FAVORITES: `${publicPath}favorites`,
-  RECOMMENDATIONS: `${publicPath}recommendations`
+  RECOMMENDATIONS: `${publicPath}recommendations`,
+  EDIT_LIST: `${publicPath}edit-list`
 };

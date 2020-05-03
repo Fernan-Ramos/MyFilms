@@ -91,6 +91,15 @@ class Firebase {
        console.error('Error removing document: ', error);
      }
    }
+
+   editList = async (list, listID) => {
+     try {
+       await this.lists().doc(listID).set(list);
+       console.log('Document successfully edited!');
+     } catch (error) {
+       console.error('Error editing document: ', error);
+     }
+   }
 }
 
 export default Firebase;

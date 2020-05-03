@@ -2,12 +2,12 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { withFirebase } from 'js/components/Firebase';
 import { Link } from 'react-router-dom';
-import Button from '../../components/Button';
-import routeManager from '../../services/routeManager';
-import firebaseLists from '../../constants/firebaseLists';
-import { routeCodes } from '../../constants/routes';
-import MovieImage from '../../components/MovieImage';
-import { fetchFirebaseList } from 'js/redux/firebase/actions';
+import Button from 'js/components/Button';
+import routeManager from 'js/services/routeManager';
+import firebaseLists from 'js/constants/firebaseLists';
+import { routeCodes } from 'js/constants/routes';
+import MovieImage from 'js/components/MovieImage';
+import { fetchGetLists } from 'js/redux/firebase/actions';
 
 import './style.scss';
 
@@ -20,7 +20,7 @@ const Lists = ({ fetchList, lists }) => {
   }, []);
 
   const handleOnClick = () => {
-    routeManager.push(routeCodes.CREATELIST);
+    routeManager.push(routeCodes.CREATE_LIST);
   };
   return (
     <>
@@ -58,7 +58,7 @@ const Lists = ({ fetchList, lists }) => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  fetchList: listName => dispatch(fetchFirebaseList(listName)),
+  fetchList: listName => dispatch(fetchGetLists(listName)),
 });
 
 const mapStateToProps = state => ({

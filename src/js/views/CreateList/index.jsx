@@ -1,47 +1,57 @@
 import React, { useState, useEffect } from 'react';
-import { connect, useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { withFirebase } from 'js/components/Firebase';
-import { withRouter } from 'react-router-dom';
-import Button from '../../components/Button';
-import Input from '../../components/Input';
-import FilmSelect from '../../components/FilmSelect';
-
-import routeManager from '../../services/routeManager';
-import { routeCodes } from '../../constants/routes';
-import './style.scss';
-import { fetchFirebaseListItem } from 'js/redux/firebase/actions';
-import firebaseLists from '../../constants/firebaseLists';
+import routeManager from 'js/services/routeManager';
+import { routeCodes } from 'js/constants/routes';
+import { fetchCreateList, fetchEditList } from 'js/redux/firebase/actions';
+import firebaseLists from 'js/constants/firebaseLists';
 import { getFirebaseLists } from 'js/redux/firebase/selectors';
+
+import View from './view';
 
 const initialState = {
   name: '',
   description: '',
   image: '',
-  films: []
+  films: [],
 };
 
-const CreateList = ({ firebase, fetchListItem, location }) => {
+const CreateList = ({
+  firebase,
+  match: {
+    params: { id },
+  },
+}) => {
   const [values, setValues] = useState(initialState);
+  const [isEdit, setIsEdit] = useState(false);
   const lists = useSelector(getFirebaseLists);
-
+  const dispatch = useDispatch();
   useEffect(() => {
-    const { state } = location;
-    const { listID } = state;
-    if (listID) {
-      const list = lists.find(item => item.id === listID);
+    if (id) {
+      const list = lists.find(item => item.id === id);
+      console.log(list);
       setValues({ ...values, ...list });
+      setIsEdit(true);
     }
   }, [lists]);
 
-  const createList = async (list) => {
+  const createList = (list) => {
     const listObject = { ...list, author: firebase.currentUser().uid };
-    fetchListItem(listObject, firebaseLists.MYLISTS);
+    dispatch(fetchCreateList(listObject, firebaseLists.MYLISTS));
   };
 
+  const editList = (list) => {
+    dispatch(fetchEditList(list, id, firebaseLists.MYLISTS));
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    createList(values);
+    if (isEdit) {
+      editList(values);
+    } else {
+      createList(values);
+    }
+
     routeManager.push(routeCodes.LISTS);
   };
   const handleOnChange = (event) => {
@@ -51,7 +61,7 @@ const CreateList = ({ firebase, fetchListItem, location }) => {
   const handleFilmOnChange = (films) => {
     setValues({ ...values, films });
   };
-  const hanldeImageOnChange = async (event) => {
+  const handleImageOnChange = async (event) => {
     const { ref } = firebase;
     const file = event.target.files[0];
     const name = `${new Date()}-${file.name}`;
@@ -65,42 +75,15 @@ const CreateList = ({ firebase, fetchListItem, location }) => {
       .catch(console.error);
   };
   return (
-    <div className="CreateList">
-      <form className="CreateList__form" onSubmit={handleSubmit}>
-        <Input
-          type="text"
-          value={values.name}
-          placeholder="Nombre"
-          name="name"
-          onChange={handleOnChange}
-          required
-        />
-        <Input
-          type="text"
-          placeholder="Descripción"
-          name="description"
-          value={values.description}
-          onChange={handleOnChange}
-        />
-        <Input
-          type="file"
-          placeholder="Imagen"
-          name="image"
-          onChange={hanldeImageOnChange}
-        />
-        <FilmSelect placeholder="Añadir pelicula" onChange={handleFilmOnChange} isMulti />
-        <Button className="basic" type="submit">
-          <span>Crear</span>
-        </Button>
-      </form>
-    </div>
-
+    <View
+      handleSubmit={handleSubmit}
+      handleOnChange={handleOnChange}
+      handleFilmOnChange={handleFilmOnChange}
+      handleImageOnChange={handleImageOnChange}
+      values={values}
+      isEdit={isEdit}
+    />
   );
 };
 
-const mapDispatchToProps = dispatch => ({
-  fetchListItem: (list, listName) => dispatch(fetchFirebaseListItem(list, listName)),
-});
-
-
-export default withRouter(connect(null, mapDispatchToProps)(withFirebase(CreateList)));
+export default withFirebase(CreateList);

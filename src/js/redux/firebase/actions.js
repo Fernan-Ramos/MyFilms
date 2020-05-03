@@ -1,48 +1,66 @@
 
 import * as types from './types';
 
-export function fetchFirebaseList(listName) {
+export function fetchGetLists(listName) {
   return {
-    type: types.FIREBASE_LIST_FETCH,
+    type: types.FETCH_GET_LISTS,
     listName,
   };
 }
 
-export function fetchFirebaseListItem(list, listName) {
+export function fetchCreateList(list, listName) {
   return {
-    type: types.FIREBASE_LIST_ITEM_FETCH,
+    type: types.FETCH_CREATE_LIST,
     list,
     listName,
   };
 }
 
-export function fetchDeleteFirebaseList(listID, listName) {
+export function fetchDeleteList(listID, listName) {
   return {
-    type: types.FIREBASE_LIST_DELETE_FETCH,
+    type: types.FETCH_DELETE_LIST,
     listID,
     listName
   };
 }
 
-
-export function addFirebaseList(items, listName) {
+export function fetchEditList(list, listID, listName) {
   return {
-    type: types.FIREBASE_LIST_ADD,
+    type: types.FETCH_EDIT_LIST,
+    list,
+    listID,
+    listName,
+  };
+}
+
+
+export function setAddList(items, listName) {
+  return {
+    type: types.SET_ADD_LIST,
     items,
     listName,
   };
 }
-export function addFirebaseListItem(item, listName) {
+export function setCreateList(item, listName) {
   return {
-    type: types.FIREBASE_LIST_ADD_ITEM,
+    type: types.SET_CREATE_LIST,
     listName,
     item
   };
 }
 
-export function deleteFirebaseList(listID, listName) {
+export function setDeleteList(listID, listName) {
   return {
-    type: types.FIREBASE_LIST_DELETE,
+    type: types.SET_DELETE_LIST,
+    listID,
+    listName,
+  };
+}
+
+export function setEditList(values, listID, listName) {
+  return {
+    type: types.SET_EDIT_LIST,
+    values,
     listID,
     listName,
   };

@@ -19,7 +19,8 @@ class Dashboard extends PureComponent {
           <Route exact path={routeCodes.LISTS} component={Lists} />
           <Route path={`${routeCodes.LISTS}/:id`} component={ListDetail} />
           <Route path={`${routeCodes.FILM}/:id`} component={Film} />
-          <Route path={routeCodes.CREATELIST} component={CreateList} />
+          <Route path={routeCodes.CREATE_LIST} component={CreateList} />
+          <Route path={`${routeCodes.EDIT_LIST}/:id`} component={CreateList} />
         </Switch>
       </AppContainer>
     );
