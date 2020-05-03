@@ -9,26 +9,20 @@ import { routeCodes } from 'js/constants/routes';
 import UpcomingList from './UpcomingList';
 import './style.scss';
 
-
 class Trending extends PureComponent {
   componentWillMount() {
     this.getMovies();
   }
 
   getMovies = async () => {
-    const {
-      addAsyncFunction,
-      deleteAsyncFunction,
-    } = this.props;
+    const { addAsyncFunction, deleteAsyncFunction } = this.props;
     addAsyncFunction();
     await this.getTrendingMovies();
     deleteAsyncFunction();
-  }
+  };
 
   getTrendingMovies = async () => {
-    const {
-      setTrendingList,
-    } = this.props;
+    const { setTrendingList } = this.props;
     try {
       const trendingList = await TrendingService.list();
       setTrendingList(trendingList, 'trendingList');
@@ -40,39 +34,30 @@ class Trending extends PureComponent {
   render() {
     const { trendingItems } = this.props;
     return (
-      <div className='TrendingWrapper'>
+      <div className="TrendingWrapper">
         <div className="Trending">
           {trendingItems.slice(0, 3).map((item, index) => (
             <Link to={`${routeCodes.FILM}/${item.id}`} key={index}>
-              <MovieCard
-                className='TextInside'
-                movie={item}
-                imageSize="poster"
-              />
+              <MovieCard className="TextInside" movie={item} imageSize="poster" />
             </Link>
           ))}
         </div>
         <div className="Upcoming">
-          <UpcomingList
-            items={trendingItems.slice(3, -1)}
-          />
+          <UpcomingList items={trendingItems.slice(3, -1)} />
         </div>
       </div>
     );
   }
 }
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
   setTrendingList: (trendingList, id) => dispatch(addList(trendingList, id)),
   addAsyncFunction: () => dispatch(addAsync('trending')),
   deleteAsyncFunction: () => dispatch(deleteAsync('trending')),
 });
 
-const mapStateToProps = state => ({
-  trendingItems: state.lists.get('trendingList').get('items'),
+const mapStateToProps = (state) => ({
+  trendingItems: state.lists.trendingList.items,
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Trending);
+export default connect(mapStateToProps, mapDispatchToProps)(Trending);

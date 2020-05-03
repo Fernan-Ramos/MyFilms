@@ -15,10 +15,12 @@ const actionsMap = {
   }),
   [types.SET_DELETE_LIST]: (state, action) => ({
     ...state,
-    [action.listName]: state[action.listName].filter(item => item.id !== action.listID),
+    [action.listName]: state[action.listName].filter((item) => item.id !== action.listID),
   }),
   [types.SET_EDIT_LIST]: (state, action) => {
-    const listEdited = state[action.listName].map(item => (item.id === action.listID ? { ...item, ...action.values } : item));
+    const listEdited = state[action.listName].map((item) =>
+      item.id === action.listID ? { ...item, ...action.values } : item
+    );
     return {
       ...state,
       [action.listName]: listEdited,

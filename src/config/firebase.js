@@ -12,7 +12,7 @@ const config = {
   storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
   messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
   appId: process.env.REACT_APP_ID,
-  measurementId: process.env.REACT_APP_MEASUREMENET_ID
+  measurementId: process.env.REACT_APP_MEASUREMENET_ID,
 };
 
 class Firebase {
@@ -26,80 +26,77 @@ class Firebase {
     this.googleProvider = new app.auth.GoogleAuthProvider();
   }
 
-  doSignInWithEmailAndPassword = (email, password) => this.auth.signInWithEmailAndPassword(email, password);
+  doSignInWithEmailAndPassword = (email, password) =>
+    this.auth.signInWithEmailAndPassword(email, password);
 
-  doCreateUserWithEmailAndPassword = (email, password) => this.auth.createUserWithEmailAndPassword(email, password);
+  doCreateUserWithEmailAndPassword = (email, password) =>
+    this.auth.createUserWithEmailAndPassword(email, password);
 
   doSendEmailVerification = () => this.auth.currentUser.sendEmailVerification();
 
   doSignOut = () => {
     this.auth.signOut();
     AuthService.logout();
-  }
+  };
 
   doSignInWithGoogle = () => this.auth.signInWithPopup(this.googleProvider);
 
-
   // Users
 
-  user = uid => this.db.doc(`users/${uid}`);
+  user = (uid) => this.db.doc(`users/${uid}`);
 
   users = () => this.db.collection('users');
 
   currentUser = () => this.auth.currentUser;
 
-
   lists = () => this.db.collection('lists');
 
   favorites = () => this.db.collection('favorites');
 
-
   setUser = async ({ uid, displayName, email }) => {
     try {
-      await this.user(uid).set({ username: displayName, email },
-        { merge: true });
+      await this.user(uid).set({ username: displayName, email }, { merge: true });
     } catch (error) {
       return error;
     }
-  }
+  };
 
+  getLists = async () => {
+    try {
+      const response = await this.lists().where('author', '==', this.currentUser().uid).get();
+      return response;
+    } catch (error) {
+      return error;
+    }
+  };
 
-   getLists = async () => {
-     try {
-       const response = await this.lists().where('author', '==', this.currentUser().uid).get();
-       return response;
-     } catch (error) {
-       return error;
-     }
-   }
+  createList = async (list) => {
+    try {
+      const response = await this.lists().add(list);
+      return response;
+    } catch (error) {
+      console.error('Error adding document: ', error);
+      return error;
+    }
+  };
 
-   createList = async (list) => {
-     try {
-       const response = await this.lists().add(list);
-       return response;
-     } catch (error) {
-       console.error('Error adding document: ', error);
-       return error;
-     }
-   }
+  deleteList = async (listID) => {
+    try {
+      await this.lists().doc(listID).delete();
+      console.log('Document successfully deleted!');
+    } catch (error) {
+      console.error('Error removing document: ', error);
+    }
+  };
 
-   deleteList = async (listID) => {
-     try {
-       await this.lists().doc(listID).delete();
-       console.log('Document successfully deleted!');
-     } catch (error) {
-       console.error('Error removing document: ', error);
-     }
-   }
-
-   editList = async (list, listID) => {
-     try {
-       await this.lists().doc(listID).set(list);
-       console.log('Document successfully edited!');
-     } catch (error) {
-       console.error('Error editing document: ', error);
-     }
-   }
+  editList = async (list, listID) => {
+    try {
+      await this.lists().doc(listID).set(list);
+      console.log('Document successfully edited!');
+    } catch (error) {
+      console.error('Error editing document: ', error);
+    }
+  };
 }
 
 export default Firebase;

@@ -1,4 +1,3 @@
-
 export const publicPath = '/';
 
 export const routeCodes = {
@@ -11,5 +10,5 @@ export const routeCodes = {
   WATCHLIST: `${publicPath}watchlist`,
   FAVORITES: `${publicPath}favorites`,
   RECOMMENDATIONS: `${publicPath}recommendations`,
-  EDIT_LIST: `${publicPath}edit-list`
+  EDIT_LIST: `${publicPath}edit-list`,
 };

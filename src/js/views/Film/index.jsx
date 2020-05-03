@@ -6,19 +6,16 @@ import MovieService from '../../services/api/MovieService';
 import './style.scss';
 
 const GenresList = ({ genres }) => (
-  <div className="FilmDetail__genres">
-    {genres && genres.map(genre => genre.name).join(', ')}
-  </div>
+  <div className="FilmDetail__genres">{genres && genres.map((genre) => genre.name).join(', ')}</div>
 );
-
 
 const Film = ({
   match: {
-    params: { id }
+    params: { id },
   },
   addAsyncFunction,
   deleteAsyncFunction,
-  isMobile
+  isMobile,
 }) => {
   const [film, setFilm] = useState({});
   useEffect(() => {
@@ -48,17 +45,13 @@ const Film = ({
   );
 };
 
-
-const mapStateToProps = state => ({
-  isMobile: state.app.get('isMobile')
+const mapStateToProps = (state) => ({
+  isMobile: state.app.isMobile,
 });
 
-const mapDispatchToProps = dispatch => ({
+const mapDispatchToProps = (dispatch) => ({
   addAsyncFunction: () => dispatch(addAsync('film')),
-  deleteAsyncFunction: () => dispatch(deleteAsync('film'))
+  deleteAsyncFunction: () => dispatch(deleteAsync('film')),
 });
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Film);
+export default connect(mapStateToProps, mapDispatchToProps)(Film);

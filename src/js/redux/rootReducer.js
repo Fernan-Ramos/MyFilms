@@ -9,5 +9,5 @@ export default combineReducers({
   auth,
   app,
   lists,
-  firebase
+  firebase,
 });

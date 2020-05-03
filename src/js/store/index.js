@@ -1,7 +1,5 @@
 import { createStore, applyMiddleware, compose } from 'redux';
 import createSagaMiddleware from 'redux-saga';
-
-// import Immutable from 'immutable'; // Remove if you are not using server rendering
 // import Serialize from 'remotedev-serialize/immutable'; // Remove if you are not using server rendering
 
 import rootReducer from '../redux/rootReducer';
@@ -24,7 +22,6 @@ export default () => {
   //     // ★★ Marvin: No dehydrated state
   //   }
 
-
   if (isProduction) {
     // In production adding only thunk middleware
     middleware = applyMiddleware(sagaMiddleware);
@@ -41,11 +38,7 @@ export default () => {
       );
     }
   }
-  store = createStore(
-    rootReducer,
-    initialState,
-    middleware,
-  );
+  store = createStore(rootReducer, initialState, middleware);
 
   sagaMiddleware.run(rootSaga);
   return store;

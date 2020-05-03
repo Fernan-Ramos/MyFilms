@@ -2,12 +2,13 @@ import React from 'react';
 import { withRouter } from 'react-router-dom';
 import { connect, useSelector } from 'react-redux';
 import classNames from 'classnames';
+import { getUsername, getAvatar } from 'js/redux/auth/selectors';
 import links from './links';
-import './style.scss';
 
 import MenuLink from './MenuLink';
 import MenuButton from './MenuButton';
-import { getUsername, getAvatar } from 'js/redux/auth/selectors';
+
+import './style.scss';
 
 const Menu = ({ iso, isMobile, location }) => {
   const username = useSelector(getUsername);
@@ -59,7 +60,7 @@ const Menu = ({ iso, isMobile, location }) => {
 };
 
 const mapStateToProps = (state) => ({
-  isMobile: state.app.get('isMobile'),
+  isMobile: state.app.isMobile,
 });
 
 export default withRouter(connect(mapStateToProps, null)(Menu));

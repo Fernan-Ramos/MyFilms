@@ -28,8 +28,7 @@ const CreateList = ({
   const dispatch = useDispatch();
   useEffect(() => {
     if (id) {
-      const list = lists.find(item => item.id === id);
-      console.log(list);
+      const list = lists.find((item) => item.id === id);
       setValues({ ...values, ...list });
       setIsEdit(true);
     }
@@ -68,7 +67,7 @@ const CreateList = ({
     const metadata = { contentType: file.type };
     const task = ref.child(name).put(file, metadata);
     task
-      .then(snapshot => snapshot.ref.getDownloadURL())
+      .then((snapshot) => snapshot.ref.getDownloadURL())
       .then((url) => {
         setValues({ ...values, image: url });
       })

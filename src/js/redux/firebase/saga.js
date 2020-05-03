@@ -1,7 +1,7 @@
 import { call, put, takeEvery } from 'redux-saga/effects';
+import Firebase from 'config/firebase';
 import { setAddList, setCreateList, setDeleteList, setEditList } from './actions';
 import * as types from './types';
-import Firebase from '../../../config/firebase';
 
 const firebase = new Firebase();
 

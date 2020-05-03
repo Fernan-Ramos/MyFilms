@@ -1,25 +1,20 @@
-import { Map } from 'immutable';
 import * as types from './types';
 
-const initialState = Map({
+const initialState = {
   queue: 0,
-  map: Map({}),
   isMobile: false,
-});
+};
 
 const actionsMap = {
-  [types.ASYNC_ADD]: (state, action) => {
-    const currentMap = state.get('map').set(action.label, true);
-    return state.set('map', currentMap).set('queue', currentMap.size);
-  },
-  [types.ASYNC_DELETE]: (state, action) => {
-    const currentMap = state.get('map').delete(action.label, true);
-    return state.set('map', currentMap).set('queue', currentMap.size);
-  },
-  [types.SET_MOBILE]: (state, action) =>
-    state.merge({
-      isMobile: action.isMobile,
-    }),
+  [types.ASYNC_ADD]: (state) => ({
+    ...state,
+    queue: state.queue + 1,
+  }),
+  [types.ASYNC_DELETE]: (state) => ({
+    ...state,
+    queue: state.queue - 1,
+  }),
+  [types.SET_MOBILE]: (state, action) => ({ ...state, isMobile: action.isMobile }),
 };
 
 export default function reducer(state = initialState, action = {}) {

@@ -1,4 +1,3 @@
-
 import * as types from './types';
 
 export function fetchGetLists(listName) {
@@ -20,7 +19,7 @@ export function fetchDeleteList(listID, listName) {
   return {
     type: types.FETCH_DELETE_LIST,
     listID,
-    listName
+    listName,
   };
 }
 
@@ -33,7 +32,6 @@ export function fetchEditList(list, listID, listName) {
   };
 }
 
-
 export function setAddList(items, listName) {
   return {
     type: types.SET_ADD_LIST,
@@ -45,7 +43,7 @@ export function setCreateList(item, listName) {
   return {
     type: types.SET_CREATE_LIST,
     listName,
-    item
+    item,
   };
 }
 

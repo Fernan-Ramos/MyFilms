@@ -4,16 +4,13 @@ import './style.scss';
 import Header from 'js/components/Header';
 import Content from 'js/components/Content';
 
-
 class AppContainer extends PureComponent {
   render() {
     return (
-      <div className='AppContainer'>
+      <div className="AppContainer">
         <Menu />
         <Header />
-        <Content>
-          {this.props.children}
-        </Content>
+        <Content>{this.props.children}</Content>
       </div>
     );
   }

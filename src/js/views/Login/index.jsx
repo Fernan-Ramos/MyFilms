@@ -16,7 +16,12 @@ const Login = ({ showRegister }) => (
     <h1>Welcome back!</h1>
     <SignInForm />
     <GoogleSignInForm />
-    <span className="">You dont have a account ? <button className="Button" type="button" onClick={showRegister}>Sign Up now!</button></span>
+    <span className="">
+      You dont have a account ?
+      <button className="Button" type="button" onClick={showRegister}>
+        Sign Up now!
+      </button>
+    </span>
   </div>
 );
 
@@ -24,7 +29,11 @@ const Register = ({ showRegister }) => (
   <div className="Register active">
     <h1>Welcome back!</h1>
     <SignUpForm />
-    <span className=""><button className="Button" type="button" onClick={showRegister}>Sign In</button></span>
+    <span className="">
+      <button className="Button" type="button" onClick={showRegister}>
+        Sign In
+      </button>
+    </span>
   </div>
 );
 
@@ -41,9 +50,8 @@ class LoginView extends PureComponent {
     setTimeout(() => {
       this.setState({ showRegister: !showRegister });
     }, 300);
-  }
+  };
 
- 
   render() {
     const { isMobile } = this.props;
     const { signUp, showRegister, initialState } = this.state;
@@ -57,7 +65,11 @@ class LoginView extends PureComponent {
       <div className="LoginWrapper">
         <div className="LoginWrapper__form">
           <div className={contenClassNames}>
-            {!showRegister ? <Login showRegister={this.showRegister} /> : <Register showRegister={this.showRegister} />}
+            {!showRegister ? (
+              <Login showRegister={this.showRegister} />
+            ) : (
+              <Register showRegister={this.showRegister} />
+            )}
           </div>
           <div className={imageClassNames} />
         </div>
@@ -66,8 +78,8 @@ class LoginView extends PureComponent {
   }
 }
 
-const mapStateToProps = state => ({
-  isMobile: state.app.get('isMobile')
+const mapStateToProps = (state) => ({
+  isMobile: state.app.isMobile,
 });
 
 export default connect(mapStateToProps, null)(LoginView);

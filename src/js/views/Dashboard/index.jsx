@@ -9,7 +9,6 @@ import CreateList from '../CreateList';
 import ListDetail from '../ListDetail';
 import './style.scss';
 
-
 class Dashboard extends PureComponent {
   render() {
     return (

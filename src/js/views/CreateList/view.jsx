@@ -5,7 +5,12 @@ import FilmSelect from 'js/components/FilmSelect';
 import './style.scss';
 
 const View = ({
-  handleSubmit, values, handleOnChange, handleImageOnChange, handleFilmOnChange, isEdit
+  handleSubmit,
+  values,
+  handleOnChange,
+  handleImageOnChange,
+  handleFilmOnChange,
+  isEdit,
 }) => (
   <div className="CreateList">
     <form className="CreateList__form" onSubmit={handleSubmit}>
@@ -24,13 +29,13 @@ const View = ({
         value={values.description}
         onChange={handleOnChange}
       />
-      <Input
-        type="file"
-        placeholder="Imagen"
-        name="image"
-        onChange={handleImageOnChange}
+      <Input type="file" placeholder="Imagen" name="image" onChange={handleImageOnChange} />
+      <FilmSelect
+        placeholder="Añadir pelicula"
+        onChange={handleFilmOnChange}
+        options={values.films}
+        isMulti
       />
-      <FilmSelect placeholder="Añadir pelicula" onChange={handleFilmOnChange} options={values.films} isMulti />
       <Button className="basic" type="submit">
         <span>{isEdit ? 'Guardar cambios' : 'Crear'}</span>
       </Button>
