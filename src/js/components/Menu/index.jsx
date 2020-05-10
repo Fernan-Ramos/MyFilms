@@ -1,18 +1,19 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
-import { connect, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import classNames from 'classnames';
 import { getUsername, getAvatar } from 'js/redux/auth/selectors';
+import { getIsMobile } from 'js/redux/app/selectors';
 import links from './links';
-
 import MenuLink from './MenuLink';
 import MenuButton from './MenuButton';
 
 import './style.scss';
 
-const Menu = ({ iso, isMobile, location }) => {
+const Menu = ({ iso, location }) => {
   const username = useSelector(getUsername);
   const avatar = useSelector(getAvatar);
+  const isMobile = useSelector(getIsMobile);
   const isRouteActive = (route) => {
     return location.pathname === route;
   };
@@ -59,8 +60,4 @@ const Menu = ({ iso, isMobile, location }) => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  isMobile: state.app.isMobile,
-});
-
-export default withRouter(connect(mapStateToProps, null)(Menu));
+export default withRouter(Menu);

@@ -3,18 +3,17 @@ import AsyncSelect from 'react-select/async';
 import PropTypes from 'prop-types';
 import SearchService from 'js/services/api/SearchService';
 
-const filterFilm = response => response.map(item => ({ value: item.id, label: item.title, poster: item.poster_path }));
+const filterFilm = (response) =>
+  response.map((item) => ({ value: item.id, label: item.title, poster: item.poster_path }));
 
 const loadOptions = async (inputValue, callback) => {
   const response = await SearchService.list({ query: inputValue });
   callback(filterFilm(response.results));
 };
 
-const FilmSelect = ({
-  placeholder, onChange, isMulti, options
-}) => (
+const FilmSelect = ({ placeholder, onChange, isMulti, options }) => (
   <AsyncSelect
-    value={options.filter(option => option.label)}
+    value={options.filter((option) => option.label)}
     placeholder={placeholder}
     cacheOptions
     loadOptions={loadOptions}
@@ -26,10 +25,15 @@ const FilmSelect = ({
 );
 
 FilmSelect.propTypes = {
+  placeholder: PropTypes.string,
+  onChange: PropTypes.func.isRequired,
+  isMulti: PropTypes.bool,
   options: PropTypes.arrayOf(PropTypes.shape),
 };
 
 FilmSelect.defaultProps = {
+  placeholder: '',
+  isMulti: false,
   options: [],
 };
 

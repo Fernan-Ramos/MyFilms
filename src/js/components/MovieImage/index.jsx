@@ -1,9 +1,9 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
 
 const imagePath = 'https://image.tmdb.org/t/p/';
 
-class MovieImage extends PureComponent {
-  getImageType = (type) => {
+const MovieImage = ({ image, size }) => {
+  const getImageType = (type) => {
     switch (type) {
       case 'xs':
         return 'w92';
@@ -24,11 +24,8 @@ class MovieImage extends PureComponent {
     }
   };
 
-  render() {
-    const { image, size } = this.props;
-    const type = this.getImageType(size);
-    return <img src={`${imagePath}${type}${image}`} alt="" />;
-  }
-}
+  const type = getImageType(size);
+  return <img src={`${imagePath}${type}${image}`} alt="" />;
+};
 
 export default MovieImage;

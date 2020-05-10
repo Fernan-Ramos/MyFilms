@@ -5,16 +5,12 @@ import { routeCodes } from 'js/constants/routes';
 import './style.scss';
 
 const UpcomingList = ({ items }) => (
-  <div className='UpcomingList'>
-    <div className='UpcomingList__title'>Upcoming</div>
-    <div className='UpcomingList__items'>
+  <div className="UpcomingList">
+    <div className="UpcomingList__title">Upcoming</div>
+    <div className="UpcomingList__items">
       {items.map((item, index) => (
         <Link to={`${routeCodes.FILM}/${item.id}`} key={index}>
-          <MovieCard
-            className='TextOutside'
-            movie={item}
-            imageSize="xl"
-          />
+          <MovieCard className="TextOutside" movie={item} imageSize="xl" />
         </Link>
       ))}
     </div>

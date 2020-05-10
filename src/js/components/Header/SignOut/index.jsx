@@ -1,12 +1,20 @@
-import React from 'react';
+import React from 'react'; 
+import { useDispatch } from 'react-redux';
+import { logout } from 'js/redux/auth/actions';
 import Button from 'js/components/Button';
-import { withFirebase } from 'js/components/Firebase';
 import SignOutIcon from '../../../../assets/icons/logout.svg';
 import './style.scss';
 
-const SignOutButton = ({ firebase }) => (
-  <Button type="button" onClick={firebase.doSignOut} className='Button__signOut'>
-    <img src={SignOutIcon} alt="icon" />
-  </Button>
-);
-export default withFirebase(SignOutButton);
+const SignOut = () => {
+  const dispatch = useDispatch();
+  const handleOnClick = () => {
+    dispatch(logout());
+  };
+  return (
+    <Button type="button" onClick={handleOnClick} className="Button__signOut">
+      <img src={SignOutIcon} alt="icon" />
+    </Button>
+  );
+};
+
+export default SignOut;

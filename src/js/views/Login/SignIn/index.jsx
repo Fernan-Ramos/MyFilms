@@ -1,41 +1,29 @@
-import React, * as react from 'react';
-import { connect } from 'react-redux';
+import React from 'react';
+import { useDispatch } from 'react-redux';
+import { signInEmail } from 'js/redux/auth/actions';
 import Button from 'js/components/Button';
 import Input from 'js/components/Input';
-import { signInEmail } from 'js/redux/auth/actions';
 
-class SignIn extends react.Component {
-  handleSubmit = async (event) => {
-    const { loginFunction } = this.props;
+const SignIn = () => {
+  const dispatch = useDispatch();
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const username = event.target.username.value;
     const password = event.target.password.value;
-    loginFunction(username, password);
+    dispatch(signInEmail(username, password));
     event.preventDefault();
   };
+  return (
+    <div>
+      <form onSubmit={handleSubmit}>
+        <Input type="email" placeholder="Email" name="username" required />
+        <Input type="password" placeholder="Contraseña" name="password" required />
+        <Button className="primary" type="submit">
+          <span>Login</span>
+        </Button>
+      </form>
+    </div>
+  );
+};
 
-  render() {
-    return (
-      <div>
-        <form onSubmit={this.handleSubmit}>
-          <Input type="email" placeholder="Email" name="username" required />
-          <Input
-            type="password"
-            placeholder="Contraseña"
-            name="password"
-            required
-          />
-          <Button className="primary" type="submit">
-            <span>Login</span>
-          </Button>
-        </form>
-      </div>
-    );
-  }
-}
-
-const mapDispatchToProps = dispatch => ({
-  loginFunction: (username, password) => dispatch(signInEmail(username, password))
-});
-
-export default connect(null, mapDispatchToProps)(SignIn);
+export default SignIn;

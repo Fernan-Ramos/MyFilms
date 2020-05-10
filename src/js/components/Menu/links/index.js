@@ -3,7 +3,7 @@ import { routeCodes } from 'js/constants/routes';
 const links = [
   {
     label: 'Novedades',
-    route: routeCodes.TRENDING
+    route: routeCodes.TRENDING,
   },
   // {
   //   label: 'WatchList',
@@ -11,15 +11,15 @@ const links = [
   // },
   {
     label: 'Listas',
-    route: routeCodes.LISTS
+    route: routeCodes.LISTS,
   },
   {
     label: 'Favoritos',
-    route: routeCodes.FAVORITES
+    route: routeCodes.FAVORITES,
   },
   {
     label: 'Recomendaciones',
-    route: routeCodes.RECOMMENDATIONS
+    route: routeCodes.RECOMMENDATIONS,
   },
 ];
 

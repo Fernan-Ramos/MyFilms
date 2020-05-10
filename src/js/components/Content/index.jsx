@@ -1,13 +1,11 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import './style.scss';
 
-export default class Content extends PureComponent {
-  render() {
-    const { children } = this.props;
-    return (
-      <main className='AppContent'>
-        {children}
-      </main>
-    );
-  }
-}
+const Content = ({ children }) => <main className="AppContent">{children}</main>;
+
+Content.propTypes = {
+  children: PropTypes.node.isRequired,
+};
+
+export default Content;

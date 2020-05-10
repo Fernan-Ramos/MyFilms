@@ -2,7 +2,6 @@ import app from 'firebase/app';
 import 'firebase/auth';
 import 'firebase/firestore';
 import 'firebase/storage';
-import AuthService from '../js/services/api/AuthService';
 
 const config = {
   apiKey: process.env.REACT_APP_API_KEY,
@@ -36,7 +35,6 @@ class Firebase {
 
   doSignOut = () => {
     this.auth.signOut();
-    AuthService.logout();
   };
 
   doSignInWithGoogle = () => this.auth.signInWithPopup(this.googleProvider);

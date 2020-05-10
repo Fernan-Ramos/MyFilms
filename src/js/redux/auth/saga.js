@@ -71,10 +71,20 @@ function* signUp(action) {
   }
 }
 
+function* logout() {
+  try {
+    yield call(firebase.doSignOut);
+    yield call(AuthService.logout);
+  } catch (error) {
+    console.error(error);
+  }
+}
+
 function* authSaga() {
   yield takeLatest(types.SIGN_IN_GOOGLE, signInGoogle);
   yield takeLatest(types.SIGN_IN_EMAIL, signIn);
   yield takeLatest(types.SIGN_UP, signUp);
+  yield takeLatest(types.LOGOUT, logout);
 }
 
 export default authSaga;

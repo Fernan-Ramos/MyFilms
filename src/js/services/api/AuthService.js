@@ -1,7 +1,7 @@
 import axios from 'axios';
 import cookies from 'js/services/cookies';
 import routeManager from 'js/services/routeManager';
-
+import { routeCodes } from 'js/constants/routes';
 import Config from './Config';
 import BaseService from './BaseService';
 
@@ -47,9 +47,10 @@ export default class AuthService extends BaseService {
 
   static logout() {
     cookies.remove(this.cookieName);
+    routeManager.push(routeCodes.LOGIN);
   }
 
   static goToLoggedInInitialPage() {
-    routeManager.push('/trending');
+    routeManager.push(routeCodes.TRENDING);
   }
 }

@@ -10,5 +10,4 @@ const MovieCard = ({ movie, imageSize, className }) => (
   </div>
 );
 
-
 export default MovieCard;

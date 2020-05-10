@@ -1,5 +1,5 @@
-import * as types from './types';
 import AuthService from 'js/services/api/AuthService';
+import * as types from './types';
 
 export function setUser(tokenData) {
   return {
@@ -38,4 +38,10 @@ export async function login(tokenData, dispatch) {
     tokenData,
   });
   AuthService.goToLoggedInInitialPage();
+}
+
+export function logout() {
+  return {
+    type: types.LOGOUT,
+  };
 }

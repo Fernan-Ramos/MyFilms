@@ -11,7 +11,6 @@ import { fetchGetLists } from 'js/redux/firebase/actions';
 
 import './style.scss';
 
-
 const Lists = ({ fetchList, lists }) => {
   useEffect(() => {
     if (lists.length === 0) {
@@ -57,11 +56,11 @@ const Lists = ({ fetchList, lists }) => {
   );
 };
 
-const mapDispatchToProps = dispatch => ({
-  fetchList: listName => dispatch(fetchGetLists(listName)),
+const mapDispatchToProps = (dispatch) => ({
+  fetchList: (listName) => dispatch(fetchGetLists(listName)),
 });
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state) => ({
   lists: state.firebase.myLists,
 });
 
