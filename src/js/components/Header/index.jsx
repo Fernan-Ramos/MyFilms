@@ -3,7 +3,6 @@ import routeManager from 'js/services/routeManager';
 import FilmSelect from 'js/components/FilmSelect';
 import { routeCodes } from 'js/constants/routes';
 import './style.scss';
-import SignOut from './SignOut';
 
 const Header = () => {
   const handleOnChange = (film) => {
@@ -15,7 +14,6 @@ const Header = () => {
       <div className="AppHeader__select">
         <FilmSelect placeholder="Buscar" onChange={handleOnChange} />
       </div>
-      <SignOut />
     </header>
   );
 };

@@ -1,7 +1,7 @@
-import React from 'react'; 
+import React from 'react';
 import { useDispatch } from 'react-redux';
-import { logout } from 'js/redux/auth/actions';
 import Button from 'js/components/Button';
+import { logout } from 'js/redux/auth/actions';
 import SignOutIcon from '../../../../assets/icons/logout.svg';
 import './style.scss';
 
@@ -12,6 +12,7 @@ const SignOut = () => {
   };
   return (
     <Button type="button" onClick={handleOnClick} className="Button__signOut">
+      Cerrar sesión
       <img src={SignOutIcon} alt="icon" />
     </Button>
   );

@@ -8,7 +8,6 @@ import App from 'js/views/App';
 import configureStore from './js/store';
 import * as serviceWorker from './serviceWorker';
 
-
 import 'scss/base/corrections.scss';
 import 'scss/base/reset.scss';
 
@@ -33,7 +32,7 @@ async function initApp() {
   };
   const AppWrapper = (
     <Provider store={store}>
-      <FirebaseContext.Provider value={new Firebase()}>
+      <FirebaseContext.Provider value={Firebase}>
         <Router history={routeManager.history}>
           <App />
         </Router>
@@ -46,7 +45,6 @@ async function initApp() {
     await login(tokenData, store.dispatch);
   }
   ReactDOM.render(AppWrapper, document.getElementById('root'));
-
 
   // If you want your app to work offline and load faster, you can change
   // unregister() to register() below. Note this comes with some pitfalls.

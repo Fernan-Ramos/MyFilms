@@ -5,8 +5,6 @@ import Firebase from '../../../config/firebase';
 import AuthService from '../../services/api/AuthService';
 import { addAsync, deleteAsync } from '../app/actions';
 
-const firebase = new Firebase();
-
 function* setUserInfo(userData) {
   AuthService.initToken(userData);
   yield put(setUser(userData));
@@ -15,14 +13,14 @@ function* setUserInfo(userData) {
 
 function* signInGoogle() {
   try {
-    const response = yield call(firebase.doSignInWithGoogle);
+    const response = yield call(Firebase.doSignInWithGoogle);
     const userData = {
       username: response.user.displayName,
       request_token: response.user.refreshToken,
       avatar: response.user.photoURL,
     };
     AuthService.initToken(userData);
-    yield call(firebase.setUser, response.user);
+    yield call(Firebase.setUser, response.user);
     yield call(setUserInfo, userData);
   } catch (error) {
     console.error(error);
@@ -33,7 +31,7 @@ function* signIn(action) {
   try {
     yield put(addAsync('login'));
     const response = yield call(
-      firebase.doSignInWithEmailAndPassword,
+      Firebase.doSignInWithEmailAndPassword,
       action.username,
       action.password
     );
@@ -53,12 +51,12 @@ function* signUp(action) {
   try {
     yield put(addAsync('login'));
     const response = yield call(
-      firebase.doCreateUserWithEmailAndPassword,
+      Firebase.doCreateUserWithEmailAndPassword,
       action.email,
       action.password
     );
-    yield call(firebase.doSendEmailVerification);
-    yield call(firebase.setUser, { ...response.user, displayName: action.username });
+    yield call(Firebase.doSendEmailVerification);
+    yield call(Firebase.setUser, { ...response.user, displayName: action.username });
     const userData = {
       username: action.username,
       request_token: response.user.refreshToken,
@@ -73,8 +71,8 @@ function* signUp(action) {
 
 function* logout() {
   try {
-    yield call(firebase.doSignOut);
-    yield call(AuthService.logout);
+    yield call(Firebase.doSignOut);
+    AuthService.logout();
   } catch (error) {
     console.error(error);
   }

@@ -9,6 +9,7 @@ import MenuLink from './MenuLink';
 import MenuButton from './MenuButton';
 
 import './style.scss';
+import SignOut from './SignOut';
 
 const Menu = ({ iso, location }) => {
   const username = useSelector(getUsername);
@@ -51,6 +52,9 @@ const Menu = ({ iso, location }) => {
                 <MenuLink route={item.route} label={item.label} handleOnClick={handleOnClick} />
               </li>
             ))}
+            <li className="Link">
+              <SignOut />
+            </li>
           </ul>
         </div>
         <div className="Menu__categories" />
