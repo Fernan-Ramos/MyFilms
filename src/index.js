@@ -1,11 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Router } from 'react-router-dom';
-import routeManager from 'js/services/routeManager';
+import routeManager from 'services/routeManager';
 import { Provider } from 'react-redux';
-import { login } from 'js/redux/auth/actions';
-import App from 'js/views/App';
-import configureStore from './js/store';
+import { login } from 'redux/auth/actions';
+import App from 'views/App';
+import configureStore from './store';
+import AuthService from './services/api/AuthService';
+import { setIsMobile } from './redux/app/actions';
+import Firebase, { FirebaseContext } from './components/Firebase';
 import * as serviceWorker from './serviceWorker';
 
 import 'scss/base/corrections.scss';
@@ -13,9 +16,7 @@ import 'scss/base/reset.scss';
 
 import 'scss/theme/layout.scss';
 import 'scss/theme/fonts.scss';
-import AuthService from './js/services/api/AuthService';
-import { setIsMobile } from './js/redux/app/actions';
-import Firebase, { FirebaseContext } from './js/components/Firebase';
+
 
 async function initApp() {
   const store = configureStore();

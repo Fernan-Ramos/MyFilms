@@ -1,0 +1,135 @@
+@import "scss/theme/variables.scss";
+@import "scss/theme/mixins.scss";
+@import "~rfs/scss";
+
+.LoginWrapper {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  @include linear-gradient();
+  .LoginWrapper__form {
+    border-radius: get-rem(5px);
+    background-color: $white;
+    height: 90vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    overflow: hidden;
+    &-image {
+      background: url("../../assets/img/login/login.jpg") center no-repeat;
+      background-size: cover;
+      transform: translate(0, 0);
+      transition: transform 1s ease;
+      &.translate {
+        animation: translate-left 1s ease;
+        transform: translate(-100%, 0);
+      }
+    }
+    &-content {
+      align-self: center;
+      justify-self: center;
+      padding: 60px;
+      h1 {
+        font-size: get-rem(40px);
+        line-height: get-rem(57px);
+        font-weight: bold;
+        margin-bottom: get-rem(10px);
+        color: $black3;
+      }
+      p {
+        color: $grey;
+        font-size: get-rem(15px);
+        margin-bottom: get-rem(30px);
+      }
+      form {
+        display: grid;
+        grid-row-gap: get-rem(25px);
+        padding-bottom: get-rem(20px);
+        // border-bottom: 1px dashed $blue3;
+      }
+      span {
+        font-size: 12px;
+        .Button {
+          font-size: 12px;
+          text-decoration: underline;
+          color: $grey;
+        }
+      }
+
+      transform: translate(0, 0);
+      transition: transform 1s ease;
+      &.translate {
+        animation: translate-right 1s ease;
+        transform: translate(100%, 0);
+      }
+    }
+  }
+}
+
+@keyframes translate-left {
+  from {
+    transform: translate(0, 0);
+  }
+  to {
+    transform: translate(-100%, 0);
+  }
+}
+@keyframes translate-right {
+  from {
+    transform: translate(0, 0);
+  }
+  to {
+    transform: translate(100%, 0);
+  }
+}
+
+@media (max-width: 768px) {
+  .LoginWrapper {
+    .LoginWrapper__form {
+      height: 95vh;
+      width: 90%;
+      grid-template-columns: none;
+      background: url("../../assets/img/login/login-mobile.png") center
+        no-repeat;
+      background-size: cover;
+      border-radius: get-mobile-vw(5px);
+      &-image {
+        display: none;
+      }
+      &-content {
+        padding: 0;
+        h1 {
+          font-size: get-mobile-vw(40px);
+          line-height: get-mobile-vw(57px);
+          margin-bottom: get-mobile-vw(10px);
+          color: $white2;
+        }
+        p {
+          font-size: get-mobile-vw(15px);
+          margin-bottom: get-mobile-vw(30px);
+        }
+        form {
+          grid-row-gap: get-mobile-vw(25px);
+          padding-bottom: get-mobile-vw(20px);
+        }
+        span {
+          font-size: 12px;
+          color: $violet;
+          .Button {
+            color: $grey;
+          }
+        }
+      }
+    }
+  }
+
+  .Register,
+  .Login {
+    opacity: 0;
+    transition: opacity 0.4s;
+    &.active {
+      opacity: 1;
+    }
+  }
+}
