@@ -34,7 +34,6 @@ class Firebase {
   doSendEmailVerification = () => this.auth.currentUser.sendEmailVerification();
 
   doSignOut = () => {
-    console.log('entra');
     this.auth.signOut();
   };
 

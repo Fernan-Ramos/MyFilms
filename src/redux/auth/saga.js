@@ -1,14 +1,14 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
 import Firebase from 'config/firebase';
+import { addAsync, deleteAsync } from 'redux/app/actions';
 import AuthService from 'services/api/AuthService';
 import { setUser } from './actions';
 import * as types from './types';
-import { addAsync, deleteAsync } from '../app/actions';
 
 function* setUserInfo(userData) {
-  AuthService.initToken(userData);
+  yield call([AuthService, AuthService.initToken], userData);
   yield put(setUser(userData));
-  AuthService.goToLoggedInInitialPage();
+  yield call([AuthService, AuthService.goToLoggedInInitialPage]);
 }
 
 function* signInGoogle() {
@@ -19,7 +19,7 @@ function* signInGoogle() {
       request_token: response.user.refreshToken,
       avatar: response.user.photoURL,
     };
-    AuthService.initToken(userData);
+    yield call([AuthService, AuthService.initToken], userData);
     yield call(Firebase.setUser, response.user);
     yield call(setUserInfo, userData);
   } catch (error) {
@@ -72,7 +72,7 @@ function* signUp(action) {
 function* logout() {
   try {
     yield call(Firebase.doSignOut);
-    AuthService.logout();
+    yield call([AuthService, AuthService.logout]);
   } catch (error) {
     console.error(error);
   }

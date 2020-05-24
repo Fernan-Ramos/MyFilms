@@ -2,7 +2,7 @@ import React from 'react';
 import './style.scss';
 
 const Latest = ({ latest }) => (
-  <React.Fragment>
+  <>
     {latest && (
       <div className="Latest">
         <div className="Latest__title">What's New</div>
@@ -14,7 +14,7 @@ const Latest = ({ latest }) => (
         </div>
       </div>
     )}
-  </React.Fragment>
+  </>
 );
 
 export default Latest;

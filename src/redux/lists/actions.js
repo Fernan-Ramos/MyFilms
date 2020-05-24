@@ -14,3 +14,9 @@ export function deleteList(label) {
     label,
   };
 }
+
+export function fetchTrending() {
+  return {
+    type: types.FETCH_TRENDING,
+  };
+}
