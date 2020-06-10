@@ -57,7 +57,12 @@ const CreateList = ({
     const { name, value } = event.target;
     setValues({ ...values, [name]: value });
   };
-  const handleFilmOnChange = (films) => {
+  const handleFilmOnChange = (film) => {
+    setValues({ ...values, films: [...values.films, ...[film]] });
+  };
+
+  const handleDeleteFilm = (filmId) => {
+    const films = values.films.filter(({ value }) => value !== filmId);
     setValues({ ...values, films });
   };
   const handleImageOnChange = async (event) => {
@@ -81,6 +86,7 @@ const CreateList = ({
       handleImageOnChange={handleImageOnChange}
       values={values}
       isEdit={isEdit}
+      handleDeleteFilm={handleDeleteFilm}
     />
   );
 };

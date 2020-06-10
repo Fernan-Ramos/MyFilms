@@ -1,43 +1,50 @@
-@import "scss/theme/variables.scss";
-@import "scss/theme/mixins.scss";
+@import 'scss/theme/variables.scss';
+@import 'scss/theme/mixins.scss';
 
-.Input {
-  width: 100%;
-  border-radius: get-rem(2px);
-  outline: none;
-  font-family: "Catamaran";
-  padding: 5px 10px;
-  border: get-rem(2px) solid $blue3;
-  border-radius: get-rem(4px);
-  color: $black3;
-  font-size: 13px;
-
-  &::-webkit-input-placeholder {
-    color: $blue3;
+.input-group {
+  label {
+    font-size: 12px;
+    font-weight: bold;
+    margin-bottom: 12px;
+    display: block;
   }
+  input {
+    width: 100%;
+    border-radius: get-rem(2px);
+    outline: none;
+    font-family: 'Catamaran';
+    padding: 5px 10px;
+    border: get-rem(2px) solid $blue3;
+    border-radius: get-rem(4px);
+    color: $black3;
+    font-size: 13px;
 
-  &::-moz-placeholder {
-    color: $blue3;
+    &::-webkit-input-placeholder {
+      color: $blue3;
+    }
+
+    &::-moz-placeholder {
+      color: $blue3;
+    }
+
+    &:-ms-input-placeholder {
+      color: $blue3;
+    }
+
+    &:-moz-placeholder {
+      color: $blue3;
+    }
+
+    &::placeholder {
+      color: $blue3;
+    }
   }
-
-  &:-ms-input-placeholder {
-    color: $blue3;
-  }
-
-  &:-moz-placeholder {
-    color: $blue3;
-  }
-
-  &::placeholder {
-    color: $blue3;
-  }
-}
-
-@media (max-width: 768px) {
-  .Input {
-    border-radius: get-mobile-vw(2px);
-    padding: get-mobile-vw(5px) get-mobile-vw(10px);
-    border: get-mobile-vw(2px) solid $blue3;
-    border-radius: get-mobile-vw(4px);
+  @media (max-width: 768px) {
+    input {
+      border-radius: get-mobile-vw(2px);
+      padding: get-mobile-vw(5px) get-mobile-vw(10px);
+      border: get-mobile-vw(2px) solid $blue3;
+      border-radius: get-mobile-vw(4px);
+    }
   }
 }

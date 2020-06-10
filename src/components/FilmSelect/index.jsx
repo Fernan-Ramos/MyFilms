@@ -11,7 +11,7 @@ const loadOptions = async (inputValue, callback) => {
   callback(filterFilm(response.results));
 };
 
-const FilmSelect = ({ placeholder, onChange, isMulti, options }) => (
+const FilmSelect = ({ placeholder, onChange, isMulti, options, ...rest }) => (
   <AsyncSelect
     value={options.filter((option) => option.label)}
     placeholder={placeholder}
@@ -21,6 +21,7 @@ const FilmSelect = ({ placeholder, onChange, isMulti, options }) => (
     onChange={onChange}
     isMulti={isMulti}
     options={options}
+    {...rest}
   />
 );
 
