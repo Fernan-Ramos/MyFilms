@@ -27,7 +27,7 @@
     "redux-thunk": "^2.3.0",
     "rfs": "^8.0.3",
     "universal-cookie": "^3.1.0",
-    "urijs": "^1.19.1"
+    "urijs": "^1.19.11"
   },
   "scripts": {
     "start": "react-scripts start",
